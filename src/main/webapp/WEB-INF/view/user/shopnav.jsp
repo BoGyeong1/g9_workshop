@@ -10,7 +10,7 @@
     </a>
     <hr>
     <div class="fs-4 mb-2">By Category</div>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column">
         <li class="nav-item fs-5">
             <a href="/shop/papper" class="nav-link link-dark text-decoration-none w-100" id="${currentPage == 'papper' ? 'currentPage' :  '' }">
                 PAPPER
@@ -39,7 +39,7 @@
     </ul>
     <hr>
     <div class="fs-4 mb-2">By Usage</div>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column">
         <li class="nav-item fs-5">
             <a href="/shop/clothes" class="nav-link link-dark text-decoration-none w-100" id="${currentPage == 'clothes' ? 'currentPage' :  '' }">
                 CLOTHES
