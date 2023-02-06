@@ -24,9 +24,19 @@
         <%@ include file="./shopnav.jsp" %>
 
         <%-- [SOO] Main Area --%>
-        <div class="container w-100 m-3 text-center">  
-            영역 테스트
+        <div class="container w-100 mt-3">  
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card border-0">
+                        <img src="/resources/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height : 400px;">
+                        <div class="card-body">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
     <%-- [SOO] Footer Include --%>
