@@ -18,16 +18,14 @@
 <body>
     <%-- [SOO] Header Include --%>
     <%@ include file="./header.jsp" %>
-
     <div class="d-flex">
         <%-- [SOO] Shop Nav Include --%>
         <%@ include file="./shopnav.jsp" %>
-
         <%-- [SOO] Main Area --%>
         <div class="container w-100 mt-3">  
             <div class="row mb-5">
                 <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
+                    <a href="/shop/product/productId" class="text-decoration-none text-dark">
                         <img src="/resources/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
                         <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
                         <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
@@ -116,11 +114,10 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     <%-- [SOO] Footer Include --%>
     <%@ include file="./footer.jsp" %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

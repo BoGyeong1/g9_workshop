@@ -10,12 +10,20 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/shop")
 public class ShopController {
 
-    // [SOO] Shop Main
-    @RequestMapping(value = { "/{currentPage}" }, method = RequestMethod.GET)
-    public ModelAndView root(@PathVariable String currentPage, ModelAndView modelAndView) {
+    // [SOO] Shop Main - List Output by Category
+    @RequestMapping(value = "/{currentPage}", method = RequestMethod.GET)
+    public ModelAndView shopList(@PathVariable String currentPage, ModelAndView modelAndView) {
 
         modelAndView.addObject("currentPage", currentPage);
         modelAndView.setViewName("user/shop");
+        return modelAndView;
+    }
+
+    // [SOO] Shop Main - List Output by Category
+    @RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)
+    public ModelAndView root(@PathVariable String productId, ModelAndView modelAndView) {
+
+        modelAndView.setViewName("user/product");
         return modelAndView;
     }
 

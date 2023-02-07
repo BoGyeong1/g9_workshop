@@ -18,7 +18,6 @@
 <body>
     <%-- [SOO] Header Include --%>
     <%@ include file="./header.jsp" %>
-
     <%-- [SOO] Main Area --%>
     <div class="container fw-bold text-center">
         <div class="m-5">
@@ -81,7 +80,6 @@
             </div>
         </div>
     </div>
-
     <%-- [SOO] IMG Banner - Project Page --%>
     <div id="main-img-box">
         <img src="/resources/img/bg/banner2.png" alt="banner" class="w-100 my-5" id="main-img">
@@ -90,13 +88,13 @@
                 <div class="fw-bold fs-5">새활용이 만들어낸 새로운 가치</div>
             </div>
             <span class="py-4">
-                <a href="/shop" class="text-white border border-2 p-2 bg-black bg-opacity-75">Shop 바로가기</a>
+                <a href="/shop/whole" class="text-white border border-2 p-2 bg-black bg-opacity-75">Shop 바로가기</a>
             </span>
         </div>
     </div>
-    
     <%-- [SOO] Footer Include --%>
     <%@ include file="./footer.jsp" %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>

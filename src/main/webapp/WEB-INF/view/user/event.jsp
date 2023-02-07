@@ -17,7 +17,6 @@
 <body>
     <%-- [SOO] Header Include --%>
     <%@ include file="./header.jsp" %>
-
     <%-- [SOO] Main Area --%>
     <div class="container fw-bold text-center">
         <div class="m-5">
@@ -35,9 +34,9 @@
         </div>
         <%-- TO-DO 이벤트 불러오기 c:Foreach --%>
     </div>
-
     <%-- [SOO] Footer Include --%>
     <%@ include file="./footer.jsp" %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 
 </html>
