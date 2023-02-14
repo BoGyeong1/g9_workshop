@@ -20,7 +20,7 @@
 <body>
     <%-- [SOO] Header Include --%>
     <%@ include file="./header.jsp" %>
-    <div class="container">
+    <div class="container mb-5">
         <div class="d-flex justify-content-between">
             <div class="w-100 m-5" id="product-img-box">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
@@ -95,7 +95,7 @@
                     <form class="d-flex justify-content-between">
                         <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
                         <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/buy">
-                        <input class="btn btn-outline-success col-1" type="submit" value="찜" formaction="/like">
+                        <input class="btn btn-outline-success col-1" type="submit" value="♡" formaction="/like">
                     </form>
                 </div>
             </div>
@@ -129,7 +129,104 @@
                 <li>제품 하자에 의한 교환 및 환불은 가능합니다.</li>
             </ul>
         </div>
+        <div id="produt-review-box" class="w-75 m-auto">
+            <hr>
+            <div class="fw-bold">구매평</div>
+            <hr>
+            <div id="review-box" class="d-flex justify-content-between">
+                <div id="review-box-left">
+                    <div class="m-2" id="star-rating-box">
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                    </div>
+                    <div class="m-2" id="review-text-box">
+                        귀여워요
+                    </div>
+                </div>
+                <div id="review-box-right">
+                    <div class="m-2 text-end" id="date">
+                        2023-02-28 07:51
+                    </div>
+                    <div class="m-2 text-end" id="writer">
+                        잗우
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="review-box" class="d-flex justify-content-between">
+                <div id="review-box-left">
+                    <div class="m-2" id="star-rating-box">
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                    </div>
+                    <div class="m-2" id="review-text-box">
+                        귀여워요
+                    </div>
+                </div>
+                <div id="review-box-right">
+                    <div class="m-2 text-end" id="date">
+                        2023-02-28 07:51
+                    </div>
+                    <div class="m-2 text-end" id="writer">
+                        잗우
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div id="review-box" class="d-flex justify-content-between">
+                <div id="review-box-left">
+                    <div class="m-2" id="star-rating-box">
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                        <i class="bi bi-star-fill text-danger"></i>
+                    </div>
+                    <div class="m-2" id="review-text-box">
+                        귀여워요
+                    </div>
+                </div>
+                <div id="revidivew-box-right">
+                    <div class="m-2 text-end" id="date">
+                        2023-02-28 07:51
+                    </div>
+                    <div class="m-2 text-end" id="writer">
+                        잗우
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="produt-inquery-box" class="w-75 m-auto">
+            <hr>
+            <div class="fw-bold">상품문의</div>
+            <hr>
+            <div id="inquery-box" class="d-flex justify-content-between">
+                <div id="inquery-box-left" class="w-75">
+                    <div class="m-2" id="inquery-text-box">
+                        문의내용
+                    </div>
+                    <div class="m-2 bg-light" id="inquery-text-box">
+                        답변내용
+                    </div>
+                </div>
+                <div id="inquery-box-right">
+                    <div class="m-2 text-end" id="date">
+                        2023-02-28 07:51
+                    </div>
+                    <div class="m-2 text-end" id="writer">
+                        잗우
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     <%-- [SOO] Footer Include --%>
     <%@ include file="./footer.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
