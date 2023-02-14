@@ -7,7 +7,7 @@
             <div class="text-end my-1">
                 <a class="text-decoration-none text-secondary" href="/login">로그인</a>
                 <span class="text-secondary">|</span>
-                <a class="text-decoration-none text-secondary" href="/signup">회원가입</a>
+                <a class="text-decoration-none text-secondary" href="/selectSignup">회원가입</a>
                 <span class="text-secondary">|</span>
                 <a class="text-decoration-none text-secondary" href="/cs">고객센터</a>
             </div>

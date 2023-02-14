@@ -1,0 +1,48 @@
+/* * {
+  border: 1px solid gray;
+} */
+
+.main {
+  margin-top: 150px;
+  margin-bottom: 200px;
+}
+.logo {
+  width: 300px;
+}
+.private_modal {
+  font-size: small;
+  margin-left: 20px;
+  color: gray;
+}
+.service_modal {
+  font-size: small;
+  color: gray;
+}
+.service {
+  width: 500px;
+}
+
+.private {
+  width: 500px;
+}
+
+.hr {
+  border: 0;
+  height: 3px;
+  background: #000;
+  width: 500px;
+}
+
+.next_btn {
+  width: 500px;
+  height: 50px;
+  background-color: black;
+  color: white;
+}
+.button {
+  margin-top: 150px;
+}
+
+.checkbox {
+  width: 18px;
+}

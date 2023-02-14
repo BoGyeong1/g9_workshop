@@ -1,0 +1,33 @@
+.width {
+  width: 450px;
+  margin: auto;
+}
+.title {
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+.hr {
+  width: 450px;
+  height: 3px;
+  background-color: black;
+  border: 0;
+  margin: auto;
+}
+.input {
+  border: 1px solid black;
+  height: 50px;
+  width: 450px;
+}
+.margin {
+  margin-top: 30px;
+}
+.find_btn {
+  width: 450px;
+  height: 50px;
+  background-color: black;
+  color: white;
+}
+.margin_bottom {
+  margin-top: 30px;
+  margin-bottom: 200px;
+}
