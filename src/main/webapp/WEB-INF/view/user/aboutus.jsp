@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <title>EarthWorkshop - About us</title>
 </head>
 
@@ -32,7 +32,7 @@
             지구공방은 지구와 더불어 살아가기 위한 <span class="text-success">업사이클링 라이프스타일 편집샵</span> 입니다.
         </div>
         <div class="m-5 d-flex justify-content-center">
-            <img src="/resources/img/content/project.png" alt="project" class="">
+            <img src="/img/content/project.png" alt="project" class="">
         </div>
         <div class="m-5 fs-3">
             BRAND IDENTITY
@@ -49,13 +49,13 @@
             </div>
             <div class=m-3>
                 <div class=m-2>
-                    <img src="/resources/img/logo/G9_Logo_Black.png" alt="banner" class="w-50">
+                    <img src="/img/logo/G9_Logo_Black.png" alt="banner" class="w-50">
                 </div>
                 <div class=m-2>
-                    <img src="/resources/img/logo/G9_Logo_Brown.png" alt="banner" class="w-50">
+                    <img src="/img/logo/G9_Logo_Brown.png" alt="banner" class="w-50">
                 </div>
                 <div class=m-2>
-                    <img src="/resources/img/logo/G9_Logo_Green.png" alt="banner" class="w-50">
+                    <img src="/img/logo/G9_Logo_Green.png" alt="banner" class="w-50">
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
     </div>
     <%-- [SOO] IMG Banner - Project Page --%>
     <div id="main-img-box">
-        <img src="/resources/img/bg/banner2.png" alt="banner" class="w-100 my-5" id="main-img">
+        <img src="/img/bg/banner2.png" alt="banner" class="w-100 my-5" id="main-img">
         <div id="main-text">
             <div class="mt-3">
                 <div class="fw-bold fs-5">새활용이 만들어낸 새로운 가치</div>

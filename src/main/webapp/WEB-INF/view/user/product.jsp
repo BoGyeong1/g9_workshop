@@ -13,7 +13,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/resources/css/shop.css">
+    <link rel="stylesheet" href="/css/shop.css">
     <title>EarthWorkshop - Shop</title>
 </head>
 
@@ -33,19 +33,19 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active" data-bs-interval="2000">
-                            <img src="/resources/img/shop/prod_sample_img1.jpg" class="d-block w-100" alt="...">
+                            <img src="/img/shop/prod_sample_img1.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/resources/img/shop/prod_sample_img2.jpg" class="d-block w-100" alt="...">
+                            <img src="/img/shop/prod_sample_img2.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/resources/img/shop/prod_sample_img3.jpg" class="d-block w-100" alt="...">
+                            <img src="/img/shop/prod_sample_img3.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/resources/img/shop/prod_sample_img4.jpg" class="d-block w-100" alt="...">
+                            <img src="/img/shop/prod_sample_img4.jpg" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/resources/img/shop/prod_sample_img5.jpg" class="d-block w-100" alt="...">
+                            <img src="/img/shop/prod_sample_img5.jpg" class="d-block w-100" alt="...">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button"
@@ -102,11 +102,11 @@
         </div>
         <hr>
         <div id="produt-detail-box" class="w-75 m-auto">
-            <img src="/resources/img/shop/prod_sample_detail_1.jpg" class="d-block w-100" alt="...">
-            <img src="/resources/img/shop/prod_sample_detail_2.jpg" class="d-block w-100" alt="...">
-            <img src="/resources/img/shop/prod_sample_detail_3.jpg" class="d-block w-100" alt="...">
-            <img src="/resources/img/shop/prod_sample_detail_4.jpg" class="d-block w-100" alt="...">
-            <img src="/resources/img/shop/prod_sample_detail_5.jpg" class="d-block w-100" alt="...">
+            <img src="/img/shop/prod_sample_detail_1.jpg" class="d-block w-100" alt="...">
+            <img src="/img/shop/prod_sample_detail_2.jpg" class="d-block w-100" alt="...">
+            <img src="/img/shop/prod_sample_detail_3.jpg" class="d-block w-100" alt="...">
+            <img src="/img/shop/prod_sample_detail_4.jpg" class="d-block w-100" alt="...">
+            <img src="/img/shop/prod_sample_detail_5.jpg" class="d-block w-100" alt="...">
         </div>
         <div id="produt-delivery-box" class="w-75 m-auto">
             <hr>
@@ -230,7 +230,7 @@
     <%-- [SOO] Footer Include --%>
     <%@ include file="./footer.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="/resources/js/product.js"></script>
+    <script src="/js/product.js"></script>
 </body>
 
 </html>

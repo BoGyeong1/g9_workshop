@@ -19,7 +19,7 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div id="img-container" class="d-flex align-items-end">
                     <a href="/home" class="navbar-brand">
-                        <img src="/resources/img/logo/G9_Logo_Black.png" alt="g9_logo"
+                        <img src="/img/logo/G9_Logo_Black.png" alt="g9_logo"
                             style="width: 15vw; margin-right: 1vw;">
                     </a>
                     <form action="/search">
