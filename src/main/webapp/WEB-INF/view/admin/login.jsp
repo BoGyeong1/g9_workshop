@@ -13,9 +13,13 @@
 
 <body>
     <div class="container">
-        <div class="" id="admin-login-box" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-            <h1 class="text-center">Earth Workship Admin System</h1>
-            <form action="" method="post" class="my-5 col-12 col-md-6 m-auto">
+        <div class="" id="admin-login-box" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -70%);">
+            <h1 class="text-center">
+                <img src="/img/logo/G9_Logo_Black.png" alt="G9_Logo_Black" class="w-25">
+                <br>
+                Admin System
+            </h1>
+            <form action="" method="post" class="my-5 col-12 col-md-4 m-auto">
                 <div class="my-3">
                     <label for="admin-id" class="form-label">Admin ID</label>
                     <input type="text" class="form-control" id="admin-id" name="admin-id">
