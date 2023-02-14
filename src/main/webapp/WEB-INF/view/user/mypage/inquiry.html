@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="../css/mypage/inquiry.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="nav-justified">
+        <div class="container">
+          <div id="top-nav">
+            <div class="text-end my-1">
+              <a
+                class="text-decoration-none text-secondary"
+                href="../login/login.html"
+                >로그인</a
+              >
+              <span class="text-secondary">|</span>
+              <a
+                class="text-decoration-none text-secondary"
+                href="../signup/select_signup.html"
+                >회원가입</a
+              >
+              <span class="text-secondary">|</span>
+              <a class="text-decoration-none text-secondary" href=""
+                >고객센터</a
+              >
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="container">
+          <div id="mid-nav">
+            <div class="d-flex justify-content-between align-items-center">
+              <div id="img-container" class="d-flex align-items-end">
+                <a href="" class="navbar-brand">
+                  <img
+                    src="../img/logo/G9_Logo_Black.png"
+                    alt="g9_logo"
+                    style="width: 15vw; margin-right: 1vw"
+                  />
+                </a>
+                <form action="">
+                  <input
+                    type="search"
+                    id="search"
+                    name="search"
+                    class="border-top-0 border-start-0 border-end-0 border-dark"
+                  />
+                  <button type="submit" class="border-0 bg-white">
+                    <i class="bi bi-search fs-4"></i>
+                  </button>
+                </form>
+              </div>
+              <div id="menu-container">
+                <a href="./mypage.html" class="text-decoration-none text-dark">
+                  <i class="bi bi-person fs-5"></i>
+                  <span>마이페이지</span>
+                </a>
+                |
+                <a href="" class="text-decoration-none text-dark">
+                  <i class="bi bi-cart fs-5"></i>
+                  <span class="align-items-center">장바구니</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="container d-flex justify-content-center">
+          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
+            >ABOUT US</a
+          >
+          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
+            >SHOP</a
+          >
+          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
+            >EVENT</a
+          >
+          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
+            >BOARD</a
+          >
+          <hr />
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <!-- 마이페이지 상단메뉴 -->
+        <div
+          class="topArea row d-flex justify-content-center align-content-center"
+        >
+          <div class="mypagelogo col-1 fs-3">마이페이지</div>
+          <div class="col-10 titleBorder">
+            <div class="row">
+              <div class="name col-9 mt-4">
+                진보경
+                <div>
+                  <button class="gradeBtn">등급혜택보기</button>
+                </div>
+              </div>
+              <div class="review col-3 mt-4">
+                <a href="./reviewList.html"
+                  ><p class="text-center fs-5 fw-bold" style="color: black">
+                    상품리뷰
+                  </p>
+                  <div class="text-center">1 개</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 마이페이지 왼쪽메뉴 -->
+        <div class="leftMenu">
+          <ul>
+            <li>
+              <span class="menuTitle">쇼핑내역</span>
+              <ul>
+                <li><a href="./mypage.html">주문/배송내역</a></li>
+                <li>
+                  <a href="./cancelApplicationList.html">취소/반품/교환 신청</a>
+                </li>
+                <li><a href="./cancelList.html">취소/반품/교환 내역</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="menuTitle">나의활동</span>
+              <ul>
+                <li><a href="./reviewList.html">상품리뷰</a></li>
+                <li><a href="./inquiryList.html">1:1문의</a></li>
+                <li><a href="./wishList.html">위시리스트</a></li>
+              </ul>
+            </li>
+            <li>
+              <span class="menuTitle">회원정보</span>
+              <ul>
+                <li><a href="#">회원등급</a></li>
+                <li><a href="./changeMemberInfo.html">회원정보 변경</a></li>
+                <li><a href="./withdraw.html">회원탈퇴</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- 마이페이지 본문 -->
+        <div class="content">
+          <div class="title fs-3">1:1상담 문의하기</div>
+          <div class="mt-3">
+            배송지변경, 주문취소, 반품/교환신청은 [마이페이지>주문/배송
+            조회]에서 직접 신청 가능합니다.
+          </div>
+
+          <hr />
+
+          <table
+            class="table border-top border-bottom border-3 border-dark mt-5"
+          >
+            <tbody>
+              <tr>
+                <th>문의유형</th>
+                <td>
+                  <select name="" id="" class="select">
+                    <option value="">배송문의</option>
+                  </select>
+                  <select name="" id="" class="select">
+                    <option value="">구성품 누락</option>
+                    <option value="">묶음배송요청</option>
+                    <option value="">배송비</option>
+                    <option value="">배송완료 미수령</option>
+                    <option value="">배송일정</option>
+                    <option value="">배송지 변경</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <th>이메일 주소</th>
+                <td>user1234@gmail.com</td>
+              </tr>
+              <tr>
+                <th>휴대전화</th>
+                <td>
+                  <select name="" id="" class="phone">
+                    <option value="">010</option>
+                    <option value="">010</option>
+                    <option value="">016</option>
+                  </select>
+                  -
+                  <input type="text" name="" id="" class="phone" />
+                  -
+                  <input type="text" name="" id="" class="phone" />
+                </td>
+              </tr>
+              <tr>
+                <th>제목</th>
+                <td><input type="text" name="" id="" class="title" /></td>
+              </tr>
+              <tr>
+                <th>문의내용</th>
+                <td>
+                  <textarea name="" id="" cols="80" rows="10"></textarea>
+                </td>
+              </tr>
+              <tr>
+                <th>첨부파일</th>
+                <td>
+                  <input type="file" name="file" id="file" />
+                  <label for="file">
+                    <div class="file">파일 업로드하기</div>
+                  </label>
+                </td>
+              </tr>
+              <tr>
+                <th>개인정보 수집동의</th>
+                <td>
+                  <input type="checkbox" name="private" id="" />
+                  <label for="private">
+                    1:1상담 상담을 위한 개인정보 수집에 동의합니다.</label
+                  >
+                  <a
+                    href="#modalTarget01"
+                    class="service_modal btn button"
+                    data-bs-toggle="modal"
+                    >보기 ></a
+                  >
+                  <div class="modal" id="modalTarget01">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                      <div class="modal-content">
+                        <div
+                          class="modal-header text-white bg-secondary fs-4 fw-bold"
+                        >
+                          개인정보 수집동의
+                        </div>
+                        <div class="modal-body">
+                          <div>
+                            -수집목적<br />
+                            1:1 상담내용 확인 및 답변<br />
+                            <br />
+                            -수집항목<br />
+                            [필수] 아이디<br />
+                            [선택] 휴대전화, 이메일, 첨부이미지 및 문의내용에
+                            포함된 정보<br />
+                            <br />
+                            -보유기간<br />
+                            소비자의 불만 또는 분쟁처리관한 기록 : 3년<br />
+                            (전자상거래등에서의 소비자보호에 관한 법률)<br />
+                            -개인정보 수집·이용에 동의하지 않을 권리가
+                            있으나,<br />
+                            동의하지 않을 경우 서비스가 제한될 수 있습니다.<br />
+                            <br />
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button
+                            class="btn btn-secondary"
+                            type="button"
+                            data-bs-dismiss="modal"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-center">
+            <form action="./inquiryList.html">
+              <button class="inquiryBtn">문의하기</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

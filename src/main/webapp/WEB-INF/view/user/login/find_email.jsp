@@ -59,7 +59,7 @@
     </main>
   
     <%-- [GYEONG] 23.02.14 footer --%>
-    <%@ include file="/WEB-INF/view/user/footer.jsp" %>
+   <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

@@ -30,4 +30,12 @@ public class SignUpController {
         return modelAndView;
 
     }
+
+    // [GYEONG] 웰컴페이지
+    @RequestMapping(value = "/welcome")
+    public ModelAndView welcome(ModelAndView modelAndView) {
+        modelAndView.setViewName("/user/signup/welcome");
+        return modelAndView;
+
+    }
 }

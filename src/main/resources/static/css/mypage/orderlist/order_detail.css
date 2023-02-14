@@ -1,0 +1,125 @@
+/* * {
+  border: 1px solid gray;
+} */
+main {
+  margin-top: 100px;
+}
+.topArea {
+  width: 1300px;
+  height: 150px;
+}
+.mypagelogo {
+  color: white;
+  width: 200px;
+  height: 140px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.name {
+  font-size: 2rem;
+}
+.gradeBtn {
+  font-size: 1rem;
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 12px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+
+.leftMenu {
+  width: 155px;
+  float: left;
+  margin-top: 60px;
+}
+
+a,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+.subTitle {
+  color: #555;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 1px;
+}
+.menuTitle {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.titleBorder {
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-left: 1px;
+  border-right: 1px;
+  margin-left: 15px;
+}
+
+.content {
+  float: left;
+  width: 1080px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+.hr {
+  background-color: black;
+  height: 2px;
+  border: 0;
+}
+
+.orderStep {
+  width: 1080px;
+  height: 340px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+li {
+  vertical-align: top;
+  position: relative;
+}
+
+td {
+  vertical-align: middle;
+}
+
+.sumBorder {
+  border-bottom: solid black 1px;
+}
+.editBtn {
+  width: 140px;
+  height: 40px;
+  background-color: white;
+  color: black;
+}
+.checkBtn {
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+}
+
+footer {
+  clear: both;
+}

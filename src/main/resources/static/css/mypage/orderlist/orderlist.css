@@ -1,0 +1,150 @@
+/* * {
+  border: 1px solid gray;
+} */
+main {
+  margin-top: 100px;
+}
+.topArea {
+  width: 1300px;
+  height: 150px;
+}
+.mypagelogo {
+  color: white;
+  width: 200px;
+  height: 140px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.name {
+  font-size: 2rem;
+}
+.gradeBtn {
+  font-size: 1rem;
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+}
+
+p {
+  margin-top: 12px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.leftMenu {
+  width: 155px;
+  float: left;
+  margin-top: 60px;
+}
+
+a,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 1px;
+}
+.menuTitle {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.subTitle {
+  color: #555;
+}
+
+.titleBorder {
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-left: 1px;
+  border-right: 1px;
+  margin-left: 15px;
+}
+
+.content {
+  width: 1080px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 100px;
+  float: left;
+}
+.hr {
+  background-color: black;
+  height: 2px;
+  border: 0;
+}
+
+.orderStep {
+  width: 1080px;
+  height: 340px;
+  overflow: hidden;
+  margin-top: 50px;
+}
+.li {
+  vertical-align: top;
+  position: relative;
+}
+
+.orderStepList {
+  height: 12px;
+  padding-top: 93px;
+  padding-bottom: 32px;
+  margin-left: 10px;
+  margin-right: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+.icon {
+  position: absolute;
+  margin-top: -90px;
+}
+.icon2 {
+  position: absolute;
+  margin-top: -50px;
+  left: 140px;
+}
+.icon3 {
+  position: absolute;
+  margin-top: -80px;
+  left: -10px;
+}
+.icon4 {
+  position: absolute;
+  margin-top: -80px;
+  left: 20px;
+}
+.icon5 {
+  position: absolute;
+  margin-top: -50px;
+  left: 180px;
+}
+
+.selectDeleteBtn {
+  width: 120px;
+  height: 40px;
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+}
+
+footer {
+  clear: both;
+}

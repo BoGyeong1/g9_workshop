@@ -1,0 +1,109 @@
+/* * {
+  border: 1px solid gray;
+} */
+.topArea {
+  width: 1300px;
+  height: 150px;
+  margin-top: 100px;
+}
+.mypagelogo {
+  color: white;
+  width: 200px;
+  height: 140px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.name {
+  font-size: 2rem;
+}
+.gradeBtn {
+  font-size: 1rem;
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+}
+review {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+p {
+  margin-top: 12px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+
+.leftMenu {
+  width: 155px;
+  float: left;
+  margin-top: 60px;
+}
+
+a,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+a {
+  color: #555;
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 1px;
+}
+.menuTitle {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.titleBorder {
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-left: 1px;
+  border-right: 1px;
+  margin-left: 15px;
+}
+
+.content {
+  float: left;
+  position: relative;
+  width: 1080px;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+hr {
+  background-color: black;
+  height: 2px;
+  border: 0;
+}
+
+li {
+  vertical-align: top;
+}
+.possibleReview {
+  background-color: white;
+  width: 180px;
+  color: black;
+  height: 40px;
+}
+.recordReview {
+  background-color: white;
+  width: 180px;
+  color: black;
+  height: 40px;
+}
