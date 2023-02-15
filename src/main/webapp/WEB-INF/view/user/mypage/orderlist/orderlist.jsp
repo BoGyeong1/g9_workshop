@@ -57,7 +57,7 @@
             <tbody>
               <tr>
                 <th><input type="checkbox" name="" id="" /></th>
-                <td><a href="/orderDetail">20230205/202302051132A23</a></td>
+                <td><a href="/mypage/orderDetail">20230205/202302051132A23</a></td>
                 <td><a href="#">트레비 백팩</a></td>
                 <td>55000원</td>
                 <td>배송준비중</td>

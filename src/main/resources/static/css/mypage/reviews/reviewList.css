@@ -1,10 +1,12 @@
 /* * {
   border: 1px solid gray;
 } */
+main {
+  margin-top: 100px;
+}
 .topArea {
   width: 1300px;
   height: 150px;
-  margin-top: 250px;
 }
 .mypagelogo {
   color: white;
@@ -24,13 +26,9 @@
   background-color: black;
   border: 1px solid black;
   color: white;
+  cursor: pointer;
 }
-.review {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
+
 p {
   margin-top: 12px;
 }
@@ -51,9 +49,8 @@ a:active,
 a:hover {
   text-decoration: none;
 }
-a {
+.subTitle {
   color: #555;
-  cursor: pointer;
 }
 
 ul,
@@ -81,12 +78,13 @@ li {
 
 .content {
   float: left;
-  position: relative;
   width: 1080px;
   margin-top: 50px;
   margin-left: 50px;
+  margin-bottom: 200px;
 }
-hr {
+
+.hr {
   background-color: black;
   height: 2px;
   border: 0;
@@ -95,37 +93,26 @@ hr {
 li {
   vertical-align: top;
 }
-
-.select {
+.possibleReview {
+  background-color: white;
   width: 180px;
-  height: 30px;
+  color: black;
+  height: 40px;
 }
-.phone {
-  width: 100px;
-  height: 30px;
-}
-.title {
-  width: 648px;
-  height: 30px;
-}
-.file {
-  width: 150px;
-  height: 30px;
-  background: #fff;
-  border: 1px solid rgb(77, 77, 77);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#file {
-  display: none;
+.recordReview {
+  background-color: white;
+  width: 180px;
+  color: black;
+  height: 40px;
 }
 
-.returnChangeBtn {
-  width: 100px;
-  height: 40px;
+.reviewRegiBtn {
+  width: 140px;
+  height: 30px;
   background-color: black;
   color: white;
-  margin-bottom: 100px;
+}
+
+footer {
+  clear: both;
 }

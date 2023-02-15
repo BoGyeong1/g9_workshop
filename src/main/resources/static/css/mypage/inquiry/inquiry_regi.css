@@ -1,10 +1,9 @@
-/* * {
-  border: 1px solid gray;
-} */
+main {
+  margin-top: 100px;
+}
 .topArea {
   width: 1300px;
   height: 150px;
-  margin-top: 100px;
 }
 .mypagelogo {
   color: white;
@@ -24,13 +23,9 @@
   background-color: black;
   border: 1px solid black;
   color: white;
+  cursor: pointer;
 }
-.review {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
+
 p {
   margin-top: 12px;
 }
@@ -51,9 +46,8 @@ a:active,
 a:hover {
   text-decoration: none;
 }
-a {
+.subTitle {
   color: #555;
-  cursor: pointer;
 }
 
 ul,
@@ -81,12 +75,13 @@ li {
 
 .content {
   float: left;
-  position: relative;
   width: 1080px;
   margin-top: 50px;
   margin-left: 50px;
+  margin-bottom: 200px;
 }
-hr {
+
+.hr {
   background-color: black;
   height: 2px;
   border: 0;
@@ -105,11 +100,8 @@ li {
   height: 30px;
 }
 .title {
-  width: 648px;
+  width: 618px;
   height: 30px;
-}
-.text {
-  font-size: 0.8rem;
 }
 .file {
   width: 150px;
@@ -124,35 +116,19 @@ li {
 #file {
   display: none;
 }
-.saveBtn {
-  width: 120px;
+.button {
+  background-color: white;
+  color: gray;
+}
+
+.inquiryBtn {
+  width: 100px;
   height: 40px;
   background-color: black;
   color: white;
+  margin-bottom: 100px;
 }
 
-#myform fieldset {
-  display: inline-block;
-  direction: rtl;
-  border: 0;
-}
-#myform fieldset legend {
-  text-align: right;
-}
-#myform input[type="radio"] {
-  display: none;
-}
-#myform label {
-  font-size: 2em;
-  color: transparent;
-  text-shadow: 0 0 0 #f0f0f0;
-}
-#myform label:hover {
-  text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform label:hover ~ label {
-  text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-#myform input[type="radio"]:checked ~ label {
-  text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+footer {
+  clear: both;
 }

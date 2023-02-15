@@ -17,7 +17,7 @@
 
 <body>
     <%-- [SOO] Header Include --%>
-    <%@ include file="./WEB-INF/view/user/common/header.jsp" %>
+    <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
     <%-- [SOO] Main Area --%>
     <div class="container fw-bold text-center">
         <div class="m-5">

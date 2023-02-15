@@ -1,10 +1,12 @@
 /* * {
   border: 1px solid gray;
 } */
+main {
+  margin-top: 100px;
+}
 .topArea {
   width: 1300px;
   height: 150px;
-  margin-top: 100px;
 }
 .mypagelogo {
   color: white;
@@ -24,13 +26,9 @@
   background-color: black;
   border: 1px solid black;
   color: white;
+  cursor: pointer;
 }
-.review {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
+
 p {
   margin-top: 12px;
 }
@@ -51,9 +49,8 @@ a:active,
 a:hover {
   text-decoration: none;
 }
-a {
+.subTitle {
   color: #555;
-  cursor: pointer;
 }
 
 ul,
@@ -81,7 +78,6 @@ li {
 
 .content {
   float: left;
-  position: relative;
   width: 1080px;
   margin-top: 50px;
   margin-left: 50px;
@@ -109,22 +105,10 @@ li {
   height: 30px;
 }
 
-.checkBtn {
+.cancel_btn {
   width: 100px;
   height: 40px;
   background-color: black;
   color: white;
-}
-
-.editBtn {
-  width: 50px;
-  height: 40px;
-  background-color: black;
-  color: white;
-}
-.deleteBtn {
-  width: 50px;
-  height: 40px;
-  background-color: white;
-  color: black;
+  margin-bottom: 100px;
 }

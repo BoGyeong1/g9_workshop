@@ -1,10 +1,12 @@
 /* * {
   border: 1px solid gray;
 } */
+main {
+  margin-top: 100px;
+}
 .topArea {
   width: 1300px;
   height: 150px;
-  margin-top: 100px;
 }
 .mypagelogo {
   color: white;
@@ -24,13 +26,9 @@
   background-color: black;
   border: 1px solid black;
   color: white;
+  cursor: pointer;
 }
-.review {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
+
 p {
   margin-top: 12px;
 }
@@ -51,9 +49,8 @@ a:active,
 a:hover {
   text-decoration: none;
 }
-a {
+.subTitle {
   color: #555;
-  cursor: pointer;
 }
 
 ul,
@@ -81,12 +78,12 @@ li {
 
 .content {
   float: left;
-  position: relative;
   width: 1080px;
   margin-top: 50px;
   margin-left: 50px;
+  margin-bottom: 200px;
 }
-hr {
+.hr {
   background-color: black;
   height: 2px;
   border: 0;
@@ -95,9 +92,14 @@ hr {
 li {
   vertical-align: top;
 }
-.inquiryBtn {
-  width: 200px;
-  background-color: white;
-  color: black;
-  height: 40px;
+
+.button {
+  width: 130px;
+  height: 32px;
+  background-color: black;
+  color: white;
+}
+
+footer {
+  clear: both;
 }

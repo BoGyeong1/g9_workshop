@@ -1,3 +1,7 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +15,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -18,149 +23,24 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="../css/mypage/reviewRegi.css" />
+    <link rel="stylesheet" href="/css/mypage/reviews/review_regi.css" />
   </head>
   <body>
-    <header>
-      <nav class="nav-justified">
-        <div class="container">
-          <div id="top-nav">
-            <div class="text-end my-1">
-              <a
-                class="text-decoration-none text-secondary"
-                href="../login/login.html"
-                >로그인</a
-              >
-              <span class="text-secondary">|</span>
-              <a
-                class="text-decoration-none text-secondary"
-                href="../signup/select_signup.html"
-                >회원가입</a
-              >
-              <span class="text-secondary">|</span>
-              <a class="text-decoration-none text-secondary" href=""
-                >고객센터</a
-              >
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="container">
-          <div id="mid-nav">
-            <div class="d-flex justify-content-between align-items-center">
-              <div id="img-container" class="d-flex align-items-end">
-                <a href="" class="navbar-brand">
-                  <img
-                    src="../img/logo/G9_Logo_Black.png"
-                    alt="g9_logo"
-                    style="width: 15vw; margin-right: 1vw"
-                  />
-                </a>
-                <form action="">
-                  <input
-                    type="search"
-                    id="search"
-                    name="search"
-                    class="border-top-0 border-start-0 border-end-0 border-dark"
-                  />
-                  <button type="submit" class="border-0 bg-white">
-                    <i class="bi bi-search fs-4"></i>
-                  </button>
-                </form>
-              </div>
-              <div id="menu-container">
-                <a href="./mypage.html" class="text-decoration-none text-dark">
-                  <i class="bi bi-person fs-5"></i>
-                  <span>마이페이지</span>
-                </a>
-                |
-                <a href="" class="text-decoration-none text-dark">
-                  <i class="bi bi-cart fs-5"></i>
-                  <span class="align-items-center">장바구니</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="container d-flex justify-content-center">
-          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
-            >ABOUT US</a
-          >
-          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
-            >SHOP</a
-          >
-          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
-            >EVENT</a
-          >
-          <a href="" class="mx-3 text-decoration-none text-dark fw-bold"
-            >BOARD</a
-          >
-          <hr />
-        </div>
-      </nav>
-    </header>
+    <%-- [GYEONG] 230215 header --%>
+    <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
+    
     <main>
       <div class="container">
         <!-- 마이페이지 상단메뉴 -->
-        <div
-          class="topArea row d-flex justify-content-center align-content-center"
-        >
-          <div class="mypagelogo col-1 fs-3">마이페이지</div>
-          <div class="col-10 titleBorder">
-            <div class="row">
-              <div class="name col-9 mt-4">
-                진보경
-                <div>
-                  <button class="gradeBtn">등급혜택보기</button>
-                </div>
-              </div>
-              <div class="review col-3 mt-4">
-                <a href="./reviewList.html"
-                  ><p class="text-center fs-5 fw-bold" style="color: black">
-                    상품리뷰
-                  </p>
-                  <div class="text-center">1 개</div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+         <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_top_nav.jsp" %>
+        
         <!-- 마이페이지 왼쪽메뉴 -->
-        <div class="leftMenu">
-          <ul>
-            <li>
-              <span class="menuTitle">쇼핑내역</span>
-              <ul>
-                <li><a href="./mypage.html">주문/배송내역</a></li>
-                <li>
-                  <a href="./cancelApplicationList.html">취소/반품/교환 신청</a>
-                </li>
-                <li><a href="./cancelList.html">취소/반품/교환 내역</a></li>
-              </ul>
-            </li>
-            <li>
-              <span class="menuTitle">나의활동</span>
-              <ul>
-                <li><a href="./reviewList.html">상품리뷰</a></li>
-                <li><a href="./inquiryList.html">1:1문의</a></li>
-                <li><a href="./wishList.html">위시리스트</a></li>
-              </ul>
-            </li>
-            <li>
-              <span class="menuTitle">회원정보</span>
-              <ul>
-                <li><a href="#">회원등급</a></li>
-                <li><a href="./changeMemberInfo.html">회원정보 변경</a></li>
-                <li><a href="./withdraw.html">회원탈퇴</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+        <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_left_nav.jsp" %>
+
         <!-- 마이페이지 본문 -->
         <div class="content">
           <div class="title fs-3">리뷰 작성하기</div>
-          <hr />
+          <hr class="hr" />
           <div class="mt-3 text">
             <div>조건에 적합하지 않은 리뷰는 노출되지 않습니다.</div>
             <div>
@@ -180,7 +60,7 @@
               책임지지 않습니다.
             </div>
           </div>
-
+          <form action="/mypage/reviewlist">
           <table
             class="table border-top border-bottom border-3 border-dark mt-5"
           >
@@ -257,13 +137,15 @@
             </tbody>
           </table>
           <div class="d-flex justify-content-center">
-            <form action="./reviewList.html">
+           
               <button class="saveBtn mb-5">저장하기</button>
-            </form>
           </div>
+            </form>
         </div>
       </div>
     </main>
+        <%-- [GYEONG] 230215 footer --%>
+    <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

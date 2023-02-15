@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,8 +22,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/css/mypage/orderlist/order_detail.css" />
+    <link rel="stylesheet" href="/css/mypage/orderlist/edit_address.css" />
   </head>
   <body>
    <%-- [GYEONG] 230215 header --%>
@@ -40,9 +38,8 @@
 
         <!-- 마이페이지 본문 -->
         <div class="content">
-          <%-- 주문 상세내역 --%>
           <div class="title fs-3">주문 / 배송 내역</div>
-          <hr class="hr" />
+          <hr />
 
           <div>
             <table class="table text-center">
@@ -80,62 +77,65 @@
               </tbody>
             </table>
 
-            <%-- 구매자 정보 --%>
-            <div class="title fs-3 mt-5">구매자 정보</div>
-            <hr class="hr"/>
-            <table class="table">
-              <tr>
-                <th class="col-4">주문하시는 분</th>
-                <td class="col-4">진보경</td>
-                <th class="col-4">이메일 주소</th>
-                <td class="col-4">user1234@gmail.com</td>
-              </tr>
-              <tr>
-                <th>휴대폰 번호</th>
-                <td colspan="3">010-1234-1234</td>
-              </tr>
-            </table>
-            
-            <%-- 배송지 정보 --%>
-            <div class="title fs-3 mt-5">배송지 정보</div>
-            <hr class="hr" />
-            <form action="/mypage/editAddress">
-            <div class="d-flex justify-content-end">
-              <button class="editBtn">배송지 수정</button>
-            </div>
-            </form>
+            <div class="title fs-3 mt-5">배송지 정보 수정</div>
+            <hr />
+            <form action="/mypage/orderDetail">
             <div>
               <table class="table mb-5">
                 <tr>
                   <th>받으시는 분</th>
-                  <td>진보경</td>
+                  <td><input type="text" name="name" id="" class="inputBox" /></td>
                 </tr>
                 <tr>
                   <th>휴대폰 번호</th>
-                  <td>010-1234-1234</td>
+                  <td>
+                    <select name="" id="" class="phone">
+                    <option value="">010</option>
+                    <option value="">010</option>
+                    <option value="">016</option>
+                  </select>
+                  -
+                  <input type="text" name="" id="" class="phone" />
+                  -
+                  <input type="text" name="" id="" class="phone" />
+                  </td>
                 </tr>
                 <tr>
+                  <th>우편번호</th>
+                  <td>
+                  <input type="text" name="" id="" class="inputBox"/>
+                  </td>
+                </tr>
+                    <tr>
                   <th>주소</th>
                   <td>
-                    [12345] 서울특별시 관악구 신림로1가길 12(신림동) 111호
+                  <input type="text" name="" id="" class="inputBox"/>
+                  </td>
+                </tr>
+                 <tr>
+                  <th>상세 주소</th>
+                  <td>
+                  <input type="text" name="" id="" class="inputBox"/>
                   </td>
                 </tr>
                 <tr>
                   <th>배송 유의사항</th>
-                  <td></td>
+                  <td>
+                   <input type="text" name="" id="" class="inputBox"/>
+                  </td>
                 </tr>
               </table>
-              <form action="/mypage/orderlist">
               <div class="d-flex justify-content-center mb-5">
-                <button class="checkBtn">확인</button>
+                
+                  <button class="checkBtn">수정</button>
               </div>
-              </form>
             </div>
+          </form>
           </div>
         </div>
       </div>
     </main>
-    <%-- [GYEONG] 230215 footer --%>
+        <%-- [GYEONG] 230215 footer --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

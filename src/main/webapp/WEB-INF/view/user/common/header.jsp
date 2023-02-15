@@ -31,7 +31,7 @@
                     </form>
                 </div>
                 <div id="menu-container">
-                    <a href="/mypage" class="text-decoration-none text-dark">
+                    <a href="/mypage/orderlist" class="text-decoration-none text-dark">
                         <i class="bi bi-person fs-5"></i>
                         <span>마이페이지</span>
                     </a>
