@@ -15,10 +15,12 @@
 </head>
 
 <body>
-    <%@ include file="adminheader.jsp" %>
+    <%@ include file="/WEB-INF/view/admin/common/adminheader.jsp" %>
     <div class="d-flex">
-        <%@ include file="adminnav.jsp" %>
+        <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
+            <div class="fs-1 text-center"><i class="bi bi-emoji-smile"></i> Admin Name님 반갑습니다.</div>
+            <div class="text-center">좌측에서 관리 메뉴를 선택해주세요.</div>
         </div>
     </div>
 
