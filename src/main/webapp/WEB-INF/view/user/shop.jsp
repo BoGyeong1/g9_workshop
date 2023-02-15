@@ -17,7 +17,7 @@
 
 <body>
     <%-- [SOO] Header Include --%>
-   <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
+    <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
     <div class="d-flex">
         <%-- [SOO] Shop Nav Include --%>
         <%@ include file="./shopnav.jsp" %>

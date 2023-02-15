@@ -15,4 +15,10 @@ public class AdminController {
         return modelAndView;
     }
 
+    @GetMapping("")
+    public ModelAndView adminMain(ModelAndView modelAndView) {
+        modelAndView.setViewName("admin/main");
+        return modelAndView;
+    }
+
 }

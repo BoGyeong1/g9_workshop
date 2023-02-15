@@ -19,7 +19,7 @@
 
 <body>
     <%-- [SOO] Header Include --%>
-    <%@ include file="./header.jsp" %>
+    <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
     <div class="container mb-5">
         <div class="d-flex justify-content-between">
             <div class="w-100 m-5" id="product-img-box">
@@ -228,7 +228,7 @@
     </div>
 
     <%-- [SOO] Footer Include --%>
-    <%@ include file="./footer.jsp" %>
+    <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="/js/product.js"></script>
 </body>
