@@ -55,7 +55,7 @@
             <button class="login_btn">로그인</button>
           </div>
         </form>
-        <form action="../signup/select_signup.html">
+        <form action="/selectSignup">
           <div class="row justify-content-center mt-3">
             <button class="signup_btn">회원가입</button>
           </div>
@@ -97,6 +97,8 @@
         </div>
       </div>
     </main>
+
+     <%@ include file="/WEB-INF/view/user/common/simple_footer.jsp" %>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

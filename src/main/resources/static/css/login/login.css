@@ -2,6 +2,11 @@
   border: 1px solid gray;
 } */
 
+main {
+  margin-top: 100px;
+  margin-bottom: 200px;
+}
+
 .logo {
   width: 300px;
   margin-top: 100px;
