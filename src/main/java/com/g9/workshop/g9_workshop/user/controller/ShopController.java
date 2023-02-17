@@ -19,7 +19,7 @@ public class ShopController {
         return modelAndView;
     }
 
-    // [SOO] Shop Main - List Output by Category
+    // [SOO] Product Detail
     @RequestMapping(value = "/product/{productId}", method = RequestMethod.GET)
     public ModelAndView root(@PathVariable String productId, ModelAndView modelAndView) {
 
