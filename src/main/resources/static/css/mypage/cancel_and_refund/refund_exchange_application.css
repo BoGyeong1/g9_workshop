@@ -106,7 +106,7 @@ li {
   height: 30px;
 }
 
-.cancel_btn {
+.returnChangeBtn {
   width: 100px;
   height: 40px;
   background-color: black;
@@ -114,6 +114,19 @@ li {
   margin-bottom: 100px;
 }
 
+.file {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77, 77, 77);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#file {
+  display: none;
+}
 footer {
   clear: both;
 }
