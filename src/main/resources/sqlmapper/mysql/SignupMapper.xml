@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SignupMapper">
+<!-- 회원정보 기본 인서트 (이름, UID, 이메일, 비밀번호, 전화번호, 광고성 수신 동의 여부(메일,문자), 가입날짜, 회원 상태) -->
+<insert id="insertWithUID" parameterType="Map">
+INSERT INTO USERS (USER_UID,EMAIL,USER_NAME,PASSWORD,TEL,EMAIL_INFO_AGREE,TEL_INFO_AGREE,POINT,JOIN_DATE,USER_CONDITION_UID)
+VALUES	(#{USER_UID},#{EMAIL},#{USER_NAME},#{PASSWORD},#{TEL},
+<choose>
+<when test="EMAIL_INFO_AGREE != null">
+        ,'Yes'
+        </when>
+        <otherwise>
+        ,'No'
+        </otherwise>
+</choose>,
+<choose>
+<when test="TEL_INFO_AGREE != null">
+        ,'Yes'
+        </when>
+        <otherwise>
+        ,'No'
+        </otherwise>
+</choose>
+,0,sysdate(),'UC1')
+;
+</insert>
+
+<!-- 기본 배송지 입력 -->
+<insert id="insertWithAddress" parameterType="Map">
+INSERT INTO ADDRESSES (USER_UID,ADDRESS_UID,ADDRESS_NAME,ZIP_CODE,ADDRESS,DETAIL,EXPOSURE)
+VALUES	(#{USER_UID},#{ADDRESS_UID},'BASIC',#{ZIP_CODE},#{ADDRESS},#{DETAIL},'YES')
+;
+</insert>
+
+</mapper>

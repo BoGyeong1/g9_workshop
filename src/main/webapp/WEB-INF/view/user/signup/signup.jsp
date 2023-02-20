@@ -49,7 +49,7 @@
                   class="email col-9"
                   placeholder="이메일 주소"
                 />
-                <button class="phone_button col-3">중복확인</button>
+                <button class="phone_button col-3" type="button">중복확인</button>
               </div>
               <div class="row justify-content-center mt-3">
                 <input
