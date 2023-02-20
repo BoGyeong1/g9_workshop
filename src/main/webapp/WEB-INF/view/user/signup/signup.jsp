@@ -36,15 +36,15 @@
         <div class="container">
           <div>
           <%-- 회원가입 --%>
-            <form action="/welcome">
+            <form action="/welcome" method="POST">
               <div class="d-flex justify-content-center mt-5">
                 <img src="/img/logo/G9_Logo_Black.png" class="logo" />
               </div>
-
+<span>${resultMap.USER_NAME}</span>
               <div class="row mt-5 phone_width">
                 <input
                   type="email"
-                  name="email"
+                  name="EMAIL"
                   id="email"
                   class="email col-9"
                   placeholder="이메일 주소"
@@ -54,7 +54,7 @@
               <div class="row justify-content-center mt-3">
                 <input
                   type="password"
-                  name="password"
+                  name="PASSWORD"
                   id="password"
                   class="input"
                   placeholder="비밀번호"
@@ -63,7 +63,7 @@
               <div class="row justify-content-center mt-3">
                 <input
                   type="password"
-                  name="password_check"
+                  name="PASSWORD_CHECK"
                   id="password_check"
                   class="input"
                   placeholder="비밀번호 확인"
@@ -72,7 +72,7 @@
               <div class="row justify-content-center mt-3">
                 <input
                   type="text"
-                  name="name"
+                  name="USER_NAME"
                   id="name"
                   class="input"
                   placeholder="이름"
@@ -81,7 +81,7 @@
               <div class="row mt-3 phone_width">
                 <input
                   type="text"
-                  name="tel"
+                  name="TEL"
                   id="tel"
                   class="phone col-10"
                   placeholder="휴대폰 번호"
@@ -93,7 +93,7 @@
                 <i class="fa-solid fa-magnifying-glass fa-2 icon"></i>
                 <input
                   type="text"
-                  name="zipcode"
+                  name="ZIP_CODE"
                   id="zipcode"
                   class="input_zip"
                   placeholder="우편번호"
@@ -102,7 +102,7 @@
               <div class="row justify-content-center mt-3">
                 <input
                   type="text"
-                  name="address"
+                  name="ADDRESS"
                   id="address"
                   class="input"
                   placeholder="주소"
@@ -111,7 +111,7 @@
               <div class="row justify-content-center mt-3">
                 <input
                   type="text"
-                  name="address_detail"
+                  name="DETAIL"
                   id="address_detail"
                   class="input"
                   placeholder="상세주소"
@@ -125,14 +125,14 @@
                 <div class="me-5 fw-bold">광고성 정보 수신 동의</div>
                 <input
                   type="checkbox"
-                  name="adver_email"
+                  name="EMAIL_INFO_AGREE"
                   id="adver_email"
                   class="me-2"
                 />
                 <label for="adver_email " class="me-2">이메일</label>
                 <input
                   type="checkbox"
-                  name="adver_phone"
+                  name="TEL_INFO_AGREE"
                   id="adver_phone"
                   class="me-2"
                 />
