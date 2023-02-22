@@ -25,7 +25,6 @@
             <li>
               <span class="menuTitle">회원정보</span>
               <ul>
-                <li><a class="subTitle" href="#">회원등급</a></li>
                 <li><a class="subTitle" href="/mypage/changeUserInfo">회원정보 변경</a></li>
                 <li><a class="subTitle" href="/mypage/withdraw">회원탈퇴</a></li>
               </ul>

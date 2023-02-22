@@ -51,20 +51,16 @@
           <table class="table text-center mt-5">
             <thead>
               <tr class="border-top border-bottom border-dark border-3">
-                <th>주문번호</th>
                 <th>문의유형</th>
                 <th>제목</th>
-                <th>상품명</th>
                 <th>작성일</th>
                 <th>답변일</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>65790633234</td>
                 <td>배송문의</td>
                 <td><a href="/mypage/inquiryView">배송이 느려요</a></td>
-                <td><a href="#">가방</a></td>
                 <td>20221110</td>
                 <td>20221112</td>
               </tr>

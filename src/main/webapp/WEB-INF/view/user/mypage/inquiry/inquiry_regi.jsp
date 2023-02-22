@@ -57,14 +57,6 @@
                   <select name="" id="" class="select">
                     <option value="">배송문의</option>
                   </select>
-                  <select name="" id="" class="select">
-                    <option value="">구성품 누락</option>
-                    <option value="">묶음배송요청</option>
-                    <option value="">배송비</option>
-                    <option value="">배송완료 미수령</option>
-                    <option value="">배송일정</option>
-                    <option value="">배송지 변경</option>
-                  </select>
                 </td>
               </tr>
               <tr>

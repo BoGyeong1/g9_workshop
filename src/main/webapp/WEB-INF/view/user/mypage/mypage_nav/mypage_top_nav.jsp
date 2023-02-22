@@ -12,7 +12,7 @@
                 <div class="name col-9 mt-4">
                     진보경
                     <div>
-                        <button class="gradeBtn">등급혜택보기</button>
+                        <div class="fs-6 ms-1 mt-1"> 잔여 포인트 : 1000 </div>
                     </div>
                 </div>
               <div class="review col-3 mt-4">

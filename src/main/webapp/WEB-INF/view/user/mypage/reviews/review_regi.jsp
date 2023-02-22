@@ -76,8 +76,6 @@
               <tr>
                 <th>상품만족도</th>
                 <td>
-                  <link href="/assets/css/star.css" rel="stylesheet" />
-
                   <form class="mb-3" name="myform" id="myform" method="post">
                     <fieldset>
                       <input
