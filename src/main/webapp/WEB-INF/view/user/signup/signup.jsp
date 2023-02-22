@@ -40,7 +40,6 @@
               <div class="d-flex justify-content-center mt-5">
                 <img src="/img/logo/G9_Logo_Black.png" class="logo" />
               </div>
-<span>${resultMap.USER_NAME}</span>
               <div class="row mt-5 phone_width">
                 <input
                   type="email"

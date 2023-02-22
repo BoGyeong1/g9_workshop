@@ -20,12 +20,12 @@ public class MypageController {
     @RequestMapping(value = "/orderlist")
     public ModelAndView login(ModelAndView modelAndView, HttpSession session) {
 
-        // 1. 세션에서 유저 정보를 가져옴
-        Map userinfo = (HashMap<String, String>) session.getAttribute("userInfo");
-        // 2. 맵에서 유저 UID를 꺼냄
-        String userUid = (String) userinfo.get("USER_UID");
-        // 3. 유저 UID를 파라메터로 서비스 호출
-        // 4. 서비스에서 리턴받은 값을 모델엔뷰에 에드 어트리뷰트
+        // // 1. 세션에서 유저 정보를 가져옴
+        // Map userinfo = (HashMap<String, String>) session.getAttribute("userInfo");
+        // // 2. 맵에서 유저 UID를 꺼냄
+        // String userUid = (String) userinfo.get("USER_UID");
+        // // 3. 유저 UID를 파라메터로 서비스 호출
+        // // 4. 서비스에서 리턴받은 값을 모델엔뷰에 에드 어트리뷰트
 
         modelAndView.setViewName("/user/mypage/orderlist/orderlist");
 
