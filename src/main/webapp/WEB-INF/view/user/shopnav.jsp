@@ -41,11 +41,6 @@
     <div class="fs-4 mb-2">By Usage</div>
     <ul class="nav nav-pills flex-column">
         <li class="nav-item fs-5">
-            <a href="/shop/clothes" class="nav-link link-dark text-decoration-none w-100" id="${currentPage == 'clothes' ? 'currentPage' :  '' }">
-                CLOTHES
-            </a>
-        </li>
-        <li class="nav-item fs-5">
             <a href="/shop/living" class="nav-link link-dark text-decoration-none w-100" id="${currentPage == 'living' ? 'currentPage' :  '' }">
                 LIVING
             </a>
