@@ -71,3 +71,27 @@
   height: 50px;
   margin: auto;
 }
+
+.email_ok {
+  color: #008000;
+  display: none;
+  font-size: 0.8rem;
+}
+
+.email_no {
+  color: red;
+  display: none;
+  font-size: 0.8rem;
+}
+
+.password_ok {
+  color: #008000;
+  display: none;
+  font-size: 0.8rem;
+}
+
+.password_no {
+  color: red;
+  display: none;
+  font-size: 0.8rem;
+}

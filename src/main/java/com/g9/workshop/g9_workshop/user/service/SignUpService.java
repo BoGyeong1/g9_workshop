@@ -36,9 +36,9 @@ public class SignUpService {
 
     }
 
-    public Object select(Object dataMap) {
-        String sqlMapId = "SignUpMapper.select";
-        Object result = shareDao.getOne(sqlMapId, dataMap);
+    public Object emailCheck(String email) {
+        String sqlMapId = "SignUpMapper.selectCntEmailConfirm";
+        Object result = shareDao.getOne(sqlMapId, email);
         return result;
 
     }
