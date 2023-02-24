@@ -14,7 +14,7 @@
 <!-- 회원정보 기본 인서트 (이름, UID, 이메일, 비밀번호, 전화번호, 광고성 수신 동의 여부(메일,문자), 가입날짜, 회원 상태) -->
 <insert id="insertWithUID" parameterType="Map">
 INSERT INTO USERS 
-(USER_UID, EMAIL, USER_NAME, PASSWORD, TEL, EMAIL_INFO_AGREE, TEL_INFO_AGREE, POINT, JOIN_DATE, USER_CONDITION_UID)
+(USER_UID, EMAIL, USER_NAME, PASSWORD, TEL, EMAIL_INFO_AGREE, TEL_INFO_AGREE, POINT, JOIN_DATE, USER_CONDITION_UID,AUTHORITY)
 VALUE
 (       #{USER_UID}, 
         #{EMAIL}, 
@@ -39,7 +39,8 @@ VALUE
         </choose>  
          0,
          sysdate(),
-         'UC1')
+         'UC1',
+         'USER')
 </insert>
 
 <!-- 기본 배송지 입력 -->

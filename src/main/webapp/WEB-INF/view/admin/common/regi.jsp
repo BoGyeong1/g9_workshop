@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-    <title>지구공방 - Admin 로그인</title>
+    <title>지구공방 - Admin 가입</title>
 </head>
 
 <body>
@@ -23,19 +23,25 @@
             <h1 class="text-center">
                 Admin System
             </h1>
-            <form action="/login" method="post" class="my-5 col-12 col-md-4 m-auto">
-                <input type="hidden" name="userType" value="admin">
-                <div class="my-3">
-                    <label for="admin-id" class="form-label">Admin ID</label>
-                    <input type="text" class="form-control" id="admin-id" name="username">
-                </div>
-                <div class="my-3">
-                    <label for="admin-password" class="form-label">Admin Password</label>
-                    <input type="password" class="form-control" id="admin-password" name="password">
-                </div>
-                <div class="my-3">
-                    <button type="submit" class="btn btn-dark w-100">Submit</button>
-                </div>
+            <form action="/admin/regiSucess" method="POST" >
+            <br>
+                <label>어드민 ID</label>
+                <input type="text" name="ID">
+                <br>    
+             <br>
+            <label>패스워드</label>
+            <input type="password" name="PASSWORD">
+                <br>
+                <br>
+                <label>어드민명</label>
+                <input type="text" name="ADMIN_NAME">
+                <br>        
+                <br>
+            <label>별명</label>
+            <input type="text" name="NICKNAME">
+            <br>
+            <br>
+            <button type="submit"> 가입</button>
             </form>
         </div>
     </div>

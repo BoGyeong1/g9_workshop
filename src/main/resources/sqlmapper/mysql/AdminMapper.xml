@@ -3,6 +3,20 @@
 
 <mapper namespace="AdminMapper">
 
+<<<<<<< HEAD
+
+<insert id="insertAdmin" parameterType="Map">
+INSERT INTO ADMINS 
+(ADMIN_UID, ID, PASSWORD, ADMIN_NAME, NICKNAME, AUTHORITY)
+VALUE
+(       #{ADMIN_UID}, 
+        #{ID}, 
+        #{PASSWORD}, 
+        #{ADMIN_NAME},
+        #{NICKNAME},
+         'ADMIN')
+</insert>
+=======
     <insert id="insertThumbnail" parameterType="Map">
         INSERT INTO PRODUCT_IMGS
         VALUES (#{IMG_UID}, #{PRODUCT_UID}, #{ORIGIN_FILE_NAME}, #{PHYSICAL_FILE_NAME}, #{DIRECTORY_NAME}, #{EXPOSURE_ORDER})
@@ -35,4 +49,5 @@
         SELECT * FROM ORIGINS
     </select>
 
+>>>>>>> 2b69449526cd307d5aa7b50976f6fa4ed5b60007
 </mapper>

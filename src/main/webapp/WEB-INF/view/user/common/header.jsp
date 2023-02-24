@@ -1,14 +1,24 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <nav class="nav-justified">
     <div class="container">
         <div id="top-nav">
             <div class="text-end my-1">
-                <a class="text-decoration-none text-secondary" href="/login">로그인</a>
+            <%-- [GYEONG] 23.02.24 수정
+             세션에서 아이디값 가져와서 아이디가 있을때 로그아웃, 없을때 로그인/회원가입 --%>
+             <div> 
+            <c:if test="${pageContext.request.userPrincipal.name ne null}"> 
+                <a class="text-decoration-none text-secondary" href="/user/logout">로그아웃</a>
+                <span class="text-secondary">|</span>
+            </c:if>
+            <c:if test="${pageContext.request.userPrincipal.name eq null}"> 
+                <a class="text-decoration-none text-secondary" href="/user/login">로그인</a>
                 <span class="text-secondary">|</span>
                 <a class="text-decoration-none text-secondary" href="/selectSignup">회원가입</a>
                 <span class="text-secondary">|</span>
+            </c:if>
                 <a class="text-decoration-none text-secondary" href="/cs">고객센터</a>
             </div>
         </div>

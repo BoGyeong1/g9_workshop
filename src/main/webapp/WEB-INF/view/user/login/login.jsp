@@ -30,11 +30,13 @@
         <div class="d-flex justify-content-center mt-5">
           <img src="/img/logo/G9_Logo_Black.png" class="logo" />
         </div>
+        <form class="form-signin" method="post" action="/login">
         <%-- [GYEONG] 23.02.14 로그인 칸 --%>
+        <input type="hidden" name="userType" value="user">
         <div class="row justify-content-center mt-5">
           <input
             type="text"
-            name="email"
+            name="username"
             id="email"
             class="input"
             placeholder="이메일 주소"
@@ -50,7 +52,6 @@
           />
         </div>
         <%-- [GYEONG] 23.02.14 로그인 / 회원가입 버튼 --%>
-        <form action="/home">
           <div class="row justify-content-center mt-3">
             <button class="login_btn">로그인</button>
           </div>

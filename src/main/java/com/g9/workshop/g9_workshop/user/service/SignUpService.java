@@ -1,24 +1,32 @@
 package com.g9.workshop.g9_workshop.user.service;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.g9.workshop.g9_workshop.user.dao.ShareDao;
+import com.g9.workshop.g9_workshop.user.dao.SharedDao;
 import com.g9.workshop.g9_workshop.utils.CommonUtils;
 
 @Service
 public class SignUpService {
 
     @Autowired
-    ShareDao shareDao;
+    SharedDao shareDao;
 
     @Autowired
     CommonUtils commonUtils;
 
+    @Autowired
+    BCryptPasswordEncoder bcryptPasswordEncoder;
+
     public Object insertBasic(Object dataMap) {
         String sqlMapId = "SignUpMapper.insertWithUID";
+        ((Map) dataMap).put("USER_UID", commonUtils.getUniqueSequence());
+        String password = (String) ((Map) dataMap).get("PASSWORD");
+        ((Map) dataMap).put("PASSWORD", bcryptPasswordEncoder.encode(password));
         Object result = shareDao.insert(sqlMapId, dataMap);
         return result;
     }
