@@ -1,6 +1,5 @@
 package com.g9.workshop.g9_workshop.admin.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +29,9 @@ public class AdminProductManageController {
     CommonUtils commonUtils;
 
     // [SOO] Product List
-    @GetMapping("/current")
+    @GetMapping("/list")
     public ModelAndView productManage(ModelAndView modelAndView) {
-        // 상품 목록 리스트 출력 / 없으면 없다 출력
-        // 페이징 처리 필요 = jsp
+        Object productInfos;
         modelAndView.setViewName("admin/product/product_current_situation");
         return modelAndView;
     }

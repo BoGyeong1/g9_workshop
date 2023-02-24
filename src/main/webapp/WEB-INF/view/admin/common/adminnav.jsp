@@ -22,7 +22,7 @@
                 </button>
                 <div class="collapse" id="product-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-                        <li><a href="/admin/product/current" class="btn link-dark rounded text-decoration-none">상품현황</a></li>
+                        <li><a href="/admin/product/list" class="btn link-dark rounded text-decoration-none">상품현황</a></li>
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">품절현황</a></li>
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">리뷰현황</a></li>
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">카테고리관리</a></li>
