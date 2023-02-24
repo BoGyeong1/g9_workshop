@@ -3,4 +3,36 @@
 
 <mapper namespace="AdminMapper">
 
+    <insert id="insertThumbnail" parameterType="Map">
+        INSERT INTO PRODUCT_IMGS
+        VALUES (#{IMG_UID}, #{PRODUCT_UID}, #{ORIGIN_FILE_NAME}, #{PHYSICAL_FILE_NAME}, #{DIRECTORY_NAME}, #{EXPOSURE_ORDER})
+    </insert>
+
+    <insert id="insertDetail" parameterType="Map">
+        INSERT INTO PRODUCT_DETAIL_IMGS
+        VALUES (#{IMG_UID}, #{PRODUCT_UID}, #{ORIGIN_FILE_NAME}, #{PHYSICAL_FILE_NAME}, #{DIRECTORY_NAME}, #{EXPOSURE_ORDER})
+    </insert>
+
+    <insert id="insertProductInfo" parameterType="Map">
+        INSERT INTO PRODUCTS
+        VALUES (#{productUid}, #{category-uid}, #{purpose-uid}, #{brand-uid}, #{origin-uid},
+        #{product-name}, #{product-desc}, #{price}, #{discount-rate}, #{stock}, sysdate(), #{exposure})
+    </insert>
+
+    <select id="selectCategories" resultType="Map">
+        SELECT * FROM CATEGORIES
+    </select>
+
+    <select id="selectPurposes" resultType="Map">
+        SELECT * FROM PURPOSES
+    </select>
+
+    <select id="selectBrands" resultType="Map">
+        SELECT * FROM BRANDS
+    </select>
+
+    <select id="selectOrigins" resultType="Map">
+        SELECT * FROM ORIGINS
+    </select>
+
 </mapper>

@@ -19,8 +19,22 @@
     <div class="d-flex">
         <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
-            <div class="fs-1 text-center"><i class="bi bi-emoji-smile"></i> Admin Name님 반갑습니다.</div>
-            <div class="text-center">좌측에서 관리 메뉴를 선택해주세요.</div>
+            <div id="search-form">
+                <form action="/admin/product/" method="post">
+                    <div class="d-flex justify-content-center">
+                        <select class="form-select w-25 mx-2" name="filter" id="filter">
+                            <option value="name">상품명</option>
+                            <option value="category">소재</option>
+                            <option value="purpose">용도</option>
+                        </select>
+                        <input class="form-control w-25 mx-2" type="text" name="word" id="word">
+                        <button type="submit" class="btn btn-outline-dark mx-2">검색</button>
+                        <a href="/admin/product/insert" class="btn btn-primary">
+                            신규 상품 등록
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 

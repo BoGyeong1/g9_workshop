@@ -33,14 +33,12 @@ public class SignUpService {
         Object result = this.insertBasic(dataMap);
         result = this.insertAddress(dataMap);
         return result;
-
     }
 
     public Object select(Object dataMap) {
         String sqlMapId = "SignUpMapper.select";
         Object result = shareDao.getOne(sqlMapId, dataMap);
         return result;
-
     }
 
 }
