@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Component
-public class ShareDao {
+public class SharedDao {
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;

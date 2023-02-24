@@ -95,6 +95,6 @@ VALUES ('PC1', '공지'),
 ('PC3', '소식');
 
 INSERT INTO ADMINS
-VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO'),
-('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG'),
-('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG');
+VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO','ADMIN'),
+('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG','ADMIN'),
+('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG','ADMIN');

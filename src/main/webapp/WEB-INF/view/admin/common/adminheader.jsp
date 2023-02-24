@@ -4,6 +4,6 @@
         지구공방 Admin
     </div>
     <div>
-        <a href="" class="text-decoration-none text-white">로그아웃</a>
+        <a href="/admin/logout" class="text-decoration-none text-white">로그아웃</a>
     </div>
 </div>

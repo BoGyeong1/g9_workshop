@@ -59,8 +59,6 @@ public class SignUpController {
     // [GYEONG] 웰컴페이지
     @RequestMapping(value = "/welcome", method = RequestMethod.POST)
     public ModelAndView welcome(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-
-        params.put("USER_UID", commonUtils.getUniqueSequence());
         params.put("ADDRESS_UID", commonUtils.getUniqueSequence());
         signUpService.signUp(params);
         modelAndView.setViewName("/user/signup/welcome");
