@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 
 
 <!DOCTYPE html>
@@ -41,6 +43,20 @@
         <!-- 마이페이지 본문 -->
         <div class="content">
           <%-- 주문 상세내역 --%>
+          <%
+    // resultMap에서 orderDetails 정보 추출
+    List<Map<String, Object>> orderDetails = (List<Map<String, Object>>)request.getAttribute("resultMap");
+
+    // 총 결제금액 계산
+    int totalAmount = 0;
+    for(Map<String, Object> orderDetail : orderDetails) {
+        int price = (Integer)orderDetail.get("PRICE");
+        int quantity = (Integer)orderDetail.get("QUANTITY");
+        totalAmount += (price * quantity);
+    }
+    int shippingFee = 2500;
+    int totalPrice = totalAmount + shippingFee;
+%>
           <div class="title fs-3">주문 / 배송 내역</div>
           <hr class="hr" />
 
@@ -57,26 +73,25 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>20230205 / 202302051132A23</td>
-                  <td>트레비 백팩</td>
-                  <td>55000원</td>
-                  <td>1</td>
-                  <td>배송준비중</td>
-                  <td>
-                    <div>대한통운</div>
-                    <div><a href="#">1231231245</a></div>
-                  </td>
-                </tr>
-                <tr class="sumBorder">
-                  <td
-                    colspan="6"
-                    class="text-end bg-secondary bg-opacity-25 text-dark"
-                  >
-                    총 결제금액 : 55000원 + 배송비 2500원 =
-                    <span class="text-danger fw-bold">57500</span>원
-                  </td>
-                </tr>
+               <c:forEach var="item" items="${resultMap}">
+                  <tr>
+                <td>${item.ORDER_DATE} / ${item.ORDER_UID}</td>
+               <td>${item.PRODUCT_NAME}</td>
+                <td>${item.PRICE}</td>
+                <td>${item.QUANTITY}</td>
+              <td>${item.CONDITION_NAME}</td>
+                <td>
+              <div>${item.LOGISTICS_NAME}</div>
+             <div><a href="#">${item.WAYBILL_CODE}</a></div>
+            </td>
+              </tr>
+</c:forEach>
+                 <tr class="sumBorder">
+            <td colspan="6" class="text-end bg-secondary bg-opacity-25 text-dark">
+                총 결제금액 : <%= totalAmount %>원 + 배송비 <%= shippingFee %>원 =
+                <span class="text-danger fw-bold"><%= totalPrice %></span>원
+            </td>
+        </tr>
               </tbody>
             </table>
 

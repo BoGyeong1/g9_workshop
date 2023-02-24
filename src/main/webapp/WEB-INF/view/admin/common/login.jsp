@@ -23,7 +23,7 @@
             <h1 class="text-center">
                 Admin System
             </h1>
-            <form action="/login" method="post" class="my-5 col-12 col-md-4 m-auto">
+            <form action="/admin/login" method="post" class="my-5 col-12 col-md-4 m-auto">
                 <input type="hidden" name="userType" value="admin">
                 <div class="my-3">
                     <label for="admin-id" class="form-label">Admin ID</label>

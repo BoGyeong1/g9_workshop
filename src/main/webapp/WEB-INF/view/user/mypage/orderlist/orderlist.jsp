@@ -55,20 +55,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th><input type="checkbox" name="" id="" /></th>
-                <td><a href="/mypage/orderDetail">20230205/202302051132A23</a></td>
-                <td><a href="#">트레비 백팩</a></td>
-                <td>55000원</td>
-                <td>배송준비중</td>
-              </tr>
-              <tr>
-                <th><input type="checkbox" name="" id="" /></th>
-                <td><a href="#">20230202/202302023179A23</a></td>
-                <td><a href="#">키링</a></td>
-                <td>8000원</td>
-                <td>배송완료</td>
-              </tr>
+<c:forEach var="order" items="${resultMap}">
+  <tr>
+    <th><input type="checkbox" name="" id="" /></th>
+    <td><a href="/mypage/orderDetail/${order.ORDER_UID}">${order.ORDER_DATE}/${order.ORDER_UID}</a></td>
+    <td><a href="#">${order.PRODUCT_NAME}</a>
+        <c:if test="${order.PRODUCT_COUNT > 1}">
+            외 ${order.PRODUCT_COUNT - 1}개
+        </c:if>
+    </td>
+    <td>${order.TOTAL_PRICE}원</td>
+    <td>${order.CONDITION_NAME}</td>
+  </tr>
+</c:forEach>
             </tbody>
           </table>
           <div class="orderStep">

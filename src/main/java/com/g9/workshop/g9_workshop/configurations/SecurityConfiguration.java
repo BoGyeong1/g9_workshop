@@ -14,12 +14,25 @@ public class SecurityConfiguration {
         httpSecurity.csrf().disable();
 
         httpSecurity.authorizeRequests()
-                .antMatchers("/mypage/*").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/user/login").permitAll()
                 .antMatchers("/admin/login", "/admin/register", "/admin/regiSucess").permitAll()
-                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/mypage/**").authenticated()
                 .anyRequest().permitAll()
 
                 // 로그인/아웃에 대한 부분
+
+                .and()
+                .formLogin().loginPage("/admin/login")
+                .failureUrl("/admin/login?fail=true")
+                .loginProcessingUrl("/admin/login")
+                .successHandler(new CustomAuthenticationSuccessHandler())
+                .and()
+                .logout()
+                .logoutUrl("/admin/logout")
+                .logoutSuccessUrl("/admin/login")
+                .invalidateHttpSession(true)
+
                 .and()
                 .formLogin().loginPage("/user/login")
                 .failureUrl("/user/login?fail=true")
@@ -31,16 +44,7 @@ public class SecurityConfiguration {
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
 
-                .and()
-                .formLogin().loginPage("/admin/login")
-                .failureUrl("/admin/login?fail=true")
-                .loginProcessingUrl("/login")
-                .successHandler(new CustomAuthenticationSuccessHandler())
-                .and()
-                .logout()
-                .logoutUrl("/admin/logout")
-                .logoutSuccessUrl("/admin/login")
-                .invalidateHttpSession(true);
+        ;
 
         return httpSecurity.build();
 
