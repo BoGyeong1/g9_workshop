@@ -5,25 +5,6 @@
 
 <<<<<<< HEAD
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <insert id="insertAdmin" parameterType="Map">
 INSERT INTO ADMINS 
 (ADMIN_UID, ID, PASSWORD, ADMIN_NAME, NICKNAME, AUTHORITY)
