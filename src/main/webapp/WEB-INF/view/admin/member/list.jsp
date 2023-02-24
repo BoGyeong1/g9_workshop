@@ -30,7 +30,7 @@
                         </select>
                         <input class="form-control w-25 mx-2" type="text" name="word" id="word">
                         <button type="submit" class="btn btn-outline-dark mx-2">검색</button>
-                    </.div>
+                    </div>
                 </form>
             </div>
             <%-- 1. 검색창 --%>

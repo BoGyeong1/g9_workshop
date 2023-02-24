@@ -41,14 +41,12 @@ public class SignUpService {
         Object result = this.insertBasic(dataMap);
         result = this.insertAddress(dataMap);
         return result;
-
     }
 
     public Object emailCheck(String email) {
         String sqlMapId = "SignUpMapper.selectCntEmailConfirm";
         Object result = shareDao.getOne(sqlMapId, email);
         return result;
-
     }
 
 }
