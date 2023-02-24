@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -47,9 +48,18 @@ public class SignUpController {
 
     }
 
+    // [GYEONG] 회원가입 아이디 중복체크
+    @ResponseBody
+    @RequestMapping(value = "/emailCheck", method = RequestMethod.POST)
+    public int emailCheck(@RequestParam("email") String email) {
+        int cnt = (int) signUpService.emailCheck(email);
+        return cnt;
+    }
+
     // [GYEONG] 웰컴페이지
     @RequestMapping(value = "/welcome", method = RequestMethod.POST)
     public ModelAndView welcome(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
         params.put("USER_UID", commonUtils.getUniqueSequence());
         params.put("ADDRESS_UID", commonUtils.getUniqueSequence());
         signUpService.signUp(params);

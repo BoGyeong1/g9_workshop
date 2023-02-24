@@ -3,11 +3,11 @@
 
 <mapper namespace="SignUpMapper">
 
-<!-- 시험용 셀렉트 -->
-    <select id="select" parameterType="Map" resultType="Map">
-    SELECT * 
+<!-- 아이디 중복 확인용  -->
+    <select id="selectCntEmailConfirm" parameterType="String" resultType="int" >
+    SELECT COUNT(EMAIL) AS CNT
     FROM USERS
-    WHERE USER_UID = 'U1' 
+    WHERE EMAIL = #{email} 
     </select>
 
 
