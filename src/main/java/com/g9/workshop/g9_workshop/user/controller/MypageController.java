@@ -138,8 +138,21 @@ public class MypageController {
     }
 
     // [GYEONG] 마이페이지 주문 취소 신청
-    @RequestMapping(value = "/cancelApplication")
-    public ModelAndView cancelApplication(ModelAndView modelAndView) {
+    @RequestMapping(value = "/cancelApplication/{orderId}", method = RequestMethod.GET)
+    public ModelAndView cancelApplication(@RequestParam Map<String, Object> params, @PathVariable String orderId,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        params.put("orderId", orderId);
+        Object resultMap = mypageService.getCancelOrder(params);
+        modelAndView.addObject("resultMap",resultMap);
+
         modelAndView.setViewName("/user/mypage/cancel_and_refund/cancel_application");
         return modelAndView;
 

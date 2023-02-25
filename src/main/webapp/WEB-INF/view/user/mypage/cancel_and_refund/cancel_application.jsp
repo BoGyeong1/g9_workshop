@@ -43,41 +43,40 @@
           <div class="mt-3"></div>
 
           <hr />
-<form action="/mypage/cancelApplicationList">
-          <table
-            class="table border-top border-bottom border-3 border-dark mt-5"
-          >
-            <tbody>
-              <tr>
-                <th>주문번호</th>
-                <td>202302051132A23</td>
-              </tr>
-              <tr>
-                <th>상품명</th>
-                <td>트레비 백팩</td>
-              </tr>
-              <tr>
-                <th>취소사유</th>
-                <td>
-                  <select name="" id="" class="select">
-                    <option value="">재결재</option>
-                    <option value="">배송지 변경</option>
-                    <option value="">단순변심</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <th>이메일 주소</th>
-                <td>user1234@gmail.com</td>
-              </tr>
-              <tr>
-                <th>휴대전화</th>
-                <td>
-                01023451234
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <form action="/mypage/cancelApplicationList">
+<table class="table border-top border-bottom border-3 border-dark mt-5">
+  <tbody>
+    <tr>
+      <th>주문번호</th>
+      <td>${resultMap.ORDER_UID}</td>
+    </tr>
+    <tr>
+      <th>상품명</th>
+      <td>
+    ${resultMap.FIRST_PRODUCT_NAME}
+    <c:if test="${resultMap.OTHER_PRODUCTS_COUNT > 0}"> 외 1개</c:if>
+      </td>
+    </tr>
+    <tr>
+      <th>취소사유</th>
+      <td>
+        <select name="cancelReason" id="cancelReason" class="select">
+          <c:forEach var="reason" items="${resultMap.CANCELLED_REASONS}">
+            <option value="${reason.REASON_UID}">${reason.REASON}</option>
+          </c:forEach>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>이메일 주소</th>
+      <td>${resultMap.EMAIL}</td>
+    </tr>
+    <tr>
+      <th>휴대전화</th>
+      <td>${resultMap.TEL}</td>
+    </tr>
+  </tbody>
+</table>
 
           <div class="d-flex justify-content-center">
             

@@ -82,4 +82,22 @@ public class MypageService {
         return result;
     }
 
+    // [GYEONG] 취소 신청할 정보 내역 출력
+    public Object getCancelOrder(Object dataMap) {
+        String sqlMapId = "MypageMapper.selectCancelOrder";
+        Map result = (Map) shareDao.getOne(sqlMapId, dataMap);
+
+        // 취소사유와 취소사유 ID를 , 기준으로 나누어서 배열로 만듦
+        String cancelReasons = (String) result.get("CANCELLED_REASON");
+        String[] reasons = cancelReasons.split(",");
+        String cancelReasonIds = (String) result.get("CANCELLED_REASON_UID");
+        String[] reasonIds = cancelReasonIds.split(",");
+
+        // 배열을 다시 Map에 저장
+        result.put("CANCELLED_REASON_LIST", reasons);
+        result.put("CANCELLED_REASON_UID_LIST", reasonIds);
+        return result;
+
+    }
+
 }

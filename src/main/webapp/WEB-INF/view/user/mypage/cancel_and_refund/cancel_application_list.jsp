@@ -75,10 +75,9 @@
            <td>
             <c:choose>
               <c:when test="${item.CONDITION_NAME == '주문완료'or item.CONDITION_NAME == '배송준비중' or item.CONDITION_NAME == '결제완료'}">
-                <form action="/mypage/cancelApplication">
-                  <input type="hidden" name="orderUid" value="${item.ORDER_UID}" />
-                  <button class="button">취소 신청</button>
-                </form>
+      <form action="/mypage/cancelApplication/${item.ORDER_UID}">
+        <button class="button">취소 신청</button>
+      </form>   
               </c:when>
               <c:when test="${item.CONDITION_NAME == '배송완료'}">
                 <form action="/mypage/refundExchangeApplication">
