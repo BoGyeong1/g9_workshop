@@ -75,15 +75,27 @@
               <tbody>
                <c:forEach var="item" items="${resultMap}">
                   <tr>
-                <td>${item.ORDER_DATE} / ${item.ORDER_UID}</td>
+                <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /> / ${item.ORDER_UID}</td>
                <td>${item.PRODUCT_NAME}</td>
                 <td>${item.PRICE}</td>
                 <td>${item.QUANTITY}</td>
               <td>${item.CONDITION_NAME}</td>
                 <td>
-              <div>${item.LOGISTICS_NAME}</div>
-             <div><a href="#">${item.WAYBILL_CODE}</a></div>
-            </td>
+  <c:if test="${item.LOGISTICS_NAME != null}">
+    <div>${item.LOGISTICS_NAME}</div>
+  </c:if>
+  <c:if test="${item.LOGISTICS_NAME == null}">
+    <div>-</div>
+  </c:if>
+  <div>
+    <c:if test="${item.WAYBILL_CODE != null}">
+      <a href="#">${item.WAYBILL_CODE}</a>
+    </c:if>
+    <c:if test="${item.WAYBILL_CODE == null}">
+      -
+    </c:if>
+  </div>
+</td>
               </tr>
 </c:forEach>
                  <tr class="sumBorder">
@@ -96,50 +108,44 @@
             </table>
 
             <%-- 구매자 정보 --%>
-            <div class="title fs-3 mt-5">구매자 정보</div>
-            <hr class="hr"/>
-            <table class="table">
-              <tr>
-                <th class="col-4">주문하시는 분</th>
-                <td class="col-4">진보경</td>
-                <th class="col-4">이메일 주소</th>
-                <td class="col-4">user1234@gmail.com</td>
-              </tr>
-              <tr>
-                <th>휴대폰 번호</th>
-                <td colspan="3">010-1234-1234</td>
-              </tr>
-            </table>
-            
+          <div class="title fs-3 mt-5">구매자 정보</div>
+          <hr class="hr"/>
+          <table class="table">
+            <tr>
+              <th class="col-4">주문하시는 분</th>
+              <td class="col-4">${userInfo.USER_NAME}</td>
+              <th class="col-4">이메일 주소</th>
+              <td class="col-4">${userInfo.EMAIL}</td>
+            </tr>
+            <tr>
+              <th>휴대폰 번호</th>
+              <td colspan="3">${userInfo.TEL}</td>
+            </tr>
+          </table>
+                      
             <%-- 배송지 정보 --%>
             <div class="title fs-3 mt-5">배송지 정보</div>
             <hr class="hr" />
-            <form action="/mypage/editAddress">
+           <form action="/mypage/editAddress/${resultMap[0].ORDER_UID}">
             <div class="d-flex justify-content-end">
               <button class="editBtn">배송지 수정</button>
             </div>
             </form>
             <div>
-              <table class="table mb-5">
-                <tr>
+            <table class="table mb-5">
+              <tr>
                   <th>받으시는 분</th>
-                  <td>진보경</td>
-                </tr>
-                <tr>
+                  <td>${shippingAddress.RECIPIENT_NAME}</td>
+              </tr>
+              <tr>
                   <th>휴대폰 번호</th>
-                  <td>010-1234-1234</td>
-                </tr>
-                <tr>
+                  <td>${shippingAddress.RECIPIENT_TEL}</td>
+              </tr>
+              <tr>
                   <th>주소</th>
-                  <td>
-                    [12345] 서울특별시 관악구 신림로1가길 12(신림동) 111호
-                  </td>
-                </tr>
-                <tr>
-                  <th>배송 유의사항</th>
-                  <td></td>
-                </tr>
-              </table>
+                  <td>[${shippingAddress.ZIP_CODE}] ${shippingAddress.ADDRESS} ${shippingAddress.DETAIL}</td>
+                      </tr>
+            </table>
               <form action="/mypage/orderlist">
               <div class="d-flex justify-content-center mb-5">
                 <button class="checkBtn">확인</button>

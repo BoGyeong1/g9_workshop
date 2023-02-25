@@ -73,15 +73,7 @@
               <tr>
                 <th>휴대전화</th>
                 <td>
-                  <select name="" id="" class="phone">
-                    <option value="">010</option>
-                    <option value="">010</option>
-                    <option value="">016</option>
-                  </select>
-                  -
-                  <input type="text" name="" id="" class="phone" />
-                  -
-                  <input type="text" name="" id="" class="phone" />
+                01023451234
                 </td>
               </tr>
             </tbody>

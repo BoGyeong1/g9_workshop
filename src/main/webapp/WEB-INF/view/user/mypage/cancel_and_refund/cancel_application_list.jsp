@@ -40,50 +40,63 @@
    
         <!-- 마이페이지 본문 -->
         <div class="content">
-          <div class="title fs-3">주문 내역</div>
+<div class="content">
+  <div class="title fs-3">주문 내역</div>
 
-          <hr class="hr" />
-          <div>
-            <div>교환신청은 상품 수령 후 7일 이내만 가능합니다.</div>
-            <div>
-              단, 사용 및 상품이 훼손된 경우는 7일 이내라도 교환이 불가합니다.
-            </div>
-            <div>
-              교환 신청 이후 재고 사정에 따라 품절이 발생 될 수 있습니다.
-            </div>
-          </div>
+  <hr class="hr" />
+  <div>
+    <div>교환신청은 상품 수령 후 7일 이내만 가능합니다.</div>
+    <div>
+      단, 사용 및 상품이 훼손된 경우는 7일 이내라도 교환이 불가합니다.
+    </div>
+    <div>
+      교환 신청 이후 재고 사정에 따라 품절이 발생 될 수 있습니다.
+    </div>
+  </div>
 
-          <table class="table text-center mt-5 mb-5">
-            <thead>
-              <tr class="border-top border-bottom border-dark border-3">
-                <th>주문일자</th>
-                <th>주문상품정보</th>
-                <th>결제금액</th>
-                <th>신청</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
+ <table class="table text-center mt-5 mb-5">
+  <thead>
+    <tr class="border-top border-bottom border-dark border-3">
+      <th>주문일자</th>
+      <th>주문번호</th>
+      <th>주문상품정보</th>
+      <th>결제금액</th>
+      <th>신청</th>
+    </tr>
+  </thead>
+  <tbody>
+    <c:forEach var="item" items="${resultMap}">
+      <tr>
+        <form action="/mypage/cancelApplication">
+          <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /></td>
+          <td>${item.ORDER_UID}</td>
+          <td><a href="#">${item.PRODUCT_NAME}</a></td>
+          <td>${item.PAY_AMOUNT+2500}원</td>
+           <td>
+            <c:choose>
+              <c:when test="${item.CONDITION_NAME == '주문완료'or item.CONDITION_NAME == '배송준비중' or item.CONDITION_NAME == '결제완료'}">
                 <form action="/mypage/cancelApplication">
-                  <td>20230205</td>
-                  <td><a href="#">트레비 백팩</a></td>
-                  <td>55000원</td>
-                  <td>
-                    <button class="button">취소 신청</button>
-                  </td>
+                  <input type="hidden" name="orderUid" value="${item.ORDER_UID}" />
+                  <button class="button">취소 신청</button>
                 </form>
-              </tr>
-              <tr>
+              </c:when>
+              <c:when test="${item.CONDITION_NAME == '배송완료'}">
                 <form action="/mypage/refundExchangeApplication">
-                  <td>20230202</td>
-                  <td><a href="#">키링</a></td>
-                  <td>8000원</td>
-                  <td><button class="button">반품/교환 신청</button></td>
+                  <input type="hidden" name="orderUid" value="${item.ORDER_UID}" />
+                  <button class="button">반품/교환 신청</button>
                 </form>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              </c:when>
+              <c:otherwise>
+                <span class="text-muted">-</span>
+              </c:otherwise>
+            </c:choose>
+          </td>
+        </form>
+      </tr>
+    </c:forEach>
+  </tbody>
+</table>
+</div>
       </div>
     </main>
     <%-- [GYEONG] 230215 footer --%>

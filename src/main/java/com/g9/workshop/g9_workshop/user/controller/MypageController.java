@@ -58,10 +58,16 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
-
+        // 주문 상세 내역 출력
         params.put("orderId", orderId);
         Object resultMap = mypageService.getOrderDetailList(params);
         modelAndView.addObject("resultMap", resultMap);
+        // 주문자 정보 출력
+        Object userInfo = mypageService.getOrderer(params);
+        modelAndView.addObject("userInfo", userInfo);
+        // 배송지 정보 출력
+        Object shippingAddress = mypageService.getShippingAddress(params);
+        modelAndView.addObject("shippingAddress", shippingAddress);
 
         modelAndView.setViewName("/user/mypage/orderlist/order_detail");
         return modelAndView;
@@ -69,16 +75,63 @@ public class MypageController {
     }
 
     // [GYEONG] 마이페이지 주문 상세내역 배송지 수정
-    @RequestMapping(value = "/editAddress")
-    public ModelAndView editAddress(ModelAndView modelAndView) {
+    @RequestMapping(value = "/editAddress/{orderId}", method = RequestMethod.GET)
+    public ModelAndView editAddress(@RequestParam Map<String, Object> params, @PathVariable String orderId,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        // 주문 상세 내역 출력
+        params.put("orderId", orderId);
+        Object resultMap = mypageService.getOrderDetailList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        // 배송지 정보 출력
+        Object shippingAddress = mypageService.getShippingAddress(params);
+        modelAndView.addObject("shippingAddress", shippingAddress);
         modelAndView.setViewName("/user/mypage/orderlist/edit_address");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 배송지 정보 수정
+    @RequestMapping(value = "/editAddressProcess/{orderId}", method = RequestMethod.POST)
+    public ModelAndView editAddressProcess(@RequestParam Map<String, Object> params, @PathVariable String orderId,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        // 배송지 정보 수정하고 주문내역 리스트를 가져옴
+        params.put("orderId", orderId);
+        Object resultMap = mypageService.editShippingAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("/user/mypage/orderlist/orderlist");
         return modelAndView;
 
     }
 
     // [GYEONG] 마이페이지 주문 취소/반품/교환 신청 목록
     @RequestMapping(value = "/cancelApplicationList")
-    public ModelAndView cancelApplicationList(ModelAndView modelAndView) {
+    public ModelAndView cancelApplicationList(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.getApplicationList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/cancel_and_refund/cancel_application_list");
         return modelAndView;
 

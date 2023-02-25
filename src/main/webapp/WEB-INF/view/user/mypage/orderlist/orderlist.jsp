@@ -58,13 +58,13 @@
 <c:forEach var="order" items="${resultMap}">
   <tr>
     <th><input type="checkbox" name="" id="" /></th>
-    <td><a href="/mypage/orderDetail/${order.ORDER_UID}">${order.ORDER_DATE}/${order.ORDER_UID}</a></td>
+    <td><a href="/mypage/orderDetail/${order.ORDER_UID}"><fmt:formatDate value="${order.ORDER_DATE}" pattern="yyyyMMdd" />/${order.ORDER_UID}</a></td>
     <td><a href="#">${order.PRODUCT_NAME}</a>
         <c:if test="${order.PRODUCT_COUNT > 1}">
             외 ${order.PRODUCT_COUNT - 1}개
         </c:if>
     </td>
-    <td>${order.TOTAL_PRICE}원</td>
+    <td>${order.TOTAL_PRICE+2500}원</td>
     <td>${order.CONDITION_NAME}</td>
   </tr>
 </c:forEach>
