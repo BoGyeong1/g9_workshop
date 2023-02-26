@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.g9.workshop.g9_workshop.admin.service.AdminRegi;
+import com.g9.workshop.g9_workshop.configurations.PrincipalAdmin;
 
 @Controller
 @RequestMapping("/admin")
@@ -42,7 +43,7 @@ public class AdminController {
     }
 
     // [SOO] Admin Main
-    @GetMapping({ "/home" })
+    @GetMapping({ "/home", "" })
     public ModelAndView adminMain(ModelAndView modelAndView) {
         modelAndView.setViewName("admin/common/main");
         return modelAndView;

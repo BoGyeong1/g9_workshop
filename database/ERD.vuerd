@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 3700,
     "height": 3700,
-    "scrollTop": -1149,
-    "scrollLeft": -950,
-    "zoomLevel": 1,
+    "scrollTop": -476,
+    "scrollLeft": -265,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -637,7 +637,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -655,7 +655,7 @@
           "active": false,
           "left": 1857,
           "top": 226,
-          "zIndex": 10,
+          "zIndex": 50,
           "widthName": 64.79736328125,
           "widthComment": 67
         },
@@ -2758,7 +2758,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -2822,7 +2822,7 @@
           "active": false,
           "left": 50,
           "top": 1114.5,
-          "zIndex": 29,
+          "zIndex": 42,
           "widthName": 98.05908203125,
           "widthComment": 84.5703125
         },
@@ -2976,7 +2976,7 @@
           "active": false,
           "left": 689,
           "top": 1114.5,
-          "zIndex": 30,
+          "zIndex": 46,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3912,7 +3912,7 @@
               "autoIncrement": false,
               "primaryKey": false,
               "unique": false,
-              "notNull": false
+              "notNull": true
             },
             "ui": {
               "active": false,
@@ -3928,9 +3928,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 709,
+          "left": 710,
           "top": 1413.5,
-          "zIndex": 35,
+          "zIndex": 48,
           "widthName": 60,
           "widthComment": 84.5703125
         },
@@ -5047,7 +5047,7 @@
           "columnIds": [
             "ae69a5e2-9785-419a-97bd-e77a0c7c507e"
           ],
-          "x": 1088.820068359375,
+          "x": 1089.820068359375,
           "y": 1413.5,
           "direction": "top"
         },
@@ -5073,7 +5073,7 @@
           "columnIds": [
             "ff716f23-506b-4d61-a002-190bb063d6d7"
           ],
-          "x": 835.606689453125,
+          "x": 836.606689453125,
           "y": 1413.5,
           "direction": "top"
         },

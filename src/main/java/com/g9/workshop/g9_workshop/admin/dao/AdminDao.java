@@ -55,4 +55,10 @@ public class AdminDao {
         return result;
     }
 
+    public Object selectProductInfos() {
+        String sqlMapId = "AdminMapper.selectProductInfos";
+        Object result = sqlSessionTemplate.selectList(sqlMapId);
+        return result;
+    }
+
 }

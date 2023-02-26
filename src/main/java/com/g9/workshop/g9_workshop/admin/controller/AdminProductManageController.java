@@ -31,7 +31,8 @@ public class AdminProductManageController {
     // [SOO] Product List
     @GetMapping("/list")
     public ModelAndView productManage(ModelAndView modelAndView) {
-        Object productInfos;
+        Object productInfos = adminService.getProductInfoList();
+        modelAndView.addObject("productInfos", productInfos);
         modelAndView.setViewName("admin/product/product_current_situation");
         return modelAndView;
     }
@@ -56,7 +57,14 @@ public class AdminProductManageController {
     @PostMapping("/insert")
     public String productUpload(MultipartHttpServletRequest request, @RequestParam Map<String, Object> params) {
         adminFileService.fileInsert(request, params);
-        return "redirect:/admin/product/current";
+        return "redirect:/admin/product/list";
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView productEdit(@RequestParam Map params, ModelAndView modelAndView) {
+
+        modelAndView.setViewName("admin/product/product_insert_edit");
+        return modelAndView;
     }
 
 }

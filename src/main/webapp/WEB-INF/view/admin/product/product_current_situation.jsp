@@ -35,6 +35,41 @@
                     </div>
                 </form>
             </div>
+            <div class="my-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>상품명</th>
+                            <th>카테고리</th>
+                            <th>용도</th>
+                            <th>가격</th>
+                            <th>할인율</th>
+                            <th>재고</th>
+                            <th>노출여부</th>
+                            <th>수정</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${productInfos}" var="info" varStatus="status">
+                            <tr class="align-middle">
+                                <td>${info.PRODUCT_NAME}</td>
+                                <td>${info.CATEGORY_NAME}</td>
+                                <td>${info.PURPOSE_NAME}</td>
+                                <td>${info.PRICE}</td>
+                                <td>${info.DISCOUNT_RATE}</td>
+                                <td>${info.STOCK}</td>
+                                <td>${info.EXPOSURE}</td>
+                                <td>
+                                    <form action="/admin/product/edit" method="post">
+                                        <input type="hidden" value="${info.PRODUCT_UID}">
+                                        <button type="submit" class="btn btn-primary">수정하기</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
