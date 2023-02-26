@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <nav class="nav-justified">
-    <div class="container-fluid">
+    <%-- container -> container-fluid --%>
+    <div class="container-fluid"> 
         <div id="top-nav">
             <div class="text-end my-1">
             <%-- [GYEONG] 23.02.24 수정
