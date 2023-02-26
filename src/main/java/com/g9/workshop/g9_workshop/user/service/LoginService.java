@@ -25,7 +25,7 @@ public class LoginService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // hidden으로 파라미터를 받아서 각자 다른 로그인 쿼리 날리기
+        // [GYEONG] hidden으로 파라미터를 받아서 각자 다른 로그인 쿼리 날리기
         String userType = request.getParameter("userType");
         String sqlMapId = "";
 

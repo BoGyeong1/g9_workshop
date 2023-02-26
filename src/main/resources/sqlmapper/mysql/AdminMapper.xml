@@ -4,9 +4,9 @@
 <mapper namespace="AdminMapper">
 
     <insert id="insertAdmin" parameterType="Map">
-    INSERT INTO ADMINS 
-    (ADMIN_UID, ID, PASSWORD, ADMIN_NAME, NICKNAME, AUTHORITY)
-    VALUE
+        INSERT INTO ADMINS 
+        (ADMIN_UID, ID, PASSWORD, ADMIN_NAME, NICKNAME, AUTHORITY)
+        VALUE
         (#{ADMIN_UID}, 
         #{ID}, 
         #{PASSWORD}, 

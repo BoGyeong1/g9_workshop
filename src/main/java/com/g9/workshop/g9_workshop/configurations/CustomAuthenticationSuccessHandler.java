@@ -12,17 +12,21 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
-
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        boolean isAdmin = false;
         for (GrantedAuthority authority : authorities) {
             if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                setDefaultTargetUrl("/admin/home");
-            } else {
-                setDefaultTargetUrl("/home");
+                isAdmin = true;
+                break;
             }
+        }
+        if (isAdmin) {
+            setDefaultTargetUrl("/admin/home");
+        } else {
+            setDefaultTargetUrl("/home");
         }
         super.onAuthenticationSuccess(request, response, authentication);
     }

@@ -10,9 +10,9 @@
         <div class="col-10 titleBorder">
             <div class="row">
                 <div class="name col-9 mt-4">
-                    진보경
+                ${userName}
                     <div>
-                        <div class="fs-6 ms-1 mt-1"> 잔여 포인트 : 1000 </div>
+                        <div class="fs-6 ms-1 mt-1"> 잔여 포인트 : ${point} </div>
                     </div>
                 </div>
               <div class="review col-3 mt-4">
