@@ -29,7 +29,7 @@ public class AdminProductManageController {
     CommonUtils commonUtils;
 
     // [SOO] Product List
-    @GetMapping("/list")
+    @GetMapping({ "", "/list" })
     public ModelAndView productManage(ModelAndView modelAndView) {
         Object productInfos = adminService.getProductInfoList();
         modelAndView.addObject("productInfos", productInfos);
