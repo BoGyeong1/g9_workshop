@@ -25,7 +25,7 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().loginPage("/admin/login")
                 .failureUrl("/admin/login?fail=true")
-                .loginProcessingUrl("/admin/login")
+                .loginProcessingUrl("/login")
                 .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
                 .logout()

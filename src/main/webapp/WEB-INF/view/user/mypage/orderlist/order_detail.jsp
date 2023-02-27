@@ -75,7 +75,7 @@
               <tbody>
                <c:forEach var="item" items="${resultMap}">
                   <tr>
-                <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /> / ${item.ORDER_UID}</td>
+                <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /> / ${item.ORDER_DETAIL_UID}</td>
                <td>${item.PRODUCT_NAME}</td>
                 <td>${item.PRICE}</td>
                 <td>${item.QUANTITY}</td>

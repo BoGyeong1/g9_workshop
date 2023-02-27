@@ -43,7 +43,7 @@
           <div class="mt-3"></div>
 
           <hr />
-          <form action="/mypage/cancelApplicationList">
+          <form action="/mypage/cancelApplicationProcess/${resultMap.ORDER_UID}" method="POST">
 <table class="table border-top border-bottom border-3 border-dark mt-5">
   <tbody>
     <tr>
@@ -54,17 +54,17 @@
       <th>상품명</th>
       <td>
     ${resultMap.FIRST_PRODUCT_NAME}
-    <c:if test="${resultMap.OTHER_PRODUCTS_COUNT > 0}"> 외 1개</c:if>
+ <c:if test="${resultMap.OTHER_PRODUCTS_COUNT > 0}"> 외 ${resultMap.OTHER_PRODUCTS_COUNT}개</c:if>
       </td>
     </tr>
     <tr>
       <th>취소사유</th>
       <td>
-        <select name="cancelReason" id="cancelReason" class="select">
-          <c:forEach var="reason" items="${resultMap.CANCELLED_REASONS}">
-            <option value="${reason.REASON_UID}">${reason.REASON}</option>
-          </c:forEach>
-        </select>
+<select name="REASON_UID" id="cancelReason" class="select">
+  <c:forEach var="reason" items="${cancelReasons}" varStatus="status">
+    <option value="${reason.REASON_UID}">${reason.REASON}</option>
+  </c:forEach>
+</select>
       </td>
     </tr>
     <tr>

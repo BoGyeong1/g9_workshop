@@ -22,7 +22,7 @@
       integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
-    />
+    /> 
     <link rel="stylesheet" href="/css/mypage/cancel_and_refund/cancel_application_list.css" />
   </head>
   <body>
@@ -66,32 +66,36 @@
   </thead>
   <tbody>
     <c:forEach var="item" items="${resultMap}">
-      <tr>
-        <form action="/mypage/cancelApplication">
-          <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /></td>
-          <td>${item.ORDER_UID}</td>
-          <td><a href="#">${item.PRODUCT_NAME}</a></td>
-          <td>${item.PAY_AMOUNT+2500}원</td>
-           <td>
-            <c:choose>
-              <c:when test="${item.CONDITION_NAME == '주문완료'or item.CONDITION_NAME == '배송준비중' or item.CONDITION_NAME == '결제완료'}">
-      <form action="/mypage/cancelApplication/${item.ORDER_UID}">
-        <button class="button">취소 신청</button>
-      </form>   
-              </c:when>
-              <c:when test="${item.CONDITION_NAME == '배송완료'}">
-                <form action="/mypage/refundExchangeApplication">
-                  <input type="hidden" name="orderUid" value="${item.ORDER_UID}" />
-                  <button class="button">반품/교환 신청</button>
-                </form>
-              </c:when>
-              <c:otherwise>
-                <span class="text-muted">-</span>
-              </c:otherwise>
-            </c:choose>
-          </td>
-        </form>
-      </tr>
+      <c:choose>
+        <c:when test="${item.CONDITION_NAME == '취소완료' or item.CONDITION_NAME == '반품준비중' or item.CONDITION_NAME == '반품완료' or item.CONDITION_NAME == '교환신청' or item.CONDITION_NAME == '교환준비중'}">
+          <tr><td colspan="5"><div> 취소/교환/반품 신청할 내역이 없습니다.<td></div></tr>
+        </c:when>
+        <c:otherwise>
+          <tr>
+            <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /></td>
+            <td>${item.ORDER_UID}</td>
+            <td><a href="#">${item.PRODUCT_NAME}</a></td>
+            <td>${item.PAY_AMOUNT+2500}원</td>
+            <td>
+              <c:choose>
+                <c:when test="${item.CONDITION_NAME == '주문완료'or item.CONDITION_NAME == '상품준비중' or item.CONDITION_NAME == '결제완료'}">
+                  <form action="/mypage/cancelApplication/${item.ORDER_UID}">
+                    <button class="button">취소 신청</button>
+                  </form>   
+                </c:when>
+                <c:when test="${item.CONDITION_NAME == '배송완료'}">
+                  <form action="/mypage/refundExchangeApplication/${item.ORDER_UID}">
+                    <button class="button">반품/교환 신청</button>
+                  </form>
+                </c:when>
+                <c:otherwise>
+                  <span class="text-muted">-</span>
+                </c:otherwise>
+              </c:choose>
+            </td>
+          </tr>
+        </c:otherwise>
+      </c:choose>
     </c:forEach>
   </tbody>
 </table>

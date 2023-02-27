@@ -2,13 +2,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>지구공방 - 마이페이지</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -24,6 +25,9 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/css/mypage/cancel_and_refund/refund_exchange_application.css" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <%-- [GYEONG] 230215 header --%>
@@ -43,71 +47,61 @@
           <div class="mt-3"></div>
 
           <hr class="hr"/>
-            <form action="/mypage/cancelApplicationList">
+            <form action="/mypage/refundExchangeProcess" method="POST">
+              <input type="hidden" name="ORDER_UID" value="${orderId}">
           <table
             class="table border-top border-bottom border-3 border-dark mt-5"
           >
             <tbody>
-              <tr>
-                <th>주문번호</th>
-                <td>202302023179A23</td>
-              </tr>
-              <tr>
-                <th>상품명</th>
-                <td>키링</td>
+            <tr>
+                <th >주문상세번호 / 상품명</th>
+                <td>
+             <c:forEach var="data" items="${resultProductNameAndOrderDetailUid}">
+                <div>
+                 ${data.ORDER_DETAIL_UID}/${data.PRODUCT_NAME}
+                </div>
+                  </c:forEach>
+                  </td>
               </tr>
               <tr>
                 <th>반품/교환사유</th>
                 <td>
-                  <select name="" id="" class="select">
-                    <option value="">반품</option>
-                    <option value="">교환</option>
-                  </select>
-                  <select name="" id="" class="select">
-                    <option value="">사이즈 변경</option>
-                    <option value="">단순변심</option>
-                  </select>
+                 <select name="refundExchangeType" id="refundExchangeType" class="select">
+                  <option value="REFUND">반품</option>
+                  <option value="EXCHANGE">교환</option>
+                </select>
+                <select name="REASON_UID" id="resultReasons" class="select">
+                  <c:forEach var="data" items="${resultReasons}">
+                  <option value="${data.REASON_UID}">${data.REASON}</option>
+                  </c:forEach>
+                </select>
                 </td>
               </tr>
               <tr>
                 <th>이메일 주소</th>
-                <td>user1234@gmail.com</td>
+                <td>${resultOrderUserInfo.EMAIL}</td>
               </tr>
               <tr>
                 <th>휴대전화</th>
                 <td>
-                  <select name="" id="" class="phone">
-                    <option value="">010</option>
-                    <option value="">010</option>
-                    <option value="">016</option>
-                  </select>
-                  -
-                  <input type="text" name="" id="" class="phone" />
-                  -
-                  <input type="text" name="" id="" class="phone" />
+                ${resultOrderUserInfo.TEL}
                 </td>
               </tr>
               <tr>
                 <th>문의내용</th>
                 <td>
-                  <textarea name="" id="" cols="80" rows="10"></textarea>
+                 <div id="editor" style="height : 400px"></div>
+                 <input type="hidden" name="REASON_DETAIL" id="description">
+                 
                 </td>
               </tr>
-              <tr>
-                <th>첨부파일</th>
-                <td>
-                  <input type="file" name="file" id="file" />
-                  <label for="file">
-                    <div class="file">파일 업로드하기</div>
-                  </label>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
 
           <div class="d-flex justify-content-center">
 
-              <button class="returnChangeBtn">신청하기</button>
+              <button id="submit-button" class="returnChangeBtn">신청하기</button>
           </div>
             </form>
         </div>
@@ -115,6 +109,34 @@
     </main>
     <%-- [GYEONG] 230215 footer --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
+<script>
+$(document).ready(function() {
+  var quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        ['link', 'image', 'video'],
+        [{ 'align': [] }],
+        ['clean']
+      ]
+    }
+  });
+
+  let submitButton = document.querySelector('#submit-button');
+				submitButton.addEventListener('click', function (event) {
+					// get quill content content -> json
+					let content = editor.getContents();
+					let description = document.querySelector('#description');
+					// json 변환해서 실어보내기
+					description.value = JSON.stringify(content);
+					form.submit();
+				});
+  
+});
+</script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

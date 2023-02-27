@@ -139,7 +139,31 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 주문 취소 신청
     @RequestMapping(value = "/cancelApplication/{orderId}", method = RequestMethod.GET)
-    public ModelAndView cancelApplication(@RequestParam Map<String, Object> params, @PathVariable String orderId,
+    public ModelAndView cancelApplication(@PathVariable String orderId,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Map params = new HashMap<>();
+        params.put("orderId", orderId);
+        Object resultMap = mypageService.getCancelOrder(params);
+        modelAndView.addObject("resultMap", resultMap);
+        Object cancelReasons = mypageService.getCancelReason(params);
+        modelAndView.addObject("cancelReasons", cancelReasons);
+
+        modelAndView.setViewName("/user/mypage/cancel_and_refund/cancel_application");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 주문 취소 신청 과정
+    @RequestMapping(value = "/cancelApplicationProcess/{orderId}", method = RequestMethod.POST)
+    public ModelAndView cancelApplicationProcess(@RequestParam Map<String, Object> params, @PathVariable String orderId,
             ModelAndView modelAndView) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
@@ -150,25 +174,75 @@ public class MypageController {
         modelAndView.addObject("userName", userName);
 
         params.put("orderId", orderId);
-        Object resultMap = mypageService.getCancelOrder(params);
-        modelAndView.addObject("resultMap",resultMap);
+        Object resultMap = mypageService.insertCancelOrderGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
 
-        modelAndView.setViewName("/user/mypage/cancel_and_refund/cancel_application");
+        modelAndView.setViewName("/user/mypage/cancel_and_refund/cancel_application_list");
         return modelAndView;
 
     }
 
     // [GYEONG] 마이페이지 주문 반품/교환 신청
-    @RequestMapping(value = "/refundExchangeApplication")
-    public ModelAndView refundExchangeApplication(ModelAndView modelAndView) {
+    @RequestMapping(value = "/refundExchangeApplication/{orderId}", method = RequestMethod.GET)
+    public ModelAndView refundExchangeApplication(@PathVariable String orderId, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Map params = new HashMap<>();
+        params.put("orderId", orderId);
+        Object resultProductNameAndOrderDetailUid = mypageService.getOrderDetailUidsAndProductNames(params);
+        Object resultOrderUserInfo = mypageService.getOrderUserInfos(params);
+        Object resultReasons = mypageService.getRefundExchangeReasons(params);
+
+        modelAndView.addObject("resultProductNameAndOrderDetailUid", resultProductNameAndOrderDetailUid);
+        modelAndView.addObject("resultOrderUserInfo", resultOrderUserInfo);
+        modelAndView.addObject("resultReasons", resultReasons);
+
         modelAndView.setViewName("/user/mypage/cancel_and_refund/refund_exchange_application");
         return modelAndView;
 
     }
 
-    // [GYEONG] 마이페이지 주문 반품/교환 내역
+    // [GYEONG] 마이페이지 주문 반품/교환 신청
+    @RequestMapping(value = "/refundExchangeProcess", method = RequestMethod.POST)
+    public ModelAndView refundExchangeProcess(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.insertOrderRefundExchangeGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("/user/mypage/cancel_and_refund/cancel_application_list");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 주문취소/ 반품/교환 내역
     @RequestMapping(value = "/canRefExcList")
-    public ModelAndView canRefExcList(ModelAndView modelAndView) {
+    public ModelAndView canRefExcList(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.getCanRefExcList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/cancel_and_refund/can_ref_exc_list");
         return modelAndView;
 
