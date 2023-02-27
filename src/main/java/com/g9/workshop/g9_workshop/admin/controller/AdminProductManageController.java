@@ -81,4 +81,13 @@ public class AdminProductManageController {
         return modelAndView;
     }
 
+    // [SOO] Product Edit Submit
+    @PostMapping("/edit/submit")
+    public String productEditDone(@RequestParam Map params) {
+
+        adminService.updateProduct(params);
+
+        return "redirect:/admin/product/list";
+    }
+
 }

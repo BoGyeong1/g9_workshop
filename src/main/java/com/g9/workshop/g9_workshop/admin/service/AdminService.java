@@ -1,5 +1,7 @@
 package com.g9.workshop.g9_workshop.admin.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +40,11 @@ public class AdminService {
 
     public Object getProductEditInfo(String productUid) {
         Object result = adminDao.selectProductEditInfo(productUid);
+        return result;
+    }
+
+    public Object updateProduct(Map dataMap) {
+        Object result = adminDao.updateProduct(dataMap);
         return result;
     }
 

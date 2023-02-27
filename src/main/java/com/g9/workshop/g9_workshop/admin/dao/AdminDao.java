@@ -67,4 +67,10 @@ public class AdminDao {
         return result;
     }
 
+    public Object updateProduct(Map dataMap) {
+        String sqlMapId = "AdminMapper.updateProduct";
+        Object result = sqlSessionTemplate.update(sqlMapId, dataMap);
+        return result;
+    }
+
 }

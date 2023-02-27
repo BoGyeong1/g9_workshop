@@ -64,4 +64,20 @@
         WHERE PRODUCT_UID = #{productUid}
     </select>
 
+    <update id="updateProduct" parameterType="Map">
+        UPDATE PRODUCTS
+        SET
+        PRODUCT_NAME = #{product-name},
+        PRODUCT_DESC = #{product-desc},
+        CATEGORY_UID = #{category-uid},
+        PURPOSE_UID = #{purpose-uid},
+        BRAND_UID = #{brand-uid},
+        ORIGIN_UID = #{origin-uid},
+        PRICE = #{price},
+        DISCOUNT_RATE = #{discount-rate},
+        STOCK = #{stock},
+        EXPOSURE = #{exposure}
+        WHERE PRODUCT_UID = #{product-uid}
+    </update>
+
 </mapper>
