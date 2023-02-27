@@ -82,25 +82,34 @@
                         <option value="NO">NO</option>
                     </select>
                 </div>
-                <div>
-                    <label for="thumbnail-1" class="form-label">상품 썸네일 이미지</label>
-                    <input type="file" accept="image/*" name="thumbnail-1" id="thumbnail" class="form-control" required>
-                    <input type="file" accept="image/*" name="thumbnail-2" id="thumbnail" class="form-control">
-                    <input type="file" accept="image/*" name="thumbnail-3" id="thumbnail" class="form-control">
-                    <input type="file" accept="image/*" name="thumbnail-4" id="thumbnail" class="form-control">
-                    <input type="file" accept="image/*" name="thumbnail-5" id="thumbnail" class="form-control">
-                </div>
-                <div>
-                    <label for="detail-1" class="form-label">상세 페이지 이미지</label>
-                    <input type="file" accept="image/*" name="detail-1" id="detail" class="form-control" required>
-                    <input type="file" accept="image/*" name="detail-2" id="detail" class="form-control">
-                    <input type="file" accept="image/*" name="detail-3" id="detail" class="form-control">
-                    <input type="file" accept="image/*" name="detail-4" id="detail" class="form-control">
-                    <input type="file" accept="image/*" name="detail-5" id="detail" class="form-control">
-                    <input type="file" accept="image/*" name="detail-6" id="detail" class="form-control">
-                    <input type="file" accept="image/*" name="detail-7" id="detail" class="form-control">
-                    <input type="file" accept="image/*" name="detail-8" id="detail" class="form-control">
-                </div>
+                <%-- 객체가 비어있다면 --%>
+                <c:if test="${empty productEditInfo}">
+                    <div>
+                        <label for="thumbnail-1" class="form-label">상품 썸네일 이미지</label>
+                        <input type="file" accept="image/*" name="thumbnail-1" id="thumbnail" class="form-control" required>
+                        <input type="file" accept="image/*" name="thumbnail-2" id="thumbnail" class="form-control">
+                        <input type="file" accept="image/*" name="thumbnail-3" id="thumbnail" class="form-control">
+                        <input type="file" accept="image/*" name="thumbnail-4" id="thumbnail" class="form-control">
+                        <input type="file" accept="image/*" name="thumbnail-5" id="thumbnail" class="form-control">
+                    </div>
+                    <div>
+                        <label for="detail-1" class="form-label">상세 페이지 이미지</label>
+                        <input type="file" accept="image/*" name="detail-1" id="detail" class="form-control" required>
+                        <input type="file" accept="image/*" name="detail-2" id="detail" class="form-control">
+                        <input type="file" accept="image/*" name="detail-3" id="detail" class="form-control">
+                        <input type="file" accept="image/*" name="detail-4" id="detail" class="form-control">
+                        <input type="file" accept="image/*" name="detail-5" id="detail" class="form-control">
+                        <input type="file" accept="image/*" name="detail-6" id="detail" class="form-control">
+                        <input type="file" accept="image/*" name="detail-7" id="detail" class="form-control">
+                        <input type="file" accept="image/*" name="detail-8" id="detail" class="form-control">
+                    </div>
+                </c:if>
+                <%-- 객체가 비어있지 않다면 --%>
+                <c:if test="${not empty productEditInfo}">
+                    <div>
+                        이미지 수정기능 개발중
+                    </div>
+                </c:if>
                 <button type="submit" class="btn btn-primary">등록하기</button>
             </form>
         </div>
