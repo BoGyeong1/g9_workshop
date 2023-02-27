@@ -51,11 +51,16 @@
               </tr>
             </thead>
             <tbody>
+            <c:forEach var="item" items="${resultMap}">
               <tr>
-                <td><a href="#">20221202</a></td>
-                <td><a href="#">Save Earth 후드</a></td>
-                <td>반품 완료</td>
+             
+<td><fmt:parseDate value="${item.APPLICATION_DATE}" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
+<fmt:formatDate value="${date}" pattern="yyyyMMdd" /></td>
+
+                <td>${item.PRODUCT_NAME}</a></td>
+                <td>${item.ORDER_CONDITION}</td>
               </tr>
+              </c:forEach>
             </tbody>
           </table>
         </div>
