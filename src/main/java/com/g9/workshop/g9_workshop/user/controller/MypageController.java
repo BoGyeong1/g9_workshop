@@ -4,20 +4,28 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
 import com.g9.workshop.g9_workshop.user.service.MypageService;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value = "/mypage")
@@ -25,6 +33,9 @@ public class MypageController {
     // TO-DO 마이페이지 - 정보 확인 및 수정 / 탈퇴 / 주문내역 조회
     @Autowired
     MypageService mypageService;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     // [GYEONG] 마이페이지 주문내역 리스트(제일 처음화면)
     @RequestMapping(value = "/orderlist")
@@ -387,4 +398,62 @@ public class MypageController {
         return modelAndView;
     }
 
+    // 비밀번호 인증후 회원정보 수정
+    @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
+    public String updateUserInfo(Model model, @RequestParam Map params, RedirectAttributes redirectAttributes) {
+        String password = (String) params.get("PASSWORD"); // params 객체에서 비밀번호 정보를 가져옴
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+                // 비밀번호가 일치하지 않는 경우
+                String errorMessage = "비밀번호가 일치하지 않습니다.";
+                redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+                return "redirect:/mypage/changeUserInfo";
+            }
+        }
+
+        // 회원정보 수정 처리
+        mypageService.updateUserInfo(params);
+
+        return "redirect:/mypage/changeUserInfo";
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, Object> changePassword(@RequestParam Map params) {
+        Map<String, Object> response = new HashMap<>();
+        String existingPassword = (String) params.get("existingPassword");
+        String newPassword = (String) params.get("newPassword");
+        String newPasswordConfirm = (String) params.get("newPasswordConfirm");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            if (!passwordEncoder.matches(existingPassword, userDetails.getPassword())) {
+                // 현재 비밀번호가 일치하지 않는 경우
+                response.put("success", false);
+                response.put("message", "현재 비밀번호가 일치하지 않습니다.");
+            } else if (!newPassword.equals(newPasswordConfirm)) {
+                // 새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않는 경우
+                response.put("success", false);
+                response.put("message", "새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않습니다.");
+            } else {
+                // 비밀번호 변경
+                mypageService.updatePassword(params);
+
+                response.put("success", true);
+                response.put("message", "비밀번호가 변경되었습니다.");
+            }
+        } else {
+            // 로그인 되어 있지 않은 경우
+            response.put("success", false);
+            response.put("message", "로그인 되어 있지 않습니다.");
+        }
+
+        return response;
+    }
 }

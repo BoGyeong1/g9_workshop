@@ -311,4 +311,21 @@ ON USERS.USER_UID = ADDRESSES.USER_UID
 WHERE USERS.USER_UID = #{USER_UID}
 AND ADDRESSES.ADDRESS_NAME = '기본'
 </select >
+<update id="updateUserInfo" parameterType="Map">
+  UPDATE ADDRESSES, USERS
+  SET USERS.TEL= #{TEL},
+      ADDRESSES.ZIP_CODE = #{ZIP_CODE},
+      ADDRESSES.ADDRESS = #{ADDRESS},
+      ADDRESSES.DETAIL = #{DETAIL},
+      ADDRESSES.EXPOSURE = 'YES'
+  WHERE USERS.USER_UID = #{USER_UID}
+    AND ADDRESSES.ADDRESS_NAME = "기본"
+</update>
+
+<update id="updatePassword" parameterType="Map">
+  UPDATE USERS
+  SET PASSWORD= #{PASSWORD}
+  WHERE USER_UID = #{USER_UID}
+</update>
+
 </mapper>

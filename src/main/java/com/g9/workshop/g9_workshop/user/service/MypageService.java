@@ -5,11 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
 import com.g9.workshop.g9_workshop.user.dao.SharedDao;
@@ -23,6 +22,9 @@ public class MypageService {
 
     @Autowired
     CommonUtils commonUtils;
+
+    @Autowired
+    BCryptPasswordEncoder bcryptPasswordEncoder;
 
     // [GYEONG] 주문내역 가져오기
     public Object getOrderList(Object dataMap) {
@@ -246,4 +248,22 @@ public class MypageService {
         return result;
     }
 
+    // 회원정보 수정
+    public void updateUserInfo(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.updateUserInfo";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    // 비밀번호 변경
+    public void updatePassword(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        dataMap.put("USER_UID", principal.getUserUid());
+
+        String newPassword = (String) dataMap.get("newPassword");
+        dataMap.put("PASSWORD", bcryptPasswordEncoder.encode(newPassword));
+        String sqlMapId = "MypageMapper.updatePassword";
+        shareDao.update(sqlMapId, dataMap);
+    }
 }

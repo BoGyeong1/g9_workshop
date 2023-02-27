@@ -24,6 +24,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/css/mypage/change_user_info.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <%-- [GYEONG] 230215 header --%>
@@ -38,11 +39,13 @@
         <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_left_nav.jsp" %>
 
         <!-- 마이페이지 본문 -->
+        <form action="/mypage/updateUserInfo" method="post" id="updateUserForm">
         <div class="content">
           <div class="title fs-3">회원정보 변경</div>
-
           <hr class="hr" />
-          <div class="row mt-2">
+          <div class="text">주소지는 기본 주소지로 변경됩니다. </div>
+          <div class="text">전화번호는 특수문자나 공백없이 입력해주세요. </div>
+          <div class="row mt-5">
             <span class="col-2 fw-bold">이메일 주소</span
             ><span class="col-9">${resultMap.EMAIL}</span>
           </div>
@@ -80,12 +83,16 @@
             <span class="col-2 fw-bold">비밀번호 확인</span
             ><span class="col-9"
               ><input type="password" name="PASSWORD" id="password"  class="inputBox"
-            /></span>
+            /></span>          <c:if test="${not empty errorMessage}">
+
+          <span class="text-danger" style="margin-left : 180px">${errorMessage}</span>
+            </c:if>
           </div>
+
           <div class="d-flex justify-content-center">
             <button class="editBtn mb-5">수정</button>
           </div>
-
+        </form>
 
           <%-- 비밀번호 변경 --%>
           <div class="title fs-3">비밀번호 변경</div>
@@ -94,21 +101,23 @@
           <div class="row mt-5">
             <span class="col-2 fw-bold">기존 비밀번호</span
             ><span class="col-9"
-              ><input type="password" name="" id="" class="inputBox"
+              ><input type="password" name="existingPassword" id="existingPassword" class="inputBox"
             /></span>
           </div>
           <div class="row mt-2">
             <span class="col-2 fw-bold">새 비밀번호 </span
             ><span class="col-9"
-              ><input type="password" name="" id="" class="inputBox"
+              ><input type="password" name="newPassword" id="newPassword" class="inputBox"
             /></span>
           </div>
           <div class="row mt-2">
             <span class="col-2 fw-bold">새 비밀번호 확인</span
             ><span class="col-9"
-              ><input type="password" name="" id="" class="inputBox"
+              ><input type="password" name="newPasswordCheck" id="newPasswordCheck" class="inputBox"
             /></span>
           </div>
+          <div class="password_ok" id="alert-success">비밀번호가 일치합니다.</div>
+          <div class="password_no" id="alert-danger">비밀번호가 일치하지 않습니다.</div>
           <div class="text mt-2 text-secondary">
             <div class="fw-bold">주의하세요!</div>
             <div>
@@ -121,7 +130,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button class="editBtn mb-5">수정</button>
+            <button class="editBtn mb-5" id="submit">수정</button>
           </div>
         </div>
       </div>
@@ -172,6 +181,56 @@
             }
         }).open();
     }
+
+</script>
+<script>
+//[GYEONG] 23.02.23 비밀번호 체크
+    $(function(){
+        $("#alert-success").hide();
+        $("#alert-danger").hide();
+        $("#newPasswordCheck").keyup(function(){
+            var pwd1=$("#newPassword").val();
+            var pwd2=$("#newPasswordCheck").val();
+            if(pwd1 != "" || pwd2 != ""){
+                if(pwd1 == pwd2){
+                    $("#alert-success").show();
+                    $("#alert-danger").hide();
+                    $("#submit").removeAttr("disabled");
+                }else{
+                    $("#alert-success").hide();
+                    $("#alert-danger").show();
+                    $("#submit").attr("disabled", "disabled");
+                }    
+            }
+        });
+    });
+
+$("#submit").click(function(){
+  var existingPwd = $("#existingPassword").val();
+  var newPwd = $("#newPassword").val();
+  var newPwdConfirm = $("#newPasswordCheck").val();
+
+$.ajax({
+  type: "POST",
+  url: "/mypage/changePassword",
+  data: {
+    existingPassword: existingPwd,
+    newPassword: newPwd,
+    newPasswordConfirm: newPwdConfirm
+  },
+  success: function(response) {
+    if (response.success) {
+      alert(response.message);
+    } else {
+      alert(response.message);
+    }
+  },
+  error: function(xhr, status, error) {
+    alert("비밀번호 변경에 실패하였습니다.");
+  }
+});
+});
+  
 </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

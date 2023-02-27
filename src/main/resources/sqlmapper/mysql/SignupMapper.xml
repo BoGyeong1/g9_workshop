@@ -46,7 +46,7 @@ VALUE
 <!-- 기본 배송지 입력 -->
 <insert id="insertWithAddress" parameterType="Map">
 INSERT INTO ADDRESSES (USER_UID,ADDRESS_UID,ADDRESS_NAME,ZIP_CODE,ADDRESS,DETAIL,EXPOSURE)
-VALUE	(#{USER_UID},#{ADDRESS_UID},'BASIC',#{ZIP_CODE},#{ADDRESS},#{DETAIL},'YES')
+VALUE	(#{USER_UID},#{ADDRESS_UID},'기본',#{ZIP_CODE},#{ADDRESS},#{DETAIL},'YES')
 </insert>
 
 </mapper>
