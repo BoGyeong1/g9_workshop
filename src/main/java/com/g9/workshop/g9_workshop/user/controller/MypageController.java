@@ -2,6 +2,7 @@ package com.g9.workshop.g9_workshop.user.controller;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,19 +28,18 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 주문내역 리스트(제일 처음화면)
     @RequestMapping(value = "/orderlist")
-    public ModelAndView orderlist(ModelAndView modelAndView) {
+    public ModelAndView orderlist(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
 
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
         int point = principal.getPoint();
         String userName = principal.getMemberName();
-
-        Object resultMap = mypageService.getOrderList(userName);
+        Object orderList = mypageService.getOrderList(params);
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
 
-        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("orderList", orderList);
 
         modelAndView.setViewName("/user/mypage/orderlist/orderlist");
 
@@ -89,6 +89,8 @@ public class MypageController {
         params.put("orderId", orderId);
         Object resultMap = mypageService.getOrderDetailList(params);
         modelAndView.addObject("resultMap", resultMap);
+        Object deliveryLocations = mypageService.getDeliveryLocations(params);
+        modelAndView.addObject("deliveryLocations", deliveryLocations);
         // 배송지 정보 출력
         Object shippingAddress = mypageService.getShippingAddress(params);
         modelAndView.addObject("shippingAddress", shippingAddress);
@@ -248,18 +250,82 @@ public class MypageController {
 
     }
 
-    // [GYEONG] 마이페이지 상품리뷰 리스트
+    // [GYEONG] 마이페이지 상품리뷰쓸수있는 리스트
     @RequestMapping(value = "/reviewlist")
-    public ModelAndView reviewList(ModelAndView modelAndView) {
+    public ModelAndView reviewList(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         modelAndView.setViewName("/user/mypage/reviews/reviewlist");
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.getReviewWriteList(params);
+        modelAndView.addObject("resultMap", resultMap);
         return modelAndView;
 
     }
 
     // [GYEONG] 마이페이지 상품리뷰 등록
-    @RequestMapping(value = "/reviewRegi")
-    public ModelAndView reviewRegi(ModelAndView modelAndView) {
+    @RequestMapping(value = "/reviewRegi/{orderDetailUid}")
+    public ModelAndView reviewRegi(@PathVariable String orderDetailUid, @RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        params.put("orderDetailUid", orderDetailUid);
+        Object resultMap = mypageService.getReviewWriteInfo(params);
+
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/reviews/review_regi");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 상품리뷰 등록하기
+    @RequestMapping(value = "/reviewRegiProcess", method = RequestMethod.POST)
+    public ModelAndView reviewRegiProcess(@RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.insetReviewAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("/user/mypage/reviews/reviewlist");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 내가 작성한 리뷰 보기
+    @RequestMapping(value = "/myReviewList")
+    public ModelAndView myReviewList(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        modelAndView.setViewName("/user/mypage/reviews/reviewlist");
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.getMyReviewList(params);
+        modelAndView.addObject("resultMap", resultMap);
         return modelAndView;
 
     }
@@ -298,7 +364,18 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 회원정보변경
     @RequestMapping(value = "/changeUserInfo")
-    public ModelAndView changeUserInfo(ModelAndView modelAndView) {
+    public ModelAndView changeUserInfo(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object resultMap = mypageService.getUserInfo(params);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/change_user_info");
         return modelAndView;
     }

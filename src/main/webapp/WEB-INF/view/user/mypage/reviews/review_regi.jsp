@@ -60,78 +60,50 @@
               책임지지 않습니다.
             </div>
           </div>
-          <form action="/mypage/reviewlist">
+          <form action="/mypage/reviewRegiProcess" method="POST">
+         <input type="hidden" name="PRODUCT_UID" value="${resultMap.PRODUCT_UID}">
           <table
             class="table border-top border-bottom border-3 border-dark mt-5"
           >
             <tbody>
               <tr>
-                <th>주문번호</th>
-                <td>221202123557E2</td>
+                <th>주문상세번호</th>
+                <td>${resultMap.ORDER_DETAIL_UID}
+                <input type="hidden" name="ORDER_DETAIL_UID" value="${resultMap.ORDER_DETAIL_UID}">
+                </td>
+                  
               </tr>
               <tr>
                 <th>상품명</th>
-                <td>Save Earth 후드</td>
-              </tr>
-              <tr>
-                <th>상품만족도</th>
-                <td>
-                  <form class="mb-3" name="myform" id="myform" method="post">
-                    <fieldset>
-                      <input
-                        type="radio"
-                        name="reviewStar"
-                        value="5"
-                        id="rate1"
-                      /><label for="rate1">★</label>
-                      <input
-                        type="radio"
-                        name="reviewStar"
-                        value="4"
-                        id="rate2"
-                      /><label for="rate2">★</label>
-                      <input
-                        type="radio"
-                        name="reviewStar"
-                        value="3"
-                        id="rate3"
-                      /><label for="rate3">★</label>
-                      <input
-                        type="radio"
-                        name="reviewStar"
-                        value="2"
-                        id="rate4"
-                      /><label for="rate4">★</label>
-                      <input
-                        type="radio"
-                        name="reviewStar"
-                        value="1"
-                        id="rate5"
-                      /><label for="rate5">★</label>
-                    </fieldset>
-                  </form>
+                <td>${resultMap.PRODUCT_NAME}
+                 <input type="hidden" name="PRODUCT_NAME" value="${resultMap.PRODUCT_NAME}">
                 </td>
               </tr>
-
+<tr>
+  <th>상품만족도</th>
+  <td>
+  		<div class="text-bold">별점을 선택해주세요</div>
+<fieldset>
+		<input type="radio" name="RATING" value="5" id="rate1"><label
+			for="rate1">★</label>
+		<input type="radio" name="RATING" value="4" id="rate2"><label
+			for="rate2">★</label>
+		<input type="radio" name="RATING" value="3" id="rate3"><label
+			for="rate3">★</label>
+		<input type="radio" name="RATING" value="2" id="rate4"><label
+			for="rate4">★</label>
+		<input type="radio" name="RATING" value="1" id="rate5"><label
+			for="rate5">★</label>
+	</fieldset>
+  </td>
+</tr>
               <tr>
-                <th>제목</th>
-                <td><input type="text" name="" id="" class="title" /></td>
-              </tr>
-              <tr>
-                <th>리뷰</th>
+                <th>한줄 리뷰</th>
                 <td>
-                  <textarea name="" id="" cols="80" rows="10"></textarea>
+                  <input type="text" name="CONTENT" id="content" class="title" />
                 </td>
               </tr>
-              <tr>
-                <th>첨부파일</th>
-                <td>
-                  <input type="file" name="file" id="file" />
-                  <label for="file">
-                    <div class="file">파일 업로드하기</div>
-                  </label>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
           <div class="d-flex justify-content-center">
@@ -144,6 +116,7 @@
     </main>
         <%-- [GYEONG] 230215 footer --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

@@ -44,32 +44,28 @@
           <div class="title fs-3">주문 / 배송 내역</div>
           <hr class="hr" />
           <div><button class="selectDeleteBtn">선택 삭제</button></div>
-          <table class="table text-center mt-3">
-            <thead>
-              <tr class="border-top border-bottom border-dark border-3">
-                <th><input type="checkbox" name="" id="" /></th>
-                <th>주문일자/주문번호</th>
-                <th>주문상품정보</th>
-                <th>결제금액</th>
-                <th>진행상태</th>
-              </tr>
-            </thead>
-            <tbody>
-<c:forEach var="order" items="${resultMap}">
-  <tr>
-    <th><input type="checkbox" name="" id="" /></th>
-    <td><a href="/mypage/orderDetail/${order.ORDER_UID}"><fmt:formatDate value="${order.ORDER_DATE}" pattern="yyyyMMdd" />/${order.ORDER_UID}</a></td>
-    <td><a href="#">${order.PRODUCT_NAME}</a>
-        <c:if test="${order.PRODUCT_COUNT > 1}">
-            외 ${order.PRODUCT_COUNT - 1}개
-        </c:if>
-    </td>
-    <td>${order.TOTAL_PRICE+2500}원</td>
-    <td>${order.CONDITION_NAME}</td>
-  </tr>
-</c:forEach>
-            </tbody>
-          </table>
+<table class="table text-center">
+    <thead>
+        <tr class="border-bottom border-3 border-dark">
+            <th>주문번호</th>
+            <th>주문날짜</th>
+            <th>상품정보</th>
+            <th>총 가격</th>
+            <th>주문상태</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach var="order" items="${orderList}">
+            <tr>
+                <td><a href="/mypage/orderDetail/${order.ORDER_UID}">${order.ORDER_UID}</a></td>
+                <td><fmt:formatDate value="${order.ORDER_DATE}" pattern="yyyy-MM-dd" /></td>
+                <td>${order.PRODUCT_NAME} <c:if test="${order.PRODUCT_COUNT > 1}">외 ${order.PRODUCT_COUNT - 1}개</c:if></td>
+                <td>${order.TOTAL_PRICE+2500}</td>
+                <td>${order.CONDITION_NAME}</td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
           <div class="orderStep">
             <div class="title fs-3">STEP</div>
             <hr class="hr" />

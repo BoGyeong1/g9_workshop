@@ -50,23 +50,27 @@
           </div>
 
           <table class="table text-center mt-5">
-            <thead>
-              <tr class="border-top border-bottom border-dark border-3">
-                <th>주문날짜</th>
-                <th>주문상품정보</th>
-                <th>리뷰 작성</th>
-              </tr>
-            </thead>
-            <tbody>
-              <form action="/mypage/reviewRegi">
-              <tr id="reviewList">
-                <td><a href="#">20221202</a></td>
-                <td><a href="#">Save Earth 후드</a></td>
-                <td><button class="reviewRegiBtn">리뷰 작성하기</button></td>
-              </tr>
-                </form>
-            </tbody>
-          </table>
+  <thead>
+    <tr class="border-top border-bottom border-dark border-3">
+      <th>주문날짜</th>
+      <th>주문상품정보</th>
+      <th>리뷰 작성</th>
+    </tr>
+  </thead>
+  <tbody id="reviewList">
+    <c:forEach var="product" items="${resultMap}">
+      <tr>
+        <td><a href="#">${product.ORDER_DATE}</a></td>
+        <td><a href="#">${product.PRODUCT_NAME}</a></td>
+        <td>
+          <form action="/mypage/reviewRegi/${product.ORDER_DETAIL_UID}">
+            <button type="submit" class="reviewRegiBtn" data-order-detail-uid="${product.ORDER_DETAIL_UID}">리뷰 작성하기</button>
+          </form>
+        </td>
+      </tr>
+    </c:forEach>
+  </tbody>
+</table>
         </div>
       </div>
     </main>
