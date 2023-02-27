@@ -36,7 +36,8 @@ VALUES ('WAY1', '배송'),
 INSERT INTO CANCELLED_REASONS
 VALUES ('CR1', '단순변심', 'YES'),
 ('CR2', '다른 상품 추가', 'YES'),
-('CR3', '결제 수단 변경', 'YES');
+('CR3', '결제 수단 변경', 'YES')
+('CR4', '기타', 'YES');
 
 INSERT INTO REFUND_EXCHANGE_REASONS
 VALUES ('RE1', '단순변심', 'YES'),
@@ -98,3 +99,17 @@ INSERT INTO ADMINS
 VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO', 'ADMIN'),
 ('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG', 'ADMIN'),
 ('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG', 'ADMIN');
+
+INSERT INTO REFUND_EXCHANGE_REASONS
+VALUES ('RER1', '단순변심', 'YES'),
+('RER2', '색상 및 사이즈 변경', 'YES'),
+('RER3', '다른 상품 잘못 주문', 'YES'),
+('RER4', '서비스 및 상품 불만족', 'YES'),
+('RER5', '배송지연', 'YES'),
+('RER6', '배송누락', 'YES'),
+('RER7', '상품파손', 'YES'),
+('RER8', '상품정보 상이', 'YES'),
+('RER9', '오배송', 'YES'),
+('RER10', '색상 등 다른 상품 잘못 배송', 'YES'),
+('RER11', '기타', 'YES')
+;
