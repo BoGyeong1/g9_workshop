@@ -19,21 +19,31 @@
     <div class="d-flex">
         <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
+            <%-- 객체가 비어있다면 --%>
+            <c:if test="${empty productEditInfo}">
             <form action="/admin/product/insert" method="post" enctype="multipart/form-data">
                 <div class="my-3 fs-1">
                     상품 등록
                 </div>
+            </c:if>
+            <%-- 객체가 비어있지 않다면 --%>
+            <c:if test="${not empty productEditInfo}">
+            <form action="/admin/product/edit/submit" method="post" enctype="multipart/form-data">
+                <div class="my-3 fs-1">
+                    상품 수정
+                </div>
+                </c:if>
                 <div class="my-3">
                     <label for="product-name" class="form-label">상품명</label>
-                    <input type="text" name="product-name" id="product-name" class="form-control">
+                    <input type="text" name="product-name" id="product-name" class="form-control" value="${productEditInfo.PRODUCT_NAME}" required>
                 </div>
                 <div class="my-3">
                     <label for="product-desc" class="form-label">간략 설명</label>
-                    <input type="text" name="product-desc" id="product-desc" class="form-control">
+                    <input type="text" name="product-desc" id="product-desc" class="form-control" value="${productEditInfo.PRODUCT_DESC}" required>
                 </div>
                 <div class="my-3">
                     <label for="category-uid" class="form-label">카테고리</label>
-                    <select name="category-uid" id="category-uid" class="form-select">
+                    <select name="category-uid" id="category-uid" class="form-select" value="${productEditInfo.CATEGORY_NAME}" required>
                         <c:forEach items="${categoryList}" var="category" varStatus="status">
                             <option value="${category.CATEGORY_UID}">${category.CATEGORY_NAME}</option>
                         </c:forEach>
@@ -41,7 +51,7 @@
                 </div>
                 <div class="my-3">
                     <label for="purpose-uid" class="form-label">사용용도</label>
-                    <select name="purpose-uid" id="purpose-uid" class="form-select">
+                    <select name="purpose-uid" id="purpose-uid" class="form-select" value="${productEditInfo.PURPOSE_NAME}" required>
                         <c:forEach items="${purposeList}" var="purpose" varStatus="status">
                             <option value="${purpose.PURPOSE_UID}">${purpose.PURPOSE_NAME}</option>
                         </c:forEach>
@@ -49,7 +59,7 @@
                 </div>
                 <div class="my-3">
                     <label for="brand-uid" class="form-label">브랜드</label>
-                    <select name="brand-uid" id="brand-uid" class="form-select">
+                    <select name="brand-uid" id="brand-uid" class="form-select" value="${productEditInfo.BRAND_NAME}" required>
                         <c:forEach items="${brandList}" var="brand" varStatus="status">
                             <option value="${brand.BRAND_UID}">${brand.BRAND_NAME}</option>
                         </c:forEach>
@@ -57,7 +67,7 @@
                 </div>
                 <div class="my-3">
                     <label for="origin-uid" class="form-label">원산지</label>
-                    <select name="origin-uid" id="origin-uid" class="form-select">
+                    <select name="origin-uid" id="origin-uid" class="form-select" value="${productEditInfo.ORIGIN_NAME}" required>
                         <c:forEach items="${originList}" var="origin" varStatus="status">
                             <option value="${origin.ORIGIN_UID}">${origin.ORIGIN_NAME}</option>
                         </c:forEach>
@@ -65,19 +75,19 @@
                 </div>
                 <div class="my-3">
                     <label for="price" class="form-label">가격(숫자만)</label>
-                    <input type="text" name="price" id="price" class="form-control">
+                    <input type="text" name="price" id="price" class="form-control" value="${productEditInfo.PRICE}" required>
                 </div>
                 <div class="my-3">
                     <label for="discount-rate" class="form-label">할인율(%제외)</label>
-                    <input type="text" name="discount-rate" id="discount-rate" class="form-control">
+                    <input type="text" name="discount-rate" id="discount-rate" class="form-control" value="${productEditInfo.DISCOUNT_RATE}" required>
                 </div>
                 <div class="my-3">
                     <label for="stock" class="form-label">재고</label>
-                    <input type="text" name="stock" id="stock" class="form-control">
+                    <input type="text" name="stock" id="stock" class="form-control" value="${productEditInfo.STOCK}" required>
                 </div>
                 <div class="my-3">
                     <label for="exposure" class="form-label">노출여부</label>
-                    <select name="exposure" id="exposure" class="form-select">
+                    <select name="exposure" id="exposure" class="form-select" value="${productEditInfo.EXPOSURE}" required>
                         <option value="YES">YES</option>
                         <option value="NO">NO</option>
                     </select>
@@ -106,11 +116,22 @@
                 </c:if>
                 <%-- 객체가 비어있지 않다면 --%>
                 <c:if test="${not empty productEditInfo}">
-                    <div>
+                    <div class="my-3">
                         이미지 수정기능 개발중
                     </div>
+                    <div class="my-3">
+                        <input type="hidden" id="product-uid" name="product-uid" value="${productEditInfo.PRODUCT_UID}">
+                    </div>
                 </c:if>
-                <button type="submit" class="btn btn-primary">등록하기</button>
+                <button type="submit" class="btn btn-primary">
+                <%-- 객체가 비어있다면 --%>
+                <c:if test="${empty productEditInfo}">
+                    등록하기
+                </c:if>
+                <c:if test="${not empty productEditInfo}">
+                    수정하기
+                </c:if>
+                </button>
             </form>
         </div>
     </div>

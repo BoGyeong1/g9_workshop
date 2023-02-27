@@ -4,11 +4,11 @@ VALUES ('UC1', '정상'),
 ('UC3', '탈퇴');
 
 INSERT INTO USERS
-VALUES ('U1', 'email1@email.com', '유저1', 'password1', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1'),
-('U2', 'email2@email.com', '유저2', 'password2', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1'),
-('U3', 'email3@email.com', '유저3', 'password3', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1'),
-('U4', 'email4@email.com', '유저4', 'password4', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1'),
-('U5', 'email5@email.com', '유저5', 'password5', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1');
+VALUES ('U1', 'email1@email.com', '유저1', 'password1', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1', 'USER'),
+('U2', 'email2@email.com', '유저2', 'password2', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1', 'USER'),
+('U3', 'email3@email.com', '유저3', 'password3', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1', 'USER'),
+('U4', 'email4@email.com', '유저4', 'password4', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1', 'USER'),
+('U5', 'email5@email.com', '유저5', 'password5', '010-0000-0000', 'YES', 'YES', 0, sysdate(), 'UC1', 'USER');
 
 INSERT INTO ADDRESSES
 VALUES ('U1', 'ADR1', '집', '12345', '서울시 강남구 689-10', '3층', 'YES'),
@@ -95,6 +95,6 @@ VALUES ('PC1', '공지'),
 ('PC3', '소식');
 
 INSERT INTO ADMINS
-VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO','ADMIN'),
-('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG','ADMIN'),
-('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG','ADMIN');
+VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO', 'ADMIN'),
+('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG', 'ADMIN'),
+('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG', 'ADMIN');

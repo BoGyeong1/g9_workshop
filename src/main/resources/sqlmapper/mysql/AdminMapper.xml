@@ -54,7 +54,7 @@
         INNER JOIN PURPOSES ON PRODUCTS.PURPOSE_UID = PURPOSES.PURPOSE_UID
     </select>
 
-    <select id="selectProductInfos" parameterType="java.lang.String" resultType="Map">
+    <select id="selectProductEditInfo" parameterType="java.lang.String" resultType="Map">
         SELECT PRODUCT_UID, PRODUCT_NAME, PRODUCT_DESC, CATEGORY_NAME, PURPOSE_NAME, BRAND_NAME, ORIGIN_NAME, PRICE, DISCOUNT_RATE, STOCK
         FROM PRODUCTS
         INNER JOIN CATEGORIES ON PRODUCTS.CATEGORY_UID = CATEGORIES.CATEGORY_UID

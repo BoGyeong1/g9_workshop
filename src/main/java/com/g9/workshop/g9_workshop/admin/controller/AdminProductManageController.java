@@ -60,13 +60,23 @@ public class AdminProductManageController {
         return "redirect:/admin/product/list";
     }
 
+    // [SOO] Product Edit Form
     @PostMapping("/edit")
     public ModelAndView productEdit(@RequestParam Map params, ModelAndView modelAndView) {
 
         String productUid = (String) params.get("productUid");
         Object productEditInfo = adminService.getProductEditInfo(productUid);
+        Object categoryList = adminService.getCategotyList();
+        Object purposeList = adminService.getPurposeList();
+        Object brandList = adminService.getBrandList();
+        Object originList = adminService.getOriginList();
 
         modelAndView.addObject("productEditInfo", productEditInfo);
+        modelAndView.addObject("categoryList", categoryList);
+        modelAndView.addObject("purposeList", purposeList);
+        modelAndView.addObject("brandList", brandList);
+        modelAndView.addObject("originList", originList);
+
         modelAndView.setViewName("admin/product/product_insert_edit");
         return modelAndView;
     }
