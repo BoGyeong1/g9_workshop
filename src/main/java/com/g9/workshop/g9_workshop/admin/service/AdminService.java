@@ -36,4 +36,9 @@ public class AdminService {
         return result;
     }
 
+    public Object getProductEditInfo(String productUid) {
+        Object result = adminDao.selectProductEditInfo(productUid);
+        return result;
+    }
+
 }

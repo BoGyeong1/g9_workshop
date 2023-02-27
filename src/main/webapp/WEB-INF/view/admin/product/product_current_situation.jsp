@@ -61,7 +61,7 @@
                                 <td>${info.EXPOSURE}</td>
                                 <td>
                                     <form action="/admin/product/edit" method="post">
-                                        <input type="hidden" value="${info.PRODUCT_UID}">
+                                        <input type="hidden" id="productUid" name="productUid" value="${info.PRODUCT_UID}">
                                         <button type="submit" class="btn btn-primary">수정하기</button>
                                     </form>
                                 </td>

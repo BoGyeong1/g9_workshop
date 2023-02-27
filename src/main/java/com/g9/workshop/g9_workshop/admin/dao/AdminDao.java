@@ -61,4 +61,10 @@ public class AdminDao {
         return result;
     }
 
+    public Object selectProductEditInfo(String productUid) {
+        String sqlMapId = "AdminMapper.selectProductEditInfo";
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, productUid);
+        return result;
+    }
+
 }

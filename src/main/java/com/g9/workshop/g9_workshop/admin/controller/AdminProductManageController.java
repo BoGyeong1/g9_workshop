@@ -63,6 +63,10 @@ public class AdminProductManageController {
     @PostMapping("/edit")
     public ModelAndView productEdit(@RequestParam Map params, ModelAndView modelAndView) {
 
+        String productUid = (String) params.get("productUid");
+        Object productEditInfo = adminService.getProductEditInfo(productUid);
+
+        modelAndView.addObject("productEditInfo", productEditInfo);
         modelAndView.setViewName("admin/product/product_insert_edit");
         return modelAndView;
     }
