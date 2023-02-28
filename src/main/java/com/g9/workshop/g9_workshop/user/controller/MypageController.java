@@ -1,6 +1,7 @@
 package com.g9.workshop.g9_workshop.user.controller;
 
 import java.util.Map;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,8 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
 import com.g9.workshop.g9_workshop.user.service.MypageService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,9 +48,12 @@ public class MypageController {
         int point = principal.getPoint();
         String userName = principal.getMemberName();
         Object orderList = mypageService.getOrderList(params);
+
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         modelAndView.addObject("orderList", orderList);
 
@@ -71,6 +74,9 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
         // 주문 상세 내역 출력
         params.put("orderId", orderId);
         Object resultMap = mypageService.getOrderDetailList(params);
@@ -98,6 +104,9 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
         // 주문 상세 내역 출력
         params.put("orderId", orderId);
         Object resultMap = mypageService.getOrderDetailList(params);
@@ -123,6 +132,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
         // 배송지 정보 수정하고 주문내역 리스트를 가져옴
         params.put("orderId", orderId);
         Object resultMap = mypageService.editShippingAndGetList(params);
@@ -143,6 +154,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.getApplicationList(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -154,7 +167,7 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 주문 취소 신청
     @RequestMapping(value = "/cancelApplication/{orderId}", method = RequestMethod.GET)
-    public ModelAndView cancelApplication(@PathVariable String orderId,
+    public ModelAndView cancelApplication(@RequestParam Map<String, Object> params, @PathVariable String orderId,
             ModelAndView modelAndView) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
@@ -163,8 +176,9 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
-        Map params = new HashMap<>();
         params.put("orderId", orderId);
         Object resultMap = mypageService.getCancelOrder(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -187,6 +201,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         params.put("orderId", orderId);
         Object resultMap = mypageService.insertCancelOrderGetList(params);
@@ -199,7 +215,8 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 주문 반품/교환 신청
     @RequestMapping(value = "/refundExchangeApplication/{orderId}", method = RequestMethod.GET)
-    public ModelAndView refundExchangeApplication(@PathVariable String orderId, ModelAndView modelAndView) {
+    public ModelAndView refundExchangeApplication(@RequestParam Map<String, Object> params,
+            @PathVariable String orderId, ModelAndView modelAndView) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
         int point = principal.getPoint();
@@ -207,8 +224,9 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
-        Map params = new HashMap<>();
         params.put("orderId", orderId);
         Object resultProductNameAndOrderDetailUid = mypageService.getOrderDetailUidsAndProductNames(params);
         Object resultOrderUserInfo = mypageService.getOrderUserInfos(params);
@@ -225,7 +243,12 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 주문 반품/교환 신청
     @RequestMapping(value = "/refundExchangeProcess", method = RequestMethod.POST)
-    public ModelAndView refundExchangeProcess(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+    public ModelAndView refundExchangeProcess(@RequestParam Map<String, Object> params,
+            @RequestParam("ORDER_DETAIL_UID[]") String[] orderDetailUidArray, ModelAndView modelAndView) {
+
+        if (orderDetailUidArray != null) {
+            params.put("orderDetailUidArray", orderDetailUidArray);
+        }
 
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
@@ -234,6 +257,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.insertOrderRefundExchangeGetList(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -254,6 +279,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.getCanRefExcList(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -274,6 +301,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.getReviewWriteList(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -293,6 +322,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         params.put("orderDetailUid", orderDetailUid);
         Object resultMap = mypageService.getReviewWriteInfo(params);
@@ -305,7 +336,7 @@ public class MypageController {
     }
 
     // [GYEONG] 마이페이지 상품리뷰 등록하기
-    @RequestMapping(value = "/reviewRegiProcess", method = RequestMethod.POST)
+    @RequestMapping(value = "/reviewRegiInsert", method = RequestMethod.POST)
     public ModelAndView reviewRegiProcess(@RequestParam Map<String, Object> params,
             ModelAndView modelAndView) {
 
@@ -316,6 +347,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.insetReviewAndGetList(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -336,6 +369,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.getMyReviewList(params);
 
@@ -347,7 +382,20 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 1:1 문의 목록
     @RequestMapping(value = "/inquiryList")
-    public ModelAndView inquiryList(ModelAndView modelAndView) {
+    public ModelAndView inquiryList(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        Object resultMap = mypageService.getInquiryList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/inquiry/inquirylist");
         return modelAndView;
 
@@ -355,16 +403,146 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 1:1 문의 등록
     @RequestMapping(value = "/inquiryRegi")
-    public ModelAndView inquiryRegi(ModelAndView modelAndView) {
+    public ModelAndView inquiryRegi(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        Object inquiryCategoryList = mypageService.getInquiryCategoryList(params);
+        modelAndView.addObject("inquiryCategoryList", inquiryCategoryList);
+
+        modelAndView.setViewName("/user/mypage/inquiry/inquiry_regi");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 1:1 문의 인서트
+    @RequestMapping(value = "/inquiryInsert", method = RequestMethod.POST)
+    public ModelAndView inquiryInsert(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        Object resultMap = mypageService.insertPrivateInquiriesGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/inquiry/inquiry_regi");
         return modelAndView;
 
     }
 
     // [GYEONG] 마이페이지 1:1 문의 상세 내역
-    @RequestMapping(value = "/inquiryView")
-    public ModelAndView inquiryView(ModelAndView modelAndView) {
+    @RequestMapping(value = "/inquiryView/{privateInquiryUid}")
+    public ModelAndView inquiryUpdate(@RequestParam Map<String, Object> params, @PathVariable String privateInquiryUid,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        params.put("PRIVATE_INQUIRY_UID", privateInquiryUid);
+
+        Object resultMap = mypageService.getPrivateInquiries(params);
+        String json = new Gson().toJson(resultMap);
+        Map<String, Object> map = new Gson().fromJson(json, Map.class);
+        String content = (String) map.get("CONTENT");
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/inquiry/inquiry_view");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 1:1 문의 수정하기
+    @RequestMapping(value = "/inquiryUpdate/{privateInquiryUid}")
+    public ModelAndView inquiryView(@RequestParam Map<String, Object> params, @PathVariable String privateInquiryUid,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        params.put("PRIVATE_INQUIRY_UID", privateInquiryUid);
+
+        Object resultMap = mypageService.getPrivateInquiries(params);
+        String json = new Gson().toJson(resultMap);
+        Map<String, Object> map = new Gson().fromJson(json, Map.class);
+        String content = (String) map.get("CONTENT");
+        modelAndView.addObject("content", content);
+        modelAndView.addObject("resultMap", resultMap);
+
+        Object inquiryCategoryList = mypageService.getInquiryCategoryList(params);
+        modelAndView.addObject("inquiryCategoryList", inquiryCategoryList);
+
+        modelAndView.setViewName("/user/mypage/inquiry/inquiry_regi");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 1:1 문의 수정
+    @RequestMapping(value = "/inquiryUpdate", method = RequestMethod.POST)
+    public ModelAndView inquiryUpdate(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        Object resultMap = mypageService.updateInquiriesGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("/user/mypage/inquiry/inquirylist");
+        return modelAndView;
+
+    }
+
+    // [GYEONG] 마이페이지 1:1 문의 삭제
+    @RequestMapping(value = "/inquiryDelete/{privateInquiryUid}")
+    public ModelAndView inquiryDelete(@RequestParam Map<String, Object> params, @PathVariable String privateInquiryUid,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        params.put("PRIVATE_INQUIRY_UID", privateInquiryUid);
+
+        Object resultMap = mypageService.deleteInquiriesGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("/user/mypage/inquiry/inquirylist");
         return modelAndView;
 
     }
@@ -387,6 +565,8 @@ public class MypageController {
         modelAndView.addObject("userUid", userUid);
         modelAndView.addObject("point", point);
         modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
 
         Object resultMap = mypageService.getUserInfo(params);
         modelAndView.addObject("resultMap", resultMap);
@@ -402,7 +582,7 @@ public class MypageController {
         return modelAndView;
     }
 
-    // 비밀번호 인증후 회원정보 수정
+    // 비밀번호 인증 후 회원정보 수정
     @RequestMapping(value = "/updateUserInfo", method = RequestMethod.POST)
     public String updateUserInfo(Model model, @RequestParam Map params, RedirectAttributes redirectAttributes) {
         String password = (String) params.get("PASSWORD"); // params 객체에서 비밀번호 정보를 가져옴
@@ -459,5 +639,69 @@ public class MypageController {
         }
 
         return response;
+    }
+
+    // [GYEONG] 리뷰 수정하러가기
+    @RequestMapping(value = "/editReview/{reviewId}")
+    public ModelAndView reviewRegiUpdate(@RequestParam Map params, @PathVariable String reviewId,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        params.put("reviewId", reviewId);
+        Object resultMap = mypageService.getReview(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("/user/mypage/reviews/review_regi");
+
+        return modelAndView;
+    }
+
+    // [GYEONG] 리뷰 수정
+    @RequestMapping(value = "/reviewRegiUpdate")
+    public ModelAndView editReview(@RequestParam Map params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        Object resultMap = mypageService.updateReviewAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("/user/mypage/reviews/myReviewlist");
+
+        return modelAndView;
+    }
+
+    // [GYEONG] 리뷰 삭제
+    @RequestMapping(value = "/deleteReview/{reviewId}")
+    public ModelAndView deleteReview(@RequestParam Map params, @PathVariable String reviewId,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        params.put("reviewId", reviewId);
+        Object resultMap = mypageService.deleteReviewAndGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("/user/mypage/reviews/myReviewlist");
+
+        return modelAndView;
     }
 }

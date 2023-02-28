@@ -18,7 +18,7 @@
               <div class="review col-3 mt-4">
                 <a href="/mypage/reviewlist">
                     <p class="text-center fs-5 fw-bold" style="color: black">상품리뷰</p>
-                    <div class="text-center">1 개</div>
+                    <div class="text-center">${reviewCnt.REVIEW_COUNT} 개</div>
                 </a>
               </div>
             </div>

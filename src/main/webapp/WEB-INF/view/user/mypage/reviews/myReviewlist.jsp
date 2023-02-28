@@ -58,6 +58,7 @@
       <th>상품명</th>
       <th>내용</th>
       <th>별점</th>
+      <th>수정 / 삭제</th>
     </tr>
   </thead>
   <tbody id="reviewList">
@@ -83,6 +84,12 @@
   <input type="radio" id="star1-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="1" disabled="disabled" ${product.RATING eq 1 ? "checked" : ""}/>
   <label class="full" for="star1-${product.REVIEW_UID}"></label>
 </span>
+        </td>
+        <td>
+<form >
+  <button type="submit" id="editBtn" formaction="/mypage/editReview/${product.REVIEW_UID}">수정</button>
+  <button type="submit" id="deleteBtn"formaction="/mypage/deleteReview/${product.REVIEW_UID}">삭제</button>
+</form>
         </td>
       </tr>
     </c:forEach>

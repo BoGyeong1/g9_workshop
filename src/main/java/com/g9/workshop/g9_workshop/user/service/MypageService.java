@@ -173,7 +173,6 @@ public class MypageService {
 
     // 교환반품신청입력
     public void insertOrderRefundExchange(Map dataMap) {
-        dataMap.put(dataMap.get("refundExchangeType") + "_ORDER_UID", commonUtils.getUniqueSequence());
         String sqlMapId = "MypageMapper.insertrefundExchangeOrder";
         shareDao.insert(sqlMapId, dataMap);
 
@@ -267,5 +266,106 @@ public class MypageService {
         shareDao.update(sqlMapId, dataMap);
     }
 
-    //
+    // [GYEONG] 리뷰내용 가져오기
+    public Object getReview(Object dataMap) {
+        String sqlMapId = "MypageMapper.selectReview";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰수정
+    public void updateReview(Map dataMap) {
+        String sqlMapId = "MypageMapper.updateReview";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    // [GYEONG] 리뷰수정하고 작성한 리뷰 리스트 보기
+    public Object updateReviewAndGetList(Map dataMap) {
+        this.updateReview(dataMap);
+        Object result = this.getMyReviewList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰삭제하기
+    public void deleteReview(Map dataMap) {
+        String sqlMapId = "MypageMapper.deleteReview";
+        shareDao.deleteOne(sqlMapId, dataMap);
+    }
+
+    // [GYEONG] 리뷰삭제하고 나의 리뷰 리스트 불러오기
+    public Object deleteReviewAndGetList(Map dataMap) {
+        this.deleteReview(dataMap);
+        Object result = this.getMyReviewList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰갯수 가져오기
+    public Object getReviewCnt(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectReviewCnt";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역 가져오기
+    public Object getInquiryList(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectInquiryList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역 카테고리 가져오기
+    public Object getInquiryCategoryList(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectInquiryCategoryList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void insertPrivateInquiries(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        ((HashMap<String, Object>) dataMap).put("PRIVATE_INQUIRY_UID", commonUtils.getUniqueSequence());
+        String sqlMapId = "MypageMapper.insertPrivateInquiries";
+        shareDao.insert(sqlMapId, dataMap);
+    }
+
+    public Object insertPrivateInquiriesGetList(Map dataMap) {
+        this.insertPrivateInquiries(dataMap);
+        Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
+    public Object getPrivateInquiries(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectPrivateInquiries";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역수정
+    public void updateInquiries(Map dataMap) {
+        String sqlMapId = "MypageMapper.updatePrivateInquiries";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    public Object updateInquiriesGetList(Map dataMap) {
+        this.updateInquiries(dataMap);
+        Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역삭제하기
+    public void deleteInquiries(Map dataMap) {
+        String sqlMapId = "MypageMapper.deletePrivateInquiries";
+        shareDao.deleteOne(sqlMapId, dataMap);
+    }
+
+    public Object deleteInquiriesGetList(Map dataMap) {
+        this.deleteInquiries(dataMap);
+        Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
 }

@@ -195,18 +195,12 @@ FROM REFUND_EXCHANGE_REASONS
 
 <!-- 반품 / 교환 신청 -->
 <insert id="insertrefundExchangeOrder" parameterType="Map">
-    INSERT INTO ${refundExchangeType}_ORDERS 
-        (${refundExchangeType}_ORDER_UID, ORDER_DETAIL_UID, REASON_UID, REASON_DETAIL, DATE)
-    VALUES 
-        <if test="ORDER_DETAIL_UID instanceof java.util.Collection">
-            <foreach collection="ORDER_DETAIL_UID" item="item" separator=",">
-                (#{REFUND_ORDER_UID}, #{item}, #{REASON_UID}, #{REASON_DETAIL}, sysdate())
-            </foreach>
-        </if>
-        <if test="ORDER_DETAIL_UID instanceof java.lang.String or ORDER_DETAIL_UID instanceof java.lang.Integer">
-            (#{REFUND_ORDER_UID}, #{ORDER_DETAIL_UID}, #{REASON_UID}, #{REASON_DETAIL}, sysdate())
-        </if>
-    ON DUPLICATE KEY UPDATE REASON_UID = VALUES(REASON_UID), REASON_DETAIL = VALUES(REASON_DETAIL), DATE = VALUES(DATE)
+  INSERT INTO ${refundExchangeType}_ORDERS 
+    (${refundExchangeType}_ORDER_UID, ORDER_DETAIL_UID, REASON_UID, REASON_DETAIL, DATE)
+  VALUES 
+    <foreach collection="orderDetailUidArray" item="orderDetailUid" separator=",">
+      (#{REFUND_ORDER_UID}, #{orderDetailUid}, #{REASON_UID}, #{REASON_DETAIL}, sysdate())
+    </foreach>
 </insert>
 <!-- 반품/ 교환신청후 상태변경 -->
 <update id="updateRefundExchangeCondition" parameterType="Map">
@@ -276,8 +270,10 @@ ORDER BY APPLICATION_DATE DESC
   JOIN ORDER_DETAILS OD ON O.ORDER_UID = OD.ORDER_UID
   JOIN PRODUCTS P ON OD.PRODUCT_UID = P.PRODUCT_UID
   LEFT OUTER JOIN REVIEWS R ON OD.ORDER_DETAIL_UID = R.ORDER_DETAIL_UID
+  JOIN ORDER_CONDITIONS OC ON OD.ORDER_CONDITION_UID = OC.ORDER_CONDITION_UID
 	WHERE O.USER_UID = #{USER_UID}
   AND R.REVIEW_UID IS NULL
+  AND OC.CONDITION_NAME = '배송완료'
 </select>
 <!-- [GYEONG] 주문상세 아이디를 바탕으로 리뷰 작성할 것 가져오기 -->
 <select id="selectReviewWriteInfo" parameterType="Map" resultType="Map">
@@ -302,7 +298,7 @@ INNER JOIN PRODUCTS P ON R.PRODUCT_UID = P.PRODUCT_UID
 WHERE O.USER_UID = #{USER_UID}
  </select>
 
-<!-- 회원정보 수정할 정보 가져오기 -->
+<!--[GYEONG] 회원정보 수정할 정보 가져오기 -->
 <select id="selectUserInfo" parameterType="Map" resultType="Map">
 SELECT USERS.EMAIL, USERS.USER_NAME, USERS.TEL, ADDRESSES.ZIP_CODE, ADDRESSES.ADDRESS, ADDRESSES.DETAIL
 FROM USERS
@@ -321,11 +317,88 @@ AND ADDRESSES.ADDRESS_NAME = '기본'
   WHERE USERS.USER_UID = #{USER_UID}
     AND ADDRESSES.ADDRESS_NAME = "기본"
 </update>
-
+<!--[GYEONG] 비밀번호 변경 -->
 <update id="updatePassword" parameterType="Map">
   UPDATE USERS
   SET PASSWORD= #{PASSWORD}
   WHERE USER_UID = #{USER_UID}
 </update>
 
+<!--[GYEONG] 리뷰수정하기 위해 값 가져오기 -->
+<select id="selectReview" parameterType="Map" resultType="Map">
+SELECT P.PRODUCT_NAME, R.* FROM REVIEWS R
+INNER JOIN ORDER_DETAILS OD ON OD.ORDER_DETAIL_UID = R.ORDER_DETAIL_UID
+INNER JOIN PRODUCTS P ON P.PRODUCT_UID = OD.PRODUCT_UID
+WHERE R.REVIEW_UID = #{reviewId}
+</select >
+
+<!--[GYEONG] 리뷰수정 -->
+<update id="updateReview" parameterType="Map">
+UPDATE REVIEWS
+SET CONTENT = #{CONTENT}, RATING = #{RATING}
+WHERE REVIEW_UID = #{reviewId}
+</update>
+<!--[GYEONG] 리뷰삭제 -->
+<delete id="deleteReview" parameterType="Map">
+  DELETE FROM REVIEWS
+  WHERE REVIEW_UID = #{reviewId}
+</delete>
+<!--[GYEONG] 리뷰개수 가져오기 -->
+<select id="selectReviewCnt" parameterType="Map" resultType="Map">
+SELECT COUNT(*) AS REVIEW_COUNT
+FROM ORDERS O
+INNER JOIN ORDER_DETAILS OD ON O.ORDER_UID = OD.ORDER_UID
+INNER JOIN REVIEWS R ON OD.ORDER_DETAIL_UID = R.ORDER_DETAIL_UID
+WHERE O.USER_UID = #{USER_UID};
+</select >
+
+<!-- [GYEONG] 1:1문의 네역 가져오기-->
+<select id="selectInquiryList" parameterType="Map" resultType="Map">
+SELECT 
+  p.PRIVATE_INQUIRY_UID,
+  c.CATEGORY_NAME,
+  p.TITLE,
+  p.CONTENT,
+  p.CREATE_DATE
+FROM 
+  PRIVATE_INQUIRIES p
+  INNER JOIN INQUIRY_CATEGORIES c ON p.INQUIRY_CATEGORY_UID = c.INQUIRY_CATEGORY_UID
+WHERE 
+  p.USER_UID = #{USER_UID} 
+ORDER BY 
+  p.CREATE_DATE DESC
+  </select >
+<!-- [GYEONG] 1:1문의 내역리스트 가져오기-->
+<select id="selectInquiryCategoryList" parameterType="Map" resultType="Map">
+  SELECT 
+  INQUIRY_CATEGORY_UID,
+  CATEGORY_NAME
+  FROM 
+  INQUIRY_CATEGORIES
+  </select >
+<!-- [GYEONG] 1:1 문의등록 -->
+<insert id="insertPrivateInquiries" parameterType="Map">
+INSERT INTO PRIVATE_INQUIRIES (PRIVATE_INQUIRY_UID, USER_UID, INQUIRY_CATEGORY_UID, TITLE, CONTENT, CREATE_DATE)
+VALUES (#{PRIVATE_INQUIRY_UID}, #{USER_UID}, #{INQUIRY_CATEGORY_UID}, #{TITLE}, #{CONTENT}, sysdate());
+</insert>
+<!-- [GYEONG] 1:1 문의내용 가져오기 -->
+<select id="selectPrivateInquiries" parameterType="Map" resultType="Map">
+SELECT P.PRIVATE_INQUIRY_UID, P.USER_UID, P.TITLE, P.CONTENT, P.CREATE_DATE, C.CATEGORY_NAME
+FROM PRIVATE_INQUIRIES P
+INNER JOIN INQUIRY_CATEGORIES C ON P.INQUIRY_CATEGORY_UID = C.INQUIRY_CATEGORY_UID
+WHERE P.PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
+</select>
+
+<!-- [GYEONG] 1:1 문의수정 -->
+<update id="updatePrivateInquiries" parameterType="Map">
+UPDATE PRIVATE_INQUIRIES 
+SET INQUIRY_CATEGORY_UID = #{INQUIRY_CATEGORY_UID}, TITLE = #{TITLE}, CONTENT=#{CONTENT}
+WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
+</update>
+
+<!--[GYEONG] 리뷰삭제 -->
+<delete id="deletePrivateInquiries" parameterType="Map">
+  DELETE FROM PRIVATE_INQUIRIES
+  WHERE  PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
+</delete>
 </mapper>

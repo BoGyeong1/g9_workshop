@@ -144,6 +144,16 @@ li {
 .rating:not(:checked) label:hover:before {
   color: #ffd700;
 }
+
+#editBtn {
+  color: black;
+  background-color: white;
+}
+
+#deleteBtn {
+  color: white;
+  background-color: black;
+}
 footer {
   clear: both;
 }

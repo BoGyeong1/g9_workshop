@@ -38,35 +38,35 @@
         <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_left_nav.jsp" %>
 
         <!-- 마이페이지 본문 -->
-        <div class="content">
-          <div class="title fs-3">1:1상담 등록/수정/삭제</div>
+  <div class="content">
+  <div class="title fs-3">1:1상담 등록/수정/삭제</div>
+  <hr />
+  <div class="d-flex justify-content-end">
+    <form action="/mypage/inquiryRegi">
+      <button class="inquiryBtn">1:1 문의하기</button>
+    </form>
+  </div>
 
-          <hr />
-          <div class="d-flex justify-content-end">
-            <form action="/mypage/inquiryRegi">
-              <button class="inquiryBtn">1:1 문의하기</button>
-            </form>
-          </div>
-
-          <table class="table text-center mt-5">
-            <thead>
-              <tr class="border-top border-bottom border-dark border-3">
-                <th>문의유형</th>
-                <th>제목</th>
-                <th>작성일</th>
-                <th>답변일</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>배송문의</td>
-                <td><a href="/mypage/inquiryView">배송이 느려요</a></td>
-                <td>20221110</td>
-                <td>20221112</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <table class="table text-center mt-5">
+    <thead>
+      <tr class="border-top border-bottom border-dark border-3">
+        <th>문의유형</th>
+        <th>제목</th>
+        <th>작성일</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- resultMap을 이용하여 문의 리스트를 출력 -->
+      <c:forEach var="inquiry" items="${resultMap}">
+        <tr>
+          <td>${inquiry.CATEGORY_NAME}</td>
+          <td><a href="/mypage/inquiryView/${inquiry.PRIVATE_INQUIRY_UID}">${inquiry.TITLE}</a></td>
+          <td>${inquiry.CREATE_DATE}</td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</div>
       </div>
     </main>
     <%-- [GYEONG] 230215 footer --%>

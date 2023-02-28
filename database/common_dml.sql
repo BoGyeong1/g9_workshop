@@ -45,7 +45,8 @@ VALUES ('RE1', '단순변심', 'YES'),
 ('RE3', '상품의 구성품/부속품 누락', 'YES'),
 ('RE4', '상품이 설명과 다름', 'YES'),
 ('RE5', '상품이 파손되어 배송됨', 'YES'),
-('RE6', '상품에 결함/기능에 이상이 있음', 'YES');
+('RE6', '상품에 결함/기능에 이상이 있음', 'YES')
+('RE7', '기타', 'YES');
 
 INSERT INTO ORDER_CONDITIONS
 VALUES ('OC1', '상품준비중'),
@@ -100,16 +101,3 @@ VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO', 'ADMIN'),
 ('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG', 'ADMIN'),
 ('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG', 'ADMIN');
 
-INSERT INTO REFUND_EXCHANGE_REASONS
-VALUES ('RER1', '단순변심', 'YES'),
-('RER2', '색상 및 사이즈 변경', 'YES'),
-('RER3', '다른 상품 잘못 주문', 'YES'),
-('RER4', '서비스 및 상품 불만족', 'YES'),
-('RER5', '배송지연', 'YES'),
-('RER6', '배송누락', 'YES'),
-('RER7', '상품파손', 'YES'),
-('RER8', '상품정보 상이', 'YES'),
-('RER9', '오배송', 'YES'),
-('RER10', '색상 등 다른 상품 잘못 배송', 'YES'),
-('RER11', '기타', 'YES')
-;

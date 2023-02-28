@@ -38,6 +38,7 @@
         <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_left_nav.jsp" %>
 
         <!-- 마이페이지 본문 -->
+        
         <div class="content">
           <div class="title fs-3">리뷰 작성하기</div>
           <hr class="hr" />
@@ -60,8 +61,16 @@
               책임지지 않습니다.
             </div>
           </div>
-          <form action="/mypage/reviewRegiProcess" method="POST">
+          <c:if test="${empty reviewId}">
+          <c:set var="formAction" value="Insert"/>
+          </c:if>
+          <c:if test="${not empty reviewId}">
+              <c:set var="formAction" value="Update"/>
+          </c:if>
+
+         <form action="/mypage/reviewRegi${formAction}" method="POST">
          <input type="hidden" name="PRODUCT_UID" value="${resultMap.PRODUCT_UID}">
+          <input type="hidden" name="reviewId" value="${resultMap.REVIEW_UID}">
           <table
             class="table border-top border-bottom border-3 border-dark mt-5"
           >
@@ -84,23 +93,18 @@
   <td>
   		<div class="text-bold">별점을 선택해주세요</div>
 <fieldset>
-		<input type="radio" name="RATING" value="5" id="rate1"><label
-			for="rate1">★</label>
-		<input type="radio" name="RATING" value="4" id="rate2"><label
-			for="rate2">★</label>
-		<input type="radio" name="RATING" value="3" id="rate3"><label
-			for="rate3">★</label>
-		<input type="radio" name="RATING" value="2" id="rate4"><label
-			for="rate4">★</label>
-		<input type="radio" name="RATING" value="1" id="rate5"><label
-			for="rate5">★</label>
-	</fieldset>
+  <input type="radio" name="RATING" value="5" id="rate1" ${resultMap.RATING == 5 ? "checked" : ""}><label for="rate1">★</label>
+  <input type="radio" name="RATING" value="4" id="rate2" ${resultMap.RATING == 4 ? "checked" : ""}><label for="rate2">★</label>
+  <input type="radio" name="RATING" value="3" id="rate3" ${resultMap.RATING == 3 ? "checked" : ""}><label for="rate3">★</label>
+  <input type="radio" name="RATING" value="2" id="rate4" ${resultMap.RATING == 2 ? "checked" : ""}><label for="rate4">★</label>
+  <input type="radio" name="RATING" value="1" id="rate5" ${resultMap.RATING == 1 ? "checked" : ""}><label for="rate5">★</label>
+</fieldset>
   </td>
 </tr>
               <tr>
                 <th>한줄 리뷰</th>
                 <td>
-                  <input type="text" name="CONTENT" id="content" class="title" />
+                  <input type="text" name="CONTENT" id="content" value="${resultMap.CONTENT}"class="title" />
                 </td>
               </tr>
               
