@@ -230,7 +230,7 @@ public class MypageService {
         return result;
     }
 
-    // [GYEONG] 리뷰 쓸수있는 내역 출력
+    // [GYEONG] 리뷰 쓴 내역 출력
     public Object getMyReviewList(Map dataMap) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
@@ -248,7 +248,7 @@ public class MypageService {
         return result;
     }
 
-    // 회원정보 수정
+    // [GYEONG] 회원정보 수정
     public void updateUserInfo(Map dataMap) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
@@ -256,7 +256,7 @@ public class MypageService {
         shareDao.update(sqlMapId, dataMap);
     }
 
-    // 비밀번호 변경
+    // [GYEONG] 비밀번호 변경
     public void updatePassword(Map dataMap) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         dataMap.put("USER_UID", principal.getUserUid());
@@ -266,4 +266,6 @@ public class MypageService {
         String sqlMapId = "MypageMapper.updatePassword";
         shareDao.update(sqlMapId, dataMap);
     }
+
+    //
 }

@@ -22,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
 import com.g9.workshop.g9_workshop.user.service.MypageService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -325,8 +327,8 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 내가 작성한 리뷰 보기
     @RequestMapping(value = "/myReviewList")
-    public ModelAndView myReviewList(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
-        modelAndView.setViewName("/user/mypage/reviews/reviewlist");
+    public ModelAndView myReviewList(@RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
         int point = principal.getPoint();
@@ -336,7 +338,9 @@ public class MypageController {
         modelAndView.addObject("userName", userName);
 
         Object resultMap = mypageService.getMyReviewList(params);
+
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("/user/mypage/reviews/myReviewlist");
         return modelAndView;
 
     }

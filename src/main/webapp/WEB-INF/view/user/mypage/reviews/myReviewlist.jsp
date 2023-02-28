@@ -44,29 +44,45 @@
 
           <hr class="hr" />
           <div class="mt-5">
-<form>
+          <span>
+  <form>
   <button type="submit" formaction="/mypage/reviewlist" id="possibleReviewBtn" class="possibleReview">작성가능한 상품</button>
   <button type="submit" formaction="/mypage/myReviewList" class="recordReview ms-3">내가 작성한 리뷰</button>
 </form>
           </div>
 
-          <table class="table text-center mt-5" id="table">
+<table class="table text-center mt-5" id="table">
   <thead>
     <tr class="border-top border-bottom border-dark border-3">
-      <th>주문날짜</th>
-      <th>주문상품정보</th>
-      <th>리뷰 작성</th>
+      <th>작성날짜</th>
+      <th>상품명</th>
+      <th>내용</th>
+      <th>별점</th>
     </tr>
   </thead>
   <tbody id="reviewList">
     <c:forEach var="product" items="${resultMap}">
       <tr>
-        <td><fmt:formatDate value="${product.ORDER_DATE}" pattern="yyyy-MM-dd" var="orderDate" />${orderDate}</td>
+        <td><fmt:formatDate value="${product.CREATE_DATE}" pattern="yyyy-MM-dd" var="createDate" />${createDate}</a></td>
         <td>${product.PRODUCT_NAME}</td>
         <td>
           <form action="/mypage/reviewRegi/${product.ORDER_DETAIL_UID}">
-            <button type="submit" class="reviewRegiBtn" data-order-detail-uid="${product.ORDER_DETAIL_UID}">리뷰 등록</button>
+            <a class="">${product.CONTENT}</a>
           </form>
+        </td>
+        <td>
+<span class="rating">
+  <input type="radio" id="star5-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="5" disabled="disabled" ${product.RATING eq 5 ? "checked" : ""}/>
+  <label class="full" for="star5-${product.REVIEW_UID}"></label>
+  <input type="radio" id="star4-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="4" disabled="disabled" ${product.RATING eq 4 ? "checked" : ""}/>
+  <label class="full" for="star4-${product.REVIEW_UID}"></label>
+  <input type="radio" id="star3-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="3" disabled="disabled" ${product.RATING eq 3 ? "checked" : ""}/>
+  <label class="full" for="star3-${product.REVIEW_UID}"></label>
+  <input type="radio" id="star2-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="2" disabled="disabled" ${product.RATING eq 2 ? "checked" : ""}/>
+  <label class="full" for="star2-${product.REVIEW_UID}"></label>
+  <input type="radio" id="star1-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="1" disabled="disabled" ${product.RATING eq 1 ? "checked" : ""}/>
+  <label class="full" for="star1-${product.REVIEW_UID}"></label>
+</span>
         </td>
       </tr>
     </c:forEach>
