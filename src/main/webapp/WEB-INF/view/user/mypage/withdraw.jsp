@@ -41,43 +41,18 @@
           <div class="title fs-3">회원탈퇴</div>
 
           <hr class="hr"/>
-          <table class="table mt-5">
-            <tr>
-              <th>회원확인</th>
-              <td class="colspan" colspan="2">user1234@gmail.com</td>
-            </tr>
-            <tr>
-              <th>탈퇴 사유</th>
-              <td>
-                <select name="" id="">
-                  <option value="">선택하세요</option>
-                  <option value="">이용빈도 낮음</option>
-                  <option value="">상품 품질 불만</option>
-                  <option value="">개인정보 유출 우려</option>
-                  <option value="">배송지연</option>
-                  <option value="">교환/환불/품질 불만</option>
-                  <option value="">기타</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <th>남기는 글</th>
-              <td colspan="2">
-                <div>
-                  의견을 남겨주시면 개선을 위한 소중한 자료로 활용하겠습니다.
-                </div>
-                <textarea name="" id="" cols="100" rows="10"></textarea>
-              </td>
-            </tr>
-          </table>
+    
+              <div class="title"><span class="fs-5">회원확인</span><span class="ms-5" >${email}</span></div>
 
-          <div class="title mt-5 fs-3">비밀번호 확인</div>
+       
+<form action="/mypage/withdrawProcess" method="POST">
+          <div class="title mt-5 fs-5">비밀번호 확인</div>
           <hr class="hr"/>
           <div>탈퇴하시려면 비밀번호를 입력해주십시오.</div>
           <table class="table mt-5 mb-5 border-top border-bottom border-dark">
             <tr>
               <th>비밀번호</th>
-              <td><input type="password" /></td>
+              <td><input type="password" name="PASSWORD"/></td>
             </tr>
           </table>
 
@@ -100,6 +75,7 @@
           <div class="d-flex justify-content-center m-3">
             <button class="withdrawBtn">회원탈퇴</button>
           </div>
+          </form >
         </div>
       </div>
     </main>

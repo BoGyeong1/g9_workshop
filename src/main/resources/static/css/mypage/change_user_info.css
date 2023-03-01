@@ -112,3 +112,17 @@ li {
 .text {
   font-size: 0.8rem;
 }
+
+.password_ok {
+  color: #008000;
+  display: none;
+  font-size: 0.8rem;
+  margin-left: 180px;
+}
+
+.password_no {
+  color: red;
+  display: none;
+  font-size: 0.8rem;
+  margin-left: 180px;
+}

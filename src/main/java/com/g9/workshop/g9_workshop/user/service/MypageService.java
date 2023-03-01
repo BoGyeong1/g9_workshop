@@ -1,10 +1,13 @@
 package com.g9.workshop.g9_workshop.user.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
@@ -20,16 +23,16 @@ public class MypageService {
     @Autowired
     CommonUtils commonUtils;
 
+    @Autowired
+    BCryptPasswordEncoder bcryptPasswordEncoder;
+
     // [GYEONG] 주문내역 가져오기
     public Object getOrderList(Object dataMap) {
-        dataMap = new HashMap<String, Object>();
-
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
-        String sqlMapId = "MypageMapper.selectOrderList";
-        Object result = shareDao.getList(sqlMapId, dataMap);
-        return result;
+        dataMap = new HashMap<>();
+        ((HashMap<Object, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectOrderListWithPayment";
+        return shareDao.getList(sqlMapId, dataMap);
     }
 
     // [GYEONG] 주문 상세 내역 가져오기
@@ -52,6 +55,13 @@ public class MypageService {
     public Object getShippingAddress(Object dataMap) {
         String sqlMapId = "MypageMapper.selectShippingAddress";
         Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 배송장소 가져오기
+    public Object getDeliveryLocations(Object dataMap) {
+        String sqlMapId = "MypageMapper.selectDeliveryLocations";
+        Object result = shareDao.getList(sqlMapId, dataMap);
         return result;
     }
 
@@ -163,7 +173,6 @@ public class MypageService {
 
     // 교환반품신청입력
     public void insertOrderRefundExchange(Map dataMap) {
-        dataMap.put(dataMap.get("refundExchangeType") + "_ORDER_UID", commonUtils.getUniqueSequence());
         String sqlMapId = "MypageMapper.insertrefundExchangeOrder";
         shareDao.insert(sqlMapId, dataMap);
 
@@ -177,13 +186,229 @@ public class MypageService {
         return result;
     }
 
-    //
+    // [GYEONG] 취소교환환불내역 출력
     public Object getCanRefExcList(Map dataMap) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
         String sqlMapId = "MypageMapper.selectCanRefExcList";
         Object result = shareDao.getList(sqlMapId, dataMap);
         return result;
+    }
+
+    // [GYEONG] 라뷰 쓸수있는 내역 출력
+    public Object getReviewWriteList(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectReviewWriteList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰 쓰기전 정보 가져오기
+    public Object getReviewWriteInfo(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectReviewWriteInfo";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰 쓰기
+    public Object insetReview(Map dataMap) {
+        dataMap.put("REVIEW_UID", commonUtils.getUniqueSequence());
+        String sqlMapId = "MypageMapper.insertReview";
+        Object result = shareDao.insert(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰 쓰고 다시 리스트 출력
+    public Object insetReviewAndGetList(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+
+        Object result = this.insetReview(dataMap);
+        result = this.getReviewWriteList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰 쓴 내역 출력
+    public Object getMyReviewList(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectMyReviewList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 회원정보불러오기
+    public Object getUserInfo(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectUserInfo";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 회원정보 수정
+    public void updateUserInfo(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.updateUserInfo";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    // [GYEONG] 비밀번호 변경
+    public void updatePassword(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        dataMap.put("USER_UID", principal.getUserUid());
+
+        String newPassword = (String) dataMap.get("newPassword");
+        dataMap.put("PASSWORD", bcryptPasswordEncoder.encode(newPassword));
+        String sqlMapId = "MypageMapper.updatePassword";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    // [GYEONG] 리뷰내용 가져오기
+    public Object getReview(Object dataMap) {
+        String sqlMapId = "MypageMapper.selectReview";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰수정
+    public void updateReview(Map dataMap) {
+        String sqlMapId = "MypageMapper.updateReview";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    // [GYEONG] 리뷰수정하고 작성한 리뷰 리스트 보기
+    public Object updateReviewAndGetList(Map dataMap) {
+        this.updateReview(dataMap);
+        Object result = this.getMyReviewList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰삭제하기
+    public void deleteReview(Map dataMap) {
+        String sqlMapId = "MypageMapper.deleteReview";
+        shareDao.deleteOne(sqlMapId, dataMap);
+    }
+
+    // [GYEONG] 리뷰삭제하고 나의 리뷰 리스트 불러오기
+    public Object deleteReviewAndGetList(Map dataMap) {
+        this.deleteReview(dataMap);
+        Object result = this.getMyReviewList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 리뷰갯수 가져오기
+    public Object getReviewCnt(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectReviewCnt";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역 가져오기
+    public Object getInquiryList(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectInquiryList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역 카테고리 가져오기
+    public Object getInquiryCategoryList(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectInquiryCategoryList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void insertPrivateInquiries(Map dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        ((HashMap<String, Object>) dataMap).put("PRIVATE_INQUIRY_UID", commonUtils.getUniqueSequence());
+        String sqlMapId = "MypageMapper.insertPrivateInquiries";
+        shareDao.insert(sqlMapId, dataMap);
+    }
+
+    public Object insertPrivateInquiriesGetList(Map dataMap) {
+        this.insertPrivateInquiries(dataMap);
+        Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
+    // 1:1 문의 상세 내역 보기
+    public Object getPrivateInquiries(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectPrivateInquiries";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 1:1 문의 상세 답변 출력
+    public Object getPrivateInquiriesAnswer(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectPrivateInquiriesAnswer";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역수정
+    public void updateInquiries(Map dataMap) {
+        String sqlMapId = "MypageMapper.updatePrivateInquiries";
+        shareDao.update(sqlMapId, dataMap);
+    }
+
+    public Object updateInquiriesGetList(Map dataMap) {
+        this.updateInquiries(dataMap);
+        Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 1:1문의 내역삭제하기
+    public void deleteInquiries(Map dataMap) {
+        String sqlMapId = "MypageMapper.deletePrivateInquiries";
+        shareDao.deleteOne(sqlMapId, dataMap);
+    }
+
+    public Object deleteInquiriesGetList(Map dataMap) {
+        this.deleteInquiries(dataMap);
+        Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 찜목록 리스트 출력하기
+    public Object getFavoritesList(Object dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectFavoritesList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 찜목록 선택 삭제
+    public void deleteFavorites(Object productUidList) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("USER_UID", userUid);
+        dataMap.put("productUidList", productUidList);
+        String sqlMapId = "MypageMapper.deleteFavorites";
+        shareDao.deleteOne(sqlMapId, dataMap);
+    }
+
+    public Object deleteFavoritesAndGetList(Object dataMap) {
+        this.deleteFavorites(dataMap);
+        Object result = this.getFavoritesList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 회원탈퇴
+    public void deleteUser(Object dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.deleteUser";
+        shareDao.deleteOne(sqlMapId, dataMap);
+
     }
 
 }

@@ -24,6 +24,9 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/css/mypage/inquiry/inquiry_view.css" />
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <%-- [GYEONG] 230215 header --%>
@@ -40,42 +43,92 @@
         <!-- 마이페이지 본문 -->
         <div class="content">
           <div class="title fs-3">1:1 문의 내역</div>
-          <hr class="hr"/>
+          <hr class="hr"/> 
           <div class="d-flex justify-content-end mt-5">
-            <button class="editBtn me-2">수정</button>
-            <button class="deleteBtn">삭제</button>
+          <form action= "/mypage/inquiryUpdate/${resultMap.PRIVATE_INQUIRY_UID}">
+            <input type="hidden" name="PRIVATE_INQUIRY_UID" value="${resultMap.PRIVATE_INQUIRY_UID}">
+            <button class="editBtn me-2" >수정</button>
+          </form>
+                    <form action= "/mypage/inquiryDelete/${resultMap.PRIVATE_INQUIRY_UID}">
+            <input type="hidden" name="PRIVATE_INQUIRY_UID" value="${resultMap.PRIVATE_INQUIRY_UID}">
+                       <button  class="deleteBtn">삭제</button>
+          </form>
+
+       
           </div>
           <table class="table mt-2">
             <tr class="border-top border-3">
-              <th>주문번호</th>
-              <td>65790633234</td>
-              <th>작성일</th>
-              <td>2022.11.10</td>
               <th>문의유형</th>
-              <td>배송문의</td>
+              <td>${resultMap.CATEGORY_NAME}</td>
+              <th>작성일</th>
+              <td>${resultMap.CREATE_DATE}</td>
             </tr>
             <tr>
               <th>제목</th>
-              <td colspan="5">배송이 너무 느려요</td>
+              <td colspan="5">${resultMap.TITLE}</td>
             </tr>
             <tr class="border-bottom border-3">
               <th>내용</th>
               <td colspan="5">
-                몇일째 배송이 오지 않았어요<br />
-                도대체 언제오는 건가요 ?<br />
+               <div id="editor" style="height : 400px"></div>
+              
               </td>
             </tr>
           </table>
+
           <div class="d-flex justify-content-center">
             <form action="/mypage/inquiryList">
               <button class="checkBtn">확인</button>
             </form>
           </div>
-        </div>
+      <!-- 답변이 존재하는 경우에만 출력 -->
+      <c:if test="${not empty answers}">
+        <div class="title fs-3 mt-5">1:1 문의 답변</div>
+        <hr class="hr"/> 
+      <table class="table mt-2">
+      <tr>
+      <th class="col-2">답변 번호 <th>
+      <td class="col-10"colspan="3">${answers.PRIVATE_INQUIRY_ANSWER_UID}</td>
+      </tr>
+
+      <tr>
+      <th class="col-2">작성자</th>
+      <td class="col-4">관리자</td>
+      <th class="col-2">작성일</th>
+       <td class="col-4">${answers.CREATE_DATE}"</td>
+      </tr>
+      <tr>
+      <th class="col-2"> 답변 내용</th> 
+      <td  class="col-10" colspan="3">${answers.CONTENT}</td>
+      </tr>
+      </table>
+      </c:if>
       </div>
     </main>
     <%-- [GYEONG] 230215 footer --%>
+    
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
+
+<script>
+$(document).ready(function() {
+  // QuillJS 생성
+  var quill = new Quill('#editor', {
+    theme: 'snow',
+    readOnly: true,
+    modules: {
+     toolbar: false
+    }
+  });
+
+  // JSON 데이터 파싱
+  var contentData = '${content}'.replace(/\n/g, '');
+  var content = JSON.parse(contentData);
+
+  // QuillJS에 JSON 데이터를 설정
+  quill.setContents(content);
+});
+
+</script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

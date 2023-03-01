@@ -38,35 +38,46 @@
         <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_left_nav.jsp" %>
 
         <!-- 마이페이지 본문 -->
-        <div class="content">
-          <div class="title fs-3">1:1상담 등록/수정/삭제</div>
+  <div class="content">
+  <div class="title fs-3">1:1상담 등록/수정/삭제</div>
+  <hr />
+  <div class="d-flex justify-content-end">
+    <form action="/mypage/inquiryRegi">
+      <button class="inquiryBtn">1:1 문의하기</button>
+    </form>
+  </div>
 
-          <hr />
-          <div class="d-flex justify-content-end">
-            <form action="/mypage/inquiryRegi">
-              <button class="inquiryBtn">1:1 문의하기</button>
-            </form>
-          </div>
-
-          <table class="table text-center mt-5">
-            <thead>
-              <tr class="border-top border-bottom border-dark border-3">
-                <th>문의유형</th>
-                <th>제목</th>
-                <th>작성일</th>
-                <th>답변일</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>배송문의</td>
-                <td><a href="/mypage/inquiryView">배송이 느려요</a></td>
-                <td>20221110</td>
-                <td>20221112</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <table class="table text-center mt-5">
+    <thead>
+      <tr class="border-top border-bottom border-dark border-3">
+        <th>문의유형</th>
+        <th>제목</th>
+        <th>작성일</th>
+        <th>답변 상태</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- resultMap을 이용하여 문의 리스트를 출력 -->
+      <c:forEach var="inquiry" items="${resultMap}">
+        <tr>
+          <td>${inquiry.CATEGORY_NAME}</td>
+          <td><a href="/mypage/inquiryView/${inquiry.PRIVATE_INQUIRY_UID}">${inquiry.TITLE}</a></td>
+           <fmt:parseDate value="${inquiry.CREATE_DATE}" var="date" pattern="yyyy-MM-dd HH:mm:ss" />
+          <td><fmt:formatDate value="${date}" pattern="yyyy-MM-dd" /></td>
+           <td>
+          <!-- 답변 여부에 따라서 "미답변" 또는 "답변완료"를 표시 -->
+          <c:if test="${not empty inquiry.PRIVATE_INQUIRY_ANSWER_UID}">
+            답변완료
+          </c:if>
+          <c:if test="${empty inquiry.PRIVATE_INQUIRY_ANSWER_UID}">
+            미답변
+          </c:if>
+        </td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</div>
       </div>
     </main>
     <%-- [GYEONG] 230215 footer --%>

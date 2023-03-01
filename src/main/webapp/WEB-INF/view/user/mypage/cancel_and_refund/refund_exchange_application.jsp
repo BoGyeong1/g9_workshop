@@ -56,11 +56,12 @@
             <tr>
                 <th >주문상세번호 / 상품명</th>
                 <td>
-             <c:forEach var="data" items="${resultProductNameAndOrderDetailUid}">
-                <div>
-                 ${data.ORDER_DETAIL_UID}/${data.PRODUCT_NAME}
-                </div>
-                  </c:forEach>
+<c:forEach var="data" items="${resultProductNameAndOrderDetailUid}">
+    <div>
+        <input type="checkbox" name="ORDER_DETAIL_UID[]" value="${data.ORDER_DETAIL_UID}" id="orderDetailUid_${data.ORDER_DETAIL_UID}">
+        <label for="orderDetailUid_${data.ORDER_DETAIL_UID}">${data.ORDER_DETAIL_UID}/${data.PRODUCT_NAME}</label>
+    </div>
+</c:forEach>
                   </td>
               </tr>
               <tr>
@@ -128,7 +129,7 @@ $(document).ready(function() {
   let submitButton = document.querySelector('#submit-button');
 				submitButton.addEventListener('click', function (event) {
 					// get quill content content -> json
-					let content = editor.getContents();
+					let content = quill.getContents();
 					let description = document.querySelector('#description');
 					// json 변환해서 실어보내기
 					description.value = JSON.stringify(content);

@@ -24,6 +24,9 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/css/mypage/inquiry/inquiry_regi.css" />
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
     <%-- [GYEONG] 230215 header --%>
@@ -39,61 +42,43 @@
 
         <!-- 마이페이지 본문 -->
         <div class="content">
-          <div class="title fs-3">1:1상담 문의하기</div>
+         <c:set var="text" value="${empty resultMap.PRIVATE_INQUIRY_UID ? '문의' : '수정'}" />
+          <div class="title fs-3">1:1상담 ${text}하기</div>
           <hr class="hr">
           <div class="mt-3">
             배송지변경, 주문취소, 반품/교환신청은 [마이페이지>주문/배송
             조회]에서 직접 신청 가능합니다.
           </div>
 
-          <form action="/mypage/inquiryList">
-          <table
-            class="table border-top border-bottom border-3 border-dark mt-5"
-          >
+      <c:set var="formAction" value="${empty resultMap.PRIVATE_INQUIRY_UID ? 'Insert' : 'Update'}" />
+      <form action="/mypage/inquiry${formAction}" id="inquiry-form" method="POST">
+          
+          <table   class="table border-top border-bottom border-3 border-dark mt-5"      >
+          <c:if test="${not empty resultMap.PRIVATE_INQUIRY_UID}">
+            <input type="hidden" name="PRIVATE_INQUIRY_UID" value="${resultMap.PRIVATE_INQUIRY_UID}">
+            </c:if>
             <tbody>
               <tr>
                 <th>문의유형</th>
                 <td>
-                  <select name="" id="" class="select">
-                    <option value="">배송문의</option>
-                  </select>
+      <select name="INQUIRY_CATEGORY_UID" class="select">
+      <c:forEach var="category" items="${inquiryCategoryList}">
+         <option value="${category.INQUIRY_CATEGORY_UID}">${category.CATEGORY_NAME}</option>
+      </c:forEach>
+    </select>
                 </td>
               </tr>
-              <tr>
-                <th>이메일 주소</th>
-                <td>user1234@gmail.com</td>
-              </tr>
-              <tr>
-                <th>휴대전화</th>
-                <td>
-                  <select name="" id="" class="phone">
-                    <option value="">010</option>
-                    <option value="">010</option>
-                    <option value="">016</option>
-                  </select>
-                  -
-                  <input type="text" name="" id="" class="phone" />
-                  -
-                  <input type="text" name="" id="" class="phone" />
-                </td>
-              </tr>
+
+
               <tr>
                 <th>제목</th>
-                <td><input type="text" name="" id="" class="title" /></td>
+                <td><input type="text" name="TITLE" id="" class="title" value="${resultMap.TITLE}" /></td>
               </tr>
               <tr>
                 <th>문의내용</th>
                 <td>
-                  <textarea name="" id="" cols="80" rows="10"></textarea>
-                </td>
-              </tr>
-              <tr>
-                <th>첨부파일</th>
-                <td>
-                  <input type="file" name="file" id="file" />
-                  <label for="file">
-                    <div class="file">파일 업로드하기</div>
-                  </label>
+                <div id="editor" style="height : 400px"></div>
+                <input type="hidden" name="CONTENT" id="description">
                 </td>
               </tr>
               <tr>
@@ -154,7 +139,7 @@
           </table>
           <div class="d-flex justify-content-center">
             
-              <button class="inquiryBtn">문의하기</button>
+              <button class="inquiryBtn" id="submit-button">문의하기</button>
           </div>
             </form>
         </div>
@@ -162,6 +147,55 @@
     </main>
         <%-- [GYEONG] 230215 footer --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
+<script>
+$(document).ready(function() {
+  var quill = new Quill('#editor', {
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ 'color': [] }, { 'background': [] }],
+        ['link', 'image', 'video'],
+        [{ 'align': [] }],
+        ['clean']
+      ]
+    }
+  });
+
+let contentData = '${content}'.replace(/\n/g, '');
+let content = null;
+
+if (contentData.trim() !== '' && contentData !== 'null') {
+  try {
+    content = JSON.parse(contentData);
+  } catch (e) {
+    console.error('Failed to parse JSON data:', e);
+  }
+}
+
+if (content) {
+  quill.setContents(content);
+}
+
+let form = document.querySelector('#inquiry-form');
+let submitButton = document.querySelector('#submit-button');
+submitButton.addEventListener('click', function (event) {
+  // get quill content content -> json
+  let content = quill.getContents();
+  console.log(content);  // content 확인용
+  let description = document.querySelector('#description');
+  // json 변환해서 실어보내기
+  if (content) {
+    description.value = JSON.stringify(content);
+  } else {
+    description.value = 'null';
+  }
+  form.submit();
+});
+
+});
+</script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

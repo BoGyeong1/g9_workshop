@@ -113,6 +113,47 @@ li {
   color: white;
 }
 
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+.rating input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label {
+  color: #ddd;
+  float: right;
+}
+
+.rating label:before {
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.rating input:checked ~ label:before,
+.rating:not(:checked) label:hover:before {
+  color: #ffd700;
+}
+
+#editBtn {
+  color: black;
+  background-color: white;
+}
+
+#deleteBtn {
+  color: white;
+  background-color: black;
+}
 footer {
   clear: both;
 }
