@@ -22,96 +22,31 @@
         <%-- [SOO] Shop Nav Include --%>
         <%@ include file="./shopnav.jsp" %>
         <%-- [SOO] Main Area --%>
-        <div class="container w-100 mt-3">  
+        <div class="container w-100 mt-3">
+
             <div class="row mb-5">
-                <div class="col-sm-3">
-                    <a href="/shop/product/productId" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
-                <div class="col-sm-3">
-                    <a href="" class="text-decoration-none text-dark">
-                        <img src="/img/shop/item.png" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
-                        <div>[에코판다] 재생섬유 화장솜 (30ea)</div>
-                        <div><span class="text-danger">30% </span><del class="text-secondary">3,000원</del><span> 2,100원</span></div>
-                    </a>
-                </div>
+                <c:forEach var="product" items="${productList}" varStatus="status">
+                    <div class="col-md-3 col-12 mb-5">
+                        <form action="/shop/product/detail" method="post">
+                            <input type="hidden" name="product_uid" value="${product.PRODUCT_UID}">
+                            <button type="submit" style="border: none; background: none;">
+                                <div>
+                                    <img src="/${product.DIRECTORY_NAME}thumbnail-1.jpg" class="card-img-top w-100 img-fluid" alt="..." style="height:400px; object-fit:cover;">
+                                    <div class="text-start">${product.PRODUCT_NAME}</div>
+                                    <div class="text-start">
+                                    <c:if test="${product.DISCOUNT_RATE > 0}">
+                                        <span class="text-danger">${product.DISCOUNT_RATE}% </span>
+                                        <del class="text-secondary"><fmt:formatNumber value="${product.PRICE}" pattern="#,###" />원</del>
+                                        <span> <fmt:formatNumber value="${product.PRICE * (100 - product.DISCOUNT_RATE) / 100}" pattern="#,###" />원</span></div>
+                                    </c:if>
+                                    <c:if test="${product.DISCOUNT_RATE == 0}">
+                                        <span><fmt:formatNumber value="${product.PRICE}" pattern="#,###" />원</span></div>
+                                    </c:if>
+                                </div>
+                            </button>
+                        </form>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>

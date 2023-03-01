@@ -25,28 +25,28 @@
             <div class="w-100 m-5" id="product-img-box">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                        <c:forEach items="${thumbnailImgs}" var="item" varStatus="status">
+                            <c:if test="${status.index == 0}">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${status.index}" class="active" aria-current="true" aria-label="Slide ${status.index + 1}"></button>
+                            </c:if>
+                            <c:if test="${status.index != 0}">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${status.index}" aria-label="Slide ${status.index + 1}"></button>
+                            </c:if>
+                        </c:forEach>
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="2000">
-                            <img src="/img/shop/prod_sample_img1.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/img/shop/prod_sample_img2.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/img/shop/prod_sample_img3.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/img/shop/prod_sample_img4.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="2000">
-                            <img src="/img/shop/prod_sample_img5.jpg" class="d-block w-100" alt="...">
-                        </div>
+                        <c:forEach items="${thumbnailImgs}" var="item" varStatus="status">
+                            <c:if test="${status.index == 0}">
+                                <div class="carousel-item active" data-bs-interval="2000">
+                                    <img src="/${item.DIRECTORY_NAME}${item.PHYSICAL_FILE_NAME}" class="d-block w-100" alt="...">
+                                </div>
+                            </c:if>
+                            <c:if test="${status.index != 0}">
+                                <div class="carousel-item" data-bs-interval="2000">
+                                    <img src="/${item.DIRECTORY_NAME}${item.PHYSICAL_FILE_NAME}" class="d-block w-100" alt="...">
+                                </div>
+                            </c:if>
+                        </c:forEach>
                     </div>
                     <button class="carousel-control-prev" type="button"
                         data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -62,13 +62,22 @@
             </div>
             <div class="w-100 m-5 d-flex align-content-between flex-wrap" id="product-info-box">
                 <div id="product-top-info">
-                    <div class="fw-bold">밀키파우치 업사이클링 DIY 키트</div>
-                    <div class="fw-bold text-success">14,300원</div>
+                    <div class="fw-bold">${productDetailInfo.PRODUCT_NAME}</div>
+                    <c:if test="${productDetailInfo.DISCOUNT_RATE > 0}">
+                        <div class="fw-bold text-success">
+                            <span class="text-danger">${productDetailInfo.DISCOUNT_RATE}% </span>
+                            <del class="text-secondary"><fmt:formatNumber value="${productDetailInfo.PRICE}" pattern="#,###" />원</del>
+                            <span> <fmt:formatNumber value="${productDetailInfo.PRICE * (100 - productDetailInfo.DISCOUNT_RATE) / 100}" pattern="#,###" />원</span>
+                        </div>
+                    </c:if>
+                    <c:if test="${productDetailInfo.DISCOUNT_RATE == 0}">
+                        <div class="fw-bold text-success"><fmt:formatNumber value="${productDetailInfo.PRICE}" pattern="#,###" />원</div>
+                    </c:if>
                     <hr>
-                    <div class="text-secondary">실제 우유팩을 인쇄하는 과정에서 발생하는 파지를 새활용한 소재로 카드, 명함, 현금 등을 담을 수 있는 미니 월렛을 만들어요!</div>
+                    <div class="text-secondary">${productDetailInfo.PRODUCT_DESC}</div>
                     <br>
-                    <div class="text-secondary"><b>원산지</b>&nbsp;대한민국</div>
-                    <div class="text-secondary"><b>브랜드</b>&nbsp;지구공방</div>
+                    <div class="text-secondary"><b>원산지</b>&nbsp;${productDetailInfo.ORIGIN_NAME}</div>
+                    <div class="text-secondary"><b>브랜드</b>&nbsp;${productDetailInfo.BRAND_NAME}</div>
                     <div class="text-secondary"><b>구매혜택</b>&nbsp;1% 적립(143원)</div>
                     <div class="text-secondary"><b>배송방법</b>&nbsp;택배</div>
                     <div class="text-secondary"><b>배송비</b>&nbsp;3,000원 (50,000원 이상 무료배송)</div>
@@ -102,11 +111,9 @@
         </div>
         <hr>
         <div id="produt-detail-box" class="w-75 m-auto">
-            <img src="/img/shop/prod_sample_detail_1.jpg" class="d-block w-100" alt="...">
-            <img src="/img/shop/prod_sample_detail_2.jpg" class="d-block w-100" alt="...">
-            <img src="/img/shop/prod_sample_detail_3.jpg" class="d-block w-100" alt="...">
-            <img src="/img/shop/prod_sample_detail_4.jpg" class="d-block w-100" alt="...">
-            <img src="/img/shop/prod_sample_detail_5.jpg" class="d-block w-100" alt="...">
+            <c:forEach items="${detailImgs}" var="item" varStatus="status">
+                <img src="/${item.DIRECTORY_NAME}${item.PHYSICAL_FILE_NAME}" class="d-block w-100" alt="...">
+            </c:forEach>
         </div>
         <div id="produt-delivery-box" class="w-75 m-auto">
             <hr>
