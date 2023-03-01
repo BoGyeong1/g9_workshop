@@ -17,4 +17,14 @@ public class ShopDao {
         return result;
     }
 
+    public Object getWholeProduct(String sqlMapId) {
+        Object result = sqlSessionTemplate.selectList(sqlMapId);
+        return result;
+    }
+
+    public Object getProductByCategoryOrPrupose(String sqlMapId, String category) {
+        Object result = sqlSessionTemplate.selectList(sqlMapId, category);
+        return result;
+    }
+
 }

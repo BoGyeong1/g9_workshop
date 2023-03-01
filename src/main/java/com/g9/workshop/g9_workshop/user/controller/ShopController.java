@@ -24,11 +24,12 @@ public class ShopController {
 
         List categories = (List) shopService.getCategories();
         List purposes = (List) shopService.getPurposes();
+        List productList = (List) shopService.getProductList(currentPage);
 
         modelAndView.addObject("purposes", purposes);
         modelAndView.addObject("categories", categories);
-        modelAndView.addObject("currentPage", currentPage);
-        System.out.println(currentPage);
+        modelAndView.addObject("productList", productList);
+
         modelAndView.setViewName("user/shop");
         return modelAndView;
     }

@@ -61,7 +61,7 @@ public class AdminFileService {
                     fileInsertMap.put("PRODUCT_UID", productUid);
                     fileInsertMap.put("ORIGIN_FILE_NAME", originFileName);
                     fileInsertMap.put("PHYSICAL_FILE_NAME", physicalFileName);
-                    fileInsertMap.put("DIRECTORY_NAME", storePath);
+                    fileInsertMap.put("DIRECTORY_NAME", ("files/" + productUid + "/"));
 
                     if (fileName.charAt(0) == 't') {
                         fileInsertMap.put("EXPOSURE_ORDER", thumbnailCnt++);

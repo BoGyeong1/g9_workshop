@@ -19,4 +19,9 @@ public class CommonUtils {
         return absolutePath;
     }
 
+    public String getReplaceSeparatorPath(String path) {
+        String replaceSeparatorPath = path.replace("/", File.separator);
+        return replaceSeparatorPath;
+    }
+
 }

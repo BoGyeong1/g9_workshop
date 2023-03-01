@@ -8,8 +8,8 @@
         <div id="top-nav">
             <div class="text-end my-1">
             <%-- [GYEONG] 23.02.24 수정
-             세션에서 아이디값 가져와서 아이디가 있을때 로그아웃, 없을때 로그인/회원가입 --%>
-             <div> 
+            세션에서 아이디값 가져와서 아이디가 있을때 로그아웃, 없을때 로그인/회원가입 --%>
+            <div> 
             <c:if test="${pageContext.request.userPrincipal.name ne null}"> 
                 <a class="text-decoration-none text-secondary" href="/user/logout">로그아웃</a>
                 <span class="text-secondary">|</span>
@@ -60,7 +60,7 @@
         <a href="/aboutus" class="mx-3 text-decoration-none text-dark fw-bold">ABOUT US</a>
         <%-- [SOO] Spec Out --%>
         <%-- <a href="/project" class="mx-3 text-decoration-none text-dark fw-bold">PROJECT</a> --%>
-        <a href="/shop/whole" class="mx-3 text-decoration-none text-dark fw-bold">SHOP</a>
+        <a href="/shop/WHOLE" class="mx-3 text-decoration-none text-dark fw-bold">SHOP</a>
         <a href="/event/ongoing" class="mx-3 text-decoration-none text-dark fw-bold">EVENT</a>
         <a href="/board" class="mx-3 text-decoration-none text-dark fw-bold">BOARD</a>
     </div>
