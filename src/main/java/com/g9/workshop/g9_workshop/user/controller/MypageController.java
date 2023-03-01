@@ -5,11 +5,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -38,7 +41,7 @@ public class MypageController {
     MypageService mypageService;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     // [GYEONG] 마이페이지 주문내역 리스트(제일 처음화면)
     @RequestMapping(value = "/orderlist")
@@ -622,8 +625,72 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 탈퇴
     @RequestMapping(value = "/withdraw")
-    public ModelAndView withdraw(ModelAndView modelAndView) {
+    public ModelAndView withdraw(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        String email = principal.getUsername();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        modelAndView.addObject("email", email);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
         modelAndView.setViewName("/user/mypage/withdraw");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/withdrawProcess")
+    public ModelAndView withdrawProcess(@RequestParam Map<String, Object> params, ModelAndView modelAndView,
+            HttpServletRequest request, HttpServletResponse response) {
+        String password = (String) params.get("PASSWORD"); // params 객체에서 비밀번호 정보를 가져옴
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+            if (!passwordEncoder.matches(password, userDetails.getPassword())) {
+                PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication()
+                        .getPrincipal();
+                String userUid = principal.getUserUid();
+                int point = principal.getPoint();
+                String userName = principal.getMemberName();
+                String email = principal.getUsername();
+                modelAndView.addObject("userUid", userUid);
+                modelAndView.addObject("point", point);
+                modelAndView.addObject("userName", userName);
+                modelAndView.addObject("email", email);
+                Object reviewCnt = mypageService.getReviewCnt(params);
+                modelAndView.addObject("reviewCnt", reviewCnt);
+
+                modelAndView.setViewName("/mypage/withdraw");
+
+                return modelAndView;
+            }
+        }
+
+        // 회원정보 수정 처리
+        mypageService.deleteUser(params);
+
+        // 로그아웃 처리
+        SecurityContextHolder.clearContext();
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        }
+
+        modelAndView.setViewName("redirect:/");
+
         return modelAndView;
     }
 

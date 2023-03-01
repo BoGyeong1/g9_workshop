@@ -419,9 +419,15 @@ WHERE F.USER_UID = #{USER_UID}
     #{item}
   </foreach>
 </delete>
-
+<!--[GYEONG] 1:1 문의 답변 불러오기-->
 <select id="selectPrivateInquiriesAnswer" parameterType="Map" resultType="Map">
 SELECT * FROM PRIVATE_INQUIRY_ANSWERS
 WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
 </select>
+<!--[GYEONG] 회원탈퇴-->
+<delete id="deleteUser" parameterType="Map">
+UPDATE USERS
+SET USER_CONDITION_UID = 'UC3' 
+WHERE USER_UID = #{USER_UID};
+</delete>
 </mapper>

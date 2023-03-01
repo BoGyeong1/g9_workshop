@@ -385,6 +385,7 @@ public class MypageService {
         return result;
     }
 
+    // [GYEONG] 찜목록 선택 삭제
     public void deleteFavorites(Object productUidList) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
@@ -399,6 +400,15 @@ public class MypageService {
         this.deleteFavorites(dataMap);
         Object result = this.getFavoritesList(dataMap);
         return result;
+    }
+
+    // [GYEONG] 회원탈퇴
+    public void deleteUser(Object dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.deleteUser";
+        shareDao.deleteOne(sqlMapId, dataMap);
+
     }
 
 }

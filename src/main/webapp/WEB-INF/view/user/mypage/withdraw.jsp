@@ -42,17 +42,17 @@
 
           <hr class="hr"/>
     
-              <div class="title"><span class="fs-5">회원확인</span><span class="ms-5" >user1234@gmail.com</span></div>
+              <div class="title"><span class="fs-5">회원확인</span><span class="ms-5" >${email}</span></div>
 
        
-
+<form action="/mypage/withdrawProcess" method="POST">
           <div class="title mt-5 fs-5">비밀번호 확인</div>
           <hr class="hr"/>
           <div>탈퇴하시려면 비밀번호를 입력해주십시오.</div>
           <table class="table mt-5 mb-5 border-top border-bottom border-dark">
             <tr>
               <th>비밀번호</th>
-              <td><input type="password" /></td>
+              <td><input type="password" name="PASSWORD"/></td>
             </tr>
           </table>
 
@@ -75,6 +75,7 @@
           <div class="d-flex justify-content-center m-3">
             <button class="withdrawBtn">회원탈퇴</button>
           </div>
+          </form >
         </div>
       </div>
     </main>

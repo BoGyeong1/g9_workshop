@@ -36,7 +36,7 @@ VALUES ('WAY1', '배송'),
 INSERT INTO CANCELLED_REASONS
 VALUES ('CR1', '단순변심', 'YES'),
 ('CR2', '다른 상품 추가', 'YES'),
-('CR3', '결제 수단 변경', 'YES')
+('CR3', '결제 수단 변경', 'YES'),
 ('CR4', '기타', 'YES');
 
 INSERT INTO REFUND_EXCHANGE_REASONS
@@ -44,8 +44,8 @@ VALUES ('RE1', '단순변심', 'YES'),
 ('RE2', '다른 상품이 배송됨', 'YES'),
 ('RE3', '상품의 구성품/부속품 누락', 'YES'),
 ('RE4', '상품이 설명과 다름', 'YES'),
-('RE5', '상품이 파손되어 배송됨', 'YES'),
-('RE6', '상품에 결함/기능에 이상이 있음', 'YES')
+('RE5','상품이 파손되어 배송됨', 'YES'),
+('RE6', '상품에 결함/기능에 이상이 있음', 'YES'),
 ('RE7', '기타', 'YES');
 
 INSERT INTO ORDER_CONDITIONS
