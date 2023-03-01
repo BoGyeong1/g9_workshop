@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalAdmin;
@@ -22,6 +23,9 @@ public class LoginService implements UserDetailsService {
 
     @Autowired
     HttpServletRequest request;
+
+    @Autowired
+    BCryptPasswordEncoder bcryptPasswordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -51,4 +55,28 @@ public class LoginService implements UserDetailsService {
         return null;
 
     }
+
+    // [GYEONG] 아이디 찾기
+
+    public Object findEmail(Object dataMap) {
+        String sqlMapId = "LoginMapper.findEmail";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // [GYEONG] 비밀번호 정보매칭
+
+    public Object matchUserInfo(Object dataMap) {
+        String sqlMapId = "LoginMapper.matchUserInfo";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void updateUserPassword(Object dataMap) {
+        String password = (String) ((Map) dataMap).get("PASSWORD");
+        ((Map) dataMap).put("PASSWORD", bcryptPasswordEncoder.encode(password));
+        String sqlMapId = "LoginMapper.updateUserPassword";
+        sharedDao.update(sqlMapId, dataMap);
+    }
+
 }

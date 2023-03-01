@@ -30,16 +30,16 @@
             <img src="/img/logo/G9_Logo_Black.png" class="logo" />
           </div>
           <div class="fristText">회원님의 아이디는</div>
-          <div><span class="email">user1234@gmail.com</span> 입니다.</div>
+          <div><span class="email">${resultMap.EMAIL}</span> 입니다.</div>
         </div>
 
         <%-- [GYEONG] 23.02.14 비밀번호 찾기 / 로그인하기 버튼  --%>
-        <form action="/findPassword">
+        <form action="/user/findPassword">
           <div class="d-flex row justify-content-center mt-5 mb-4">
             <button class="find_pw_btn">비밀번호 찾기</button>
           </div>
         </form>
-        <form action="/login">
+        <form action="/user/login">
           <div class="d-flex row justify-content-center mb-5">
             <button class="login_btn">로그인 하기</button>
           </div>

@@ -27,13 +27,13 @@
   <main>
       <%-- 비밀번호 찾기 --%>
     <div class="container width">
-      <form action="/showPassword">
+      <form action="/user/showPassword" method="POST">
         <div class="title fs-3">비밀번호 찾기</div>
         <hr class="hr" />
         <div class="d-flex row justify-content-center mt-5 mb-3">
           <input
             type="email"
-            name="email"
+            name="EMAIL"
             id="email"
             class="input"
             placeholder="이메일 주소"
@@ -42,7 +42,7 @@
         <div class="d-flex row justify-content-center mb-3">
           <input
             type="text"
-            name="name"
+            name="USER_NAME"
             id="name"
             class="input"
             placeholder="이름"
@@ -51,7 +51,7 @@
         <div class="d-flex row justify-content-center mt-3 mb-3">
           <input
             type="text"
-            name="phone"
+            name="TEL"
             id="phone"
             class="input"
             placeholder="휴대폰 번호"

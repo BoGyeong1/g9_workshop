@@ -27,12 +27,24 @@
   </header>
     <main >
       <div class="container">
-        <div class="d-flex justify-content-center mt-5">
+        <div class="d-flex justify-content-center mt-5 mb-4">
           <img src="/img/logo/G9_Logo_Black.png" class="logo" />
         </div>
+          <c:if test="${not empty param.fail}">
+
+  <c:if test="${not empty param.fail}">
+    <div class="alert alert-danger mt-3 mx-auto text-center" role="alert">
+      아이디와 비밀번호가 일치하지 않습니다.<br>
+      다시 확인해주세요.
+    </div>
+  </c:if>
+
+  </c:if>
         <form class="form-signin" method="post" action="/login">
         <%-- [GYEONG] 23.02.14 로그인 칸 --%>
         <input type="hidden" name="userType" value="user">
+        <%-- [GYEONG] 실패 메시지가 있을 경우 경고창 띄우기 --%>
+
         <div class="row justify-content-center mt-5">
           <input
             type="text"
@@ -75,11 +87,11 @@
           </span>
           <%-- [GYEONG] 23.02.14 아이디 찾기 / 비밀번호 찾기 --%>
           <span class="d-flex justify-content-end col-7">
-            <form action="/findEmail">
+            <form action="/user/findEmail">
               <button class="find_id_btn">이메일 찾기</button>
             </form>
             <span>&nbsp|&nbsp</span>
-            <form action="/findPassword">
+            <form action="/user/findPassword">
               <button class="find_pw_btn">비밀번호 찾기</button>
             </form>
           </span>
@@ -100,6 +112,27 @@
     </main>
 
      <%@ include file="/WEB-INF/view/user/common/simple_footer.jsp" %>
+
+     <script>
+     // 체크박스 클릭 이벤트 리스너 등록
+const idSaveCheckbox = document.getElementById("id_save");
+idSaveCheckbox.addEventListener("click", function() {
+  const usernameInput = document.getElementById("email");
+  if (idSaveCheckbox.checked) {
+    localStorage.setItem("username", usernameInput.value);
+  } else {
+    localStorage.removeItem("username");
+  }
+});
+
+// 다음 로그인 시 Local Storage에서 값을 불러와서 입력창에 자동으로 채워줌
+const savedUsername = localStorage.getItem("username");
+if (savedUsername) {
+  const usernameInput = document.getElementById("email");
+  usernameInput.value = savedUsername;
+  idSaveCheckbox.checked = true;
+}
+     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

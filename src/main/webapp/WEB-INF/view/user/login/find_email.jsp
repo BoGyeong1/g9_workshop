@@ -29,13 +29,13 @@
     <main>
       <div class="container">
       <%-- [GYEONG] 23.02.14 아이디 찾기 --%>
-      <form action="/showEmail">
+      <form action="/user/showEmail" method="POST">
         <div class="title fs-3 width">이메일 찾기</div>
         <hr class="hr" />
         <div class="d-flex row justify-content-center mt-5 mb-3">
           <input
             type="text"
-            name="name"
+            name="USER_NAME"
             id="name"
             class="input margin"
             placeholder="이름"
@@ -44,7 +44,7 @@
         <div class="d-flex row justify-content-center mt-3 mb-3">
           <input
             type="text"
-            name="phone"
+            name="TEL"
             id="phone"
             class="input"
             placeholder="휴대폰 번호"
