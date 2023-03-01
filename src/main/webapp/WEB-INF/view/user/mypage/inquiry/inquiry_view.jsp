@@ -81,7 +81,28 @@
               <button class="checkBtn">확인</button>
             </form>
           </div>
-        </div>
+      <!-- 답변이 존재하는 경우에만 출력 -->
+      <c:if test="${not empty answers}">
+        <div class="title fs-3 mt-5">1:1 문의 답변</div>
+        <hr class="hr"/> 
+      <table class="table mt-2">
+      <tr>
+      <th class="col-2">답변 번호 <th>
+      <td class="col-10"colspan="3">${answers.PRIVATE_INQUIRY_ANSWER_UID}</td>
+      </tr>
+
+      <tr>
+      <th class="col-2">작성자</th>
+      <td class="col-4">관리자</td>
+      <th class="col-2">작성일</th>
+       <td class="col-4">${answers.CREATE_DATE}"</td>
+      </tr>
+      <tr>
+      <th class="col-2"> 답변 내용</th> 
+      <td  class="col-10" colspan="3">${answers.CONTENT}</td>
+      </tr>
+      </table>
+      </c:if>
       </div>
     </main>
     <%-- [GYEONG] 230215 footer --%>

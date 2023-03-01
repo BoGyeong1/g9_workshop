@@ -338,8 +338,16 @@ public class MypageService {
         return result;
     }
 
+    // 1:1 문의 상세 내역 보기
     public Object getPrivateInquiries(Map dataMap) {
         String sqlMapId = "MypageMapper.selectPrivateInquiries";
+        Object result = shareDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 1:1 문의 상세 답변 출력
+    public Object getPrivateInquiriesAnswer(Map dataMap) {
+        String sqlMapId = "MypageMapper.selectPrivateInquiriesAnswer";
         Object result = shareDao.getOne(sqlMapId, dataMap);
         return result;
     }
@@ -365,6 +373,31 @@ public class MypageService {
     public Object deleteInquiriesGetList(Map dataMap) {
         this.deleteInquiries(dataMap);
         Object result = this.getInquiryList(dataMap);
+        return result;
+    }
+
+    // [GYEONG] 찜목록 리스트 출력하기
+    public Object getFavoritesList(Object dataMap) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ((HashMap<String, Object>) dataMap).put("USER_UID", principal.getUserUid());
+        String sqlMapId = "MypageMapper.selectFavoritesList";
+        Object result = shareDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void deleteFavorites(Object productUidList) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("USER_UID", userUid);
+        dataMap.put("productUidList", productUidList);
+        String sqlMapId = "MypageMapper.deleteFavorites";
+        shareDao.deleteOne(sqlMapId, dataMap);
+    }
+
+    public Object deleteFavoritesAndGetList(Object dataMap) {
+        this.deleteFavorites(dataMap);
+        Object result = this.getFavoritesList(dataMap);
         return result;
     }
 

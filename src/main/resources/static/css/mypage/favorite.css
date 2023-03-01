@@ -41,6 +41,10 @@ a {
   margin-top: 60px;
 }
 
+table thead tr {
+  border-bottom: 2px solid #000;
+}
+
 a,
 a:active,
 a:hover {

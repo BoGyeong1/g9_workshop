@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -438,7 +439,7 @@ public class MypageController {
         Object resultMap = mypageService.insertPrivateInquiriesGetList(params);
         modelAndView.addObject("resultMap", resultMap);
 
-        modelAndView.setViewName("/user/mypage/inquiry/inquiry_regi");
+        modelAndView.setViewName("/user/mypage/inquiry/inquirylist");
         return modelAndView;
 
     }
@@ -463,8 +464,11 @@ public class MypageController {
         String json = new Gson().toJson(resultMap);
         Map<String, Object> map = new Gson().fromJson(json, Map.class);
         String content = (String) map.get("CONTENT");
+
+        Object answers = mypageService.getPrivateInquiriesAnswer(params);
         modelAndView.addObject("content", content);
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("answers", answers);
 
         modelAndView.setViewName("/user/mypage/inquiry/inquiry_view");
         return modelAndView;
@@ -549,10 +553,51 @@ public class MypageController {
 
     // [GYEONG] 마이페이지 찜목록
     @RequestMapping(value = "/favorite")
-    public ModelAndView favorite(ModelAndView modelAndView) {
+    public ModelAndView favorite(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        Object resultMap = mypageService.getFavoritesList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
         modelAndView.setViewName("/user/mypage/favorite");
         return modelAndView;
 
+    }
+
+    @PostMapping("/deleteFavorites")
+    public ModelAndView deleteFavorites(
+            @RequestParam(value = "PRODUCT_UID", required = false) List<String> productUidList,
+            @RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        if (productUidList != null && !productUidList.isEmpty()) {
+            mypageService.deleteFavorites(productUidList);
+        }
+
+        Object resultMap = mypageService.getFavoritesList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("/user/mypage/favorite");
+        return modelAndView;
     }
 
     // [GYEONG] 마이페이지 회원정보변경

@@ -42,31 +42,44 @@
           <div class="title fs-3">위시리스트</div>
 
           <hr class="hr"/>
-          <div>
+
+
+       
+            <form id="form" method="post" action="/mypage/deleteFavorites">
+            <div>
             <button class="selectDeleteBtn mt-5">선택삭제</button>
           </div>
-
-          <table class="table text-center mt-4">
-            <thead>
-              <tr class="border-top border-bottom border-dark border-3">
-                <th><input type="checkbox" name="" id="" /></th>
-                <th>상품정보</th>
-                <th>가격</th>
-                <th>담은날짜</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><input type="checkbox" name="" id="" /></td>
-                <td><a href="#">숄더백</a></td>
-                <td>30000원</td>
-                <td>20221212</td>
-              </tr>
-            </tbody>
-          </table>
+      <table class="table text-center mt-4">
+      <thead> 
+      <tr class=" border-dark border-bottom-5">
+        <th><input type="checkbox" id="checkAll" /></th>
+        <th>상품명</th>
+        <th>가격</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach var="item" items="${resultMap}">
+        <tr>
+          <td><input type="checkbox" name="PRODUCT_UID" value="${item.PRODUCT_UID}" /></td>
+          <td><a href="#">${item.PRODUCT_NAME}</a></td>
+          <td>${item.PRICE}</td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</form>
         </div>
       </div>
     </main>
+
+<script>
+    document.getElementById("checkAll").addEventListener("click", function(){
+        var checkboxes = document.getElementsByName("PRODUCT_UID");
+        for(var i=0; i<checkboxes.length; i++){
+            checkboxes[i].checked = document.getElementById("checkAll").checked;
+        }
+    });
+</script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

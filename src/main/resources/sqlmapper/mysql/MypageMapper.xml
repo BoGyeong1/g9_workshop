@@ -383,9 +383,10 @@ VALUES (#{PRIVATE_INQUIRY_UID}, #{USER_UID}, #{INQUIRY_CATEGORY_UID}, #{TITLE}, 
 </insert>
 <!-- [GYEONG] 1:1 문의내용 가져오기 -->
 <select id="selectPrivateInquiries" parameterType="Map" resultType="Map">
-SELECT P.PRIVATE_INQUIRY_UID, P.USER_UID, P.TITLE, P.CONTENT, P.CREATE_DATE, C.CATEGORY_NAME
+SELECT P.PRIVATE_INQUIRY_UID, P.USER_UID, P.TITLE, P.CONTENT, P.CREATE_DATE, C.CATEGORY_NAME, A.PRIVATE_INQUIRY_ANSWER_UID, A.ADMIN_UID, A.CONTENT AS ANSWER_CONTENT, A.CREATE_DATE AS ANSWER_CREATE_DATE
 FROM PRIVATE_INQUIRIES P
 INNER JOIN INQUIRY_CATEGORIES C ON P.INQUIRY_CATEGORY_UID = C.INQUIRY_CATEGORY_UID
+LEFT JOIN PRIVATE_INQUIRY_ANSWERS A ON P.PRIVATE_INQUIRY_UID = A.PRIVATE_INQUIRY_UID
 WHERE P.PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
 </select>
 
@@ -396,9 +397,31 @@ SET INQUIRY_CATEGORY_UID = #{INQUIRY_CATEGORY_UID}, TITLE = #{TITLE}, CONTENT=#{
 WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
 </update>
 
-<!--[GYEONG] 리뷰삭제 -->
+<!--[GYEONG] 1:1 문의삭제 -->
 <delete id="deletePrivateInquiries" parameterType="Map">
   DELETE FROM PRIVATE_INQUIRIES
   WHERE  PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
 </delete>
+<!--[GYEONG] 찜목록 가져오기 -->
+<select id="selectFavoritesList" parameterType="Map" resultType="Map">
+SELECT P.PRODUCT_UID, P.PRODUCT_NAME, P.PRICE
+FROM FAVORITES F
+JOIN PRODUCTS P
+ON F.PRODUCT_UID = P.PRODUCT_UID
+WHERE F.USER_UID = #{USER_UID}
+</select>
+<!--[GYEONG] 찜목록 삭제 -->
+<delete id="deleteFavorites" parameterType="Map">
+  DELETE FROM FAVORITES
+  WHERE USER_UID = #{USER_UID}
+  AND PRODUCT_UID IN 
+     <foreach collection="productUidList" item="item" open="(" separator="," close=")">
+    #{item}
+  </foreach>
+</delete>
+
+<select id="selectPrivateInquiriesAnswer" parameterType="Map" resultType="Map">
+SELECT * FROM PRIVATE_INQUIRY_ANSWERS
+WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
+</select>
 </mapper>

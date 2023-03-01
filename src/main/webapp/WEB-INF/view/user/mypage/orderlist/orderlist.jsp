@@ -43,8 +43,9 @@
         <%-- 주문 / 배송 리스트 출력 --%>
           <div class="title fs-3">주문 / 배송 내역</div>
           <hr class="hr" />
-          <div><button class="selectDeleteBtn">선택 삭제</button></div>
-<table class="table text-center">
+          <div>주문번호를 클릭할 시 상세내역으로 이동합니다. </div>
+    
+<table class="table text-center mt-5">
     <thead>
         <tr class="border-bottom border-3 border-dark">
             <th>주문번호</th>

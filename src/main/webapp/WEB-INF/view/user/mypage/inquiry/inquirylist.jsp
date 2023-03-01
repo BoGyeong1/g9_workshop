@@ -53,6 +53,7 @@
         <th>문의유형</th>
         <th>제목</th>
         <th>작성일</th>
+        <th>답변 상태</th>
       </tr>
     </thead>
     <tbody>
@@ -61,7 +62,17 @@
         <tr>
           <td>${inquiry.CATEGORY_NAME}</td>
           <td><a href="/mypage/inquiryView/${inquiry.PRIVATE_INQUIRY_UID}">${inquiry.TITLE}</a></td>
-          <td>${inquiry.CREATE_DATE}</td>
+           <fmt:parseDate value="${inquiry.CREATE_DATE}" var="date" pattern="yyyy-MM-dd HH:mm:ss" />
+          <td><fmt:formatDate value="${date}" pattern="yyyy-MM-dd" /></td>
+           <td>
+          <!-- 답변 여부에 따라서 "미답변" 또는 "답변완료"를 표시 -->
+          <c:if test="${not empty inquiry.PRIVATE_INQUIRY_ANSWER_UID}">
+            답변완료
+          </c:if>
+          <c:if test="${empty inquiry.PRIVATE_INQUIRY_ANSWER_UID}">
+            미답변
+          </c:if>
+        </td>
         </tr>
       </c:forEach>
     </tbody>

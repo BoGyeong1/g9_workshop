@@ -51,10 +51,12 @@
           </div>
 
       <c:set var="formAction" value="${empty resultMap.PRIVATE_INQUIRY_UID ? 'Insert' : 'Update'}" />
-      <form action="/mypage/inquiry${formAction}" method="POST">
+      <form action="/mypage/inquiry${formAction}" id="inquiry-form" method="POST">
           
           <table   class="table border-top border-bottom border-3 border-dark mt-5"      >
+          <c:if test="${not empty resultMap.PRIVATE_INQUIRY_UID}">
             <input type="hidden" name="PRIVATE_INQUIRY_UID" value="${resultMap.PRIVATE_INQUIRY_UID}">
+            </c:if>
             <tbody>
               <tr>
                 <th>문의유형</th>
@@ -161,29 +163,38 @@ $(document).ready(function() {
     }
   });
 
-  // JSON 데이터 파싱
-  var contentData = '${content}'.replace(/\n/g, '');
-  var content = null;
-  if (contentData !== 'null') {
+let contentData = '${content}'.replace(/\n/g, '');
+let content = null;
+
+if (contentData.trim() !== '' && contentData !== 'null') {
+  try {
     content = JSON.parse(contentData);
+  } catch (e) {
+    console.error('Failed to parse JSON data:', e);
   }
+}
 
-  // QuillJS에 JSON 데이터를 설정
+if (content) {
+  quill.setContents(content);
+}
+
+let form = document.querySelector('#inquiry-form');
+let submitButton = document.querySelector('#submit-button');
+submitButton.addEventListener('click', function (event) {
+  // get quill content content -> json
+  let content = quill.getContents();
+  console.log(content);  // content 확인용
+  let description = document.querySelector('#description');
+  // json 변환해서 실어보내기
   if (content) {
-    quill.setContents(content);
-  }
-
-  let submitButton = document.querySelector('#submit-button');
-  submitButton.addEventListener('click', function (event) {
-    // get quill content content -> json
-    let content = quill.getContents();
-    let description = document.querySelector('#description');
-    // json 변환해서 실어보내기
     description.value = JSON.stringify(content);
-    form.submit();
-  });
+  } else {
+    description.value = 'null';
+  }
+  form.submit();
 });
 
+});
 </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
