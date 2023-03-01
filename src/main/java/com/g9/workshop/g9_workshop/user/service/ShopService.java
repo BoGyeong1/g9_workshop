@@ -1,5 +1,7 @@
 package com.g9.workshop.g9_workshop.user.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,6 +46,24 @@ public class ShopService {
                 }
             }
         }
+        return result;
+    }
+
+    public Object getProductDetailInfo(Map dataMap) {
+        String sqlMapId = "ShopMapper.getProductDetail";
+        Object result = shopDao.getMap(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getThumbnailImgs(Map dataMap) {
+        String sqlMapId = "ShopMapper.getThumbmailImgs";
+        Object result = shopDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getDetailImgs(Map dataMap) {
+        String sqlMapId = "ShopMapper.getDetailImgs";
+        Object result = shopDao.getList(sqlMapId, dataMap);
         return result;
     }
 

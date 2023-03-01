@@ -1,5 +1,7 @@
 package com.g9.workshop.g9_workshop.user.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,6 +26,16 @@ public class ShopDao {
 
     public Object getProductByCategoryOrPrupose(String sqlMapId, String category) {
         Object result = sqlSessionTemplate.selectList(sqlMapId, category);
+        return result;
+    }
+
+    public Object getList(String sqlMapId, Map dataMap) {
+        Object result = sqlSessionTemplate.selectList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getMap(String sqlMapId, Map dataMap) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, dataMap);
         return result;
     }
 
