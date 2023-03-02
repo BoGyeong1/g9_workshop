@@ -48,4 +48,9 @@ public class AdminService {
         return result;
     }
 
+    public Object insertEvent(Map dataMap) {
+        String sqlMapId = "";
+
+    }
+
 }
