@@ -63,11 +63,30 @@ public class AdminEventController {
     @PostMapping("/edit")
     public ModelAndView editEvent(@RequestParam Map params, ModelAndView modelAndView) {
 
-        Object eventInfo = adminService.getEventInfos((String) (params.get("event_uid")));
+        Object eventInfo = adminService.getEventInfos(params);
         modelAndView.addObject("eventInfo", eventInfo);
 
         modelAndView.setViewName("admin/web/event_insert_edit");
         return modelAndView;
 
     }
+
+    @PostMapping("/edit/done")
+    public String editEventDome(@RequestParam Map params) {
+
+        adminService.updateEventInfos(params);
+
+        return "redirect:/admin/event";
+
+    }
+
+    @PostMapping("/delete")
+    public String deleteEvent(@RequestParam Map params) {
+
+        adminService.deleteEvent(params);
+
+        return "redirect:/admin/event";
+
+    }
+
 }

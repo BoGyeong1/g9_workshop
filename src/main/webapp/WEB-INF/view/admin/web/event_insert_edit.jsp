@@ -19,31 +19,28 @@
     <div class="d-flex">
         <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
-            <%-- 객체가 비어있다면 --%>
-            <c:if test="${empty eventInfo}">
-            <form action="/admin/event/insert" method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
                 <div class="my-3 fs-1">
+                    <%-- 객체가 비어있다면 --%>
+                    <c:if test="${empty eventInfo}">
                     이벤트 등록
-                </div>
-            </c:if>
-            <%-- 객체가 비어있지 않다면 --%>
-            <c:if test="${not empty eventInfo}">
-            <form action="/admin/event/edit/submit" method="post" enctype="multipart/form-data">
-                <div class="my-3 fs-1">
+                    </c:if>
+                    <%-- 객체가 비어있지 않다면 --%>
+                    <c:if test="${not empty eventInfo}">
                     이벤트 수정
+                    </c:if>
                 </div>
-            </c:if>
                 <div class="my-3">
                     <label for="event-name" class="form-label">이벤트명</label>
                     <input type="text" name="event-name" id="event-name" class="form-control" value="${eventInfo.EVENT_NAME}" required>
                 </div>
                 <div class="my-3">
                     <label for="start-date" class="form-label">시작일자</label>
-                    <input type="date" name="start-date" id="start-date" class="form-control" value="${eventInfo.START_DATE}" required>
+                    <input type="datetime-local" name="start-date" id="start-date" class="form-control" value="${eventInfo.START_DATE}" required>
                 </div>
                 <div class="my-3">
                     <label for="end-date" class="form-label">종료일자</label>
-                    <input type="date" name="end-date" id="end-date" class="form-control" value="${eventInfo.END_DATE}" required>
+                    <input type="datetime-local" name="end-date" id="end-date" class="form-control" value="${eventInfo.END_DATE}" required>
                 </div>
                 <div class="my-3">
                     <label for="url" class="form-label">URL</label>
@@ -67,7 +64,7 @@
                     <input type="file" accept="image/*" name="event-banner" id="event-banner" class="form-control" required>
                 </div>
                 <div class="my-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" formaction="/admin/event/insert">
                         등록하기
                     </button>
                 </div>
@@ -76,11 +73,14 @@
                 <c:if test="${not empty eventInfo}">
                 <div class="my-3">
                     이미지 수정기능 개발중
-                    <input type="hidden" id="product-uid" name="product-uid" value="${eventInfo.EVENT_UID}">
+                    <input type="hidden" id="event-uid" name="event-uid" value="${eventInfo.EVENT_UID}">
                 </div>
                 <div class="my-3">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary" formaction="/admin/event/edit/done">
                         수정하기
+                    </button>
+                    <button type="submit" class="btn btn-danger" formaction="/admin/event/delete">
+                        삭제하기
                     </button>
                 </div>
                 </c:if>

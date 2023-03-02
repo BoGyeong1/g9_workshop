@@ -90,9 +90,18 @@ public class AdminDao {
         return result;
     }
 
-    // 오버로딩
-    public Object selectOne(String sqlMapId, Object param) {
-        Object result = sqlSessionTemplate.selectOne(sqlMapId, param);
+    public Object selectOne(String sqlMapId, Object params) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, params);
+        return result;
+    }
+
+    public Object updateOne(String sqlMapId, Object params) {
+        Object result = sqlSessionTemplate.update(sqlMapId, params);
+        return result;
+    }
+
+    public Object delete(String sqlMapId, Object dataMap) {
+        Object result = sqlSessionTemplate.delete(sqlMapId, dataMap);
         return result;
     }
 

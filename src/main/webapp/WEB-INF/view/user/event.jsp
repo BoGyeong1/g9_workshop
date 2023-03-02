@@ -29,10 +29,16 @@
         </div>
         <div class="m-5" id="event-btn">
             <%-- TO-DO 패스베리어블에 따라 버튼 다르게 --%>
-            <a href="/event/ongoing" class="btn btn-success">진행중 이벤트</a>
-            <a href="/event/ended" class="btn btn-outline-success">종료된 이벤트</a>
+            <a href="/event/ongoing" class="${eventStatus eq 'ongoing' ? 'btn btn-success' : 'btn btn-outline-success'}">진행중 이벤트</a>
+            <a href="/event/ended" class="${eventStatus eq 'ended' ? 'btn btn-success' : 'btn btn-outline-success'}">종료된 이벤트</a>
         </div>
-        <%-- TO-DO 이벤트 불러오기 c:Foreach --%>
+        <div class="my-3">
+            <c:forEach items="${eventList}" var="event" varStatus="status" >
+                <a href="" class="w-100 my-3">
+                    <img src="/${event.DIRECTORY_NAME}${event.PHYSICAL_FILE_NAME}" class="img-fluid my-3">
+                </a>
+            </c:forEach>
+        </div>
     </div>
     <%-- [SOO] Footer Include --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>

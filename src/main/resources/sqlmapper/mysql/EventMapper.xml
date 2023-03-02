@@ -17,10 +17,46 @@
         SELECT * FROM EVENT_DETAILS
     </select>
 
-    <select id="selectEventOne" resultType="Map" parameterType="String">
+    <select id="selectEventOne" resultType="Map" parameterType="Map">
         SELECT * FROM EVENT_DETAILS
         WHERE EVENT_UID = #{event-uid}
     </select>
 
+    <update id="updateEventInfo" parameterType="Map">
+        UPDATE EVENT_DETAILS
+        SET EVENT_NAME = #{event-name},
+        START_DATE = #{start-date},
+        END_DATE = #{end-date},
+        URL = #{url},
+        EXPOSURE = #{exposure},
+        EXPOSURE_ORDER = #{exposure-order}
+        WHERE EVENT_UID = #{event-uid}
+    </update>
+
+    <delete id="deleteBanner" parameterType="Map">
+        DELETE FROM EVENT_BANNERS
+        WHERE EVENT_UID = #{event-uid}
+    </delete>
+
+    <delete id="deleteEvent" parameterType="Map">
+        DELETE FROM EVENT_DETAILS
+        WHERE EVENT_UID = #{event-uid}
+    </delete>
+
+    <select id="selectOngoingEvent" resultType="Map">
+        SELECT START_DATE, END_DATE, URL, DIRECTORY_NAME, PHYSICAL_FILE_NAME
+        FROM EVENT_DETAILS
+        INNER JOIN EVENT_BANNERS ON EVENT_DETAILS.EVENT_UID = EVENT_BANNERS.EVENT_UID
+        WHERE EXPOSURE = 'YES' AND START_DATE &lt; sysdate() AND END_DATE &gt; sysdate()
+        ORDER BY EXPOSURE_ORDER, END_DATE;
+    </select>
+
+    <select id="selectEndedEvent" resultType="Map">
+        SELECT START_DATE, END_DATE, URL, DIRECTORY_NAME, PHYSICAL_FILE_NAME
+        FROM EVENT_DETAILS
+        INNER JOIN EVENT_BANNERS ON EVENT_DETAILS.EVENT_UID = EVENT_BANNERS.EVENT_UID
+        WHERE EXPOSURE = 'YES' AND START_DATE &lt; sysdate() AND END_DATE &lt; sysdate()
+        ORDER BY EXPOSURE_ORDER, END_DATE ASC;
+    </select>
 
 </mapper>

@@ -60,9 +60,23 @@ public class AdminService {
         return result;
     }
 
-    public Object getEventInfos(String evenet_uid) {
-        String sqlMapId = "EventMapper.selectEventList";
-        Object result = adminDao.selectOne(sqlMapId, evenet_uid);
+    public Object getEventInfos(Map dataMap) {
+        String sqlMapId = "EventMapper.selectEventOne";
+        Object result = adminDao.selectOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object updateEventInfos(Map dataMap) {
+        String sqlMapId = "EventMapper.updateEventInfo";
+        Object result = adminDao.updateOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object deleteEvent(Map dataMap) {
+        String sqlMapId = "EventMapper.deleteBanner";
+        adminDao.delete(sqlMapId, dataMap);
+        sqlMapId = "EventMapper.deleteEvent";
+        Object result = adminDao.delete(sqlMapId, dataMap);
         return result;
     }
 
