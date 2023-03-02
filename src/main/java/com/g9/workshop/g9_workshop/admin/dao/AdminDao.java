@@ -73,4 +73,27 @@ public class AdminDao {
         return result;
     }
 
+    public Object insertOne(String sqlMapId, Map dataMap) {
+        Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 오버로딩
+    public Object selectList(String sqlMapId, Map dataMap) {
+        Object result = sqlSessionTemplate.selectList(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 오버로딩
+    public Object selectList(String sqlMapId) {
+        Object result = sqlSessionTemplate.selectList(sqlMapId);
+        return result;
+    }
+
+    // 오버로딩
+    public Object selectOne(String sqlMapId, Object param) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, param);
+        return result;
+    }
+
 }

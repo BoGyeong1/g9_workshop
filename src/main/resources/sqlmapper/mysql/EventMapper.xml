@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="EventMapper">
+
+    <insert id="insertEvent" parameterType="Map">
+        INSERT INTO EVENT_DETAILS
+        VALUES (#{event-uid}, #{event-name}, sysdate(), #{start-date}, #{end-date}, #{url}, #{exposure}, #{exposure-order})
+    </insert>
+
+    <insert id="insertEventBanner" parameterType="Map">
+        INSERT INTO EVENT_BANNERS
+        VALUES (#{eventBannerUid}, #{eventUid}, #{originFileName}, #{physicalFileName} ,#{directoryName})
+    </insert>
+
+    <select id="selectEventList" resultType="Map">
+        SELECT * FROM EVENT_DETAILS
+    </select>
+
+    <select id="selectEventOne" resultType="Map" parameterType="String">
+        SELECT * FROM EVENT_DETAILS
+        WHERE EVENT_UID = #{event-uid}
+    </select>
+
+
+</mapper>

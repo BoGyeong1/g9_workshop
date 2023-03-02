@@ -23,7 +23,7 @@ public class AdminEventController {
     CommonUtils commonUtils;
 
     @Autowired
-    AdminService AdminService;
+    AdminService adminService;
 
     @Autowired
     AdminFileService adminFileService;
@@ -31,8 +31,12 @@ public class AdminEventController {
     @GetMapping("")
     public ModelAndView eventMain(ModelAndView modelAndView) {
 
+        Object eventInfos = adminService.getEventInfos();
+        modelAndView.addObject("eventInfos", eventInfos);
+
         modelAndView.setViewName("admin/web/event_main");
         return modelAndView;
+
     }
 
     @GetMapping("/insert")
@@ -40,17 +44,30 @@ public class AdminEventController {
 
         modelAndView.setViewName("admin/web/event_insert_edit");
         return modelAndView;
+
     }
 
     @PostMapping("/insert")
-    public ModelAndView eventInsert(@RequestParam Map params, @RequestParam("event-banner") MultipartFile file,
+    public String eventInsert(@RequestParam Map params, @RequestParam("event-banner") MultipartFile file,
             ModelAndView modelAndView) {
 
         String eventUid = commonUtils.getUniqueSequence();
         params.put("event-uid", eventUid);
+        adminService.insertEvent(params);
+        adminFileService.insertEventBanner(eventUid, file);
+
+        return "redirect:/admin/event";
+
+    }
+
+    @PostMapping("/edit")
+    public ModelAndView editEvent(@RequestParam Map params, ModelAndView modelAndView) {
+
+        Object eventInfo = adminService.getEventInfos((String) (params.get("event_uid")));
+        modelAndView.addObject("eventInfo", eventInfo);
 
         modelAndView.setViewName("admin/web/event_insert_edit");
         return modelAndView;
-    }
 
+    }
 }

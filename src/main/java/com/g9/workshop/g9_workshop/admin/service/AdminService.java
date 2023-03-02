@@ -49,8 +49,21 @@ public class AdminService {
     }
 
     public Object insertEvent(Map dataMap) {
-        String sqlMapId = "";
+        String sqlMapId = "EventMapper.insertEvent";
+        Object result = adminDao.insertOne(sqlMapId, dataMap);
+        return result;
+    }
 
+    public Object getEventInfos() {
+        String sqlMapId = "EventMapper.selectEventList";
+        Object result = adminDao.selectList(sqlMapId);
+        return result;
+    }
+
+    public Object getEventInfos(String evenet_uid) {
+        String sqlMapId = "EventMapper.selectEventList";
+        Object result = adminDao.selectOne(sqlMapId, evenet_uid);
+        return result;
     }
 
 }

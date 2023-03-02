@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 3700,
     "height": 3700,
-    "scrollTop": -1059.3333123392547,
-    "scrollLeft": -2134,
-    "zoomLevel": 1,
+    "scrollTop": -1007.3333123392547,
+    "scrollLeft": -2024,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -887,7 +887,7 @@
           "active": false,
           "left": 120.1851,
           "top": 1438.2043,
-          "zIndex": 35,
+          "zIndex": 34,
           "widthName": 126.8076171875,
           "widthComment": 71.5703125
         },
@@ -1381,7 +1381,7 @@
           "active": false,
           "left": 2965,
           "top": 402,
-          "zIndex": 36,
+          "zIndex": 35,
           "widthName": 123.00537109375,
           "widthComment": 71.5703125
         },
@@ -1512,7 +1512,7 @@
           "active": false,
           "left": 50,
           "top": 619,
-          "zIndex": 37,
+          "zIndex": 36,
           "widthName": 106.0888671875,
           "widthComment": 71.5703125
         },
@@ -1774,7 +1774,7 @@
           "active": false,
           "left": 1308,
           "top": 619,
-          "zIndex": 33,
+          "zIndex": 32,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3422,7 +3422,7 @@
           "active": false,
           "left": 1806.1664,
           "top": 1922.8328,
-          "zIndex": 31,
+          "zIndex": 30,
           "widthName": 96.81494140625,
           "widthComment": 102.140625
         },
@@ -3451,29 +3451,6 @@
               "fk": false,
               "pfk": false,
               "widthName": 68.0791015625,
-              "widthComment": 67.53955078125,
-              "widthDataType": 89.29296875,
-              "widthDefault": 60
-            }
-          },
-          {
-            "id": "8c26de29-28da-465c-9333-84941fd077fb",
-            "name": "ADMIN_UID",
-            "comment": "어드민 UID",
-            "dataType": "VARCHAR(255)",
-            "default": "",
-            "option": {
-              "autoIncrement": false,
-              "primaryKey": false,
-              "unique": false,
-              "notNull": true
-            },
-            "ui": {
-              "active": false,
-              "pk": false,
-              "fk": true,
-              "pfk": false,
-              "widthName": 72.763671875,
               "widthComment": 67.53955078125,
               "widthDataType": 89.29296875,
               "widthDefault": 60
@@ -3645,7 +3622,7 @@
           "active": false,
           "left": 2546,
           "top": 1114.5,
-          "zIndex": 50,
+          "zIndex": 42,
           "widthName": 93.431640625,
           "widthComment": 60
         },
@@ -3845,7 +3822,7 @@
           "active": false,
           "left": 70.0001,
           "top": 1714.3333,
-          "zIndex": 32,
+          "zIndex": 31,
           "widthName": 60,
           "widthComment": 67
         },
@@ -4045,7 +4022,7 @@
           "active": false,
           "left": 709,
           "top": 1413.5,
-          "zIndex": 29,
+          "zIndex": 28,
           "widthName": 60,
           "widthComment": 84.5703125
         },
@@ -4314,7 +4291,7 @@
           "active": false,
           "left": 1358,
           "top": 1413.5,
-          "zIndex": 34,
+          "zIndex": 33,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4606,7 +4583,7 @@
           "active": false,
           "left": 1987,
           "top": 1413.5,
-          "zIndex": 30,
+          "zIndex": 29,
           "widthName": 67.97119140625,
           "widthComment": 60
         },
@@ -4735,7 +4712,7 @@
             "b393f64d-0a79-4ab9-a59a-3221c03219d5"
           ],
           "x": 2546,
-          "y": 1177.875,
+          "y": 1231,
           "direction": "left"
         },
         "end": {
@@ -4750,32 +4727,6 @@
         "constraintName": "",
         "visible": true,
         "id": "9f6985b9-c2e1-4bbc-8ea8-9d4e8b367d41"
-      },
-      {
-        "identification": false,
-        "relationshipType": "ZeroN",
-        "startRelationshipType": "Dash",
-        "start": {
-          "tableId": "9f43680c-27ef-4e0e-bfa3-2b5087bea399",
-          "columnIds": [
-            "d89f481d-644c-46f3-8321-93f955a69984"
-          ],
-          "x": 1722.947265625,
-          "y": 779,
-          "direction": "right"
-        },
-        "end": {
-          "tableId": "ee0f4c38-750d-4eac-96f0-c101a6bd55d5",
-          "columnIds": [
-            "8c26de29-28da-465c-9333-84941fd077fb"
-          ],
-          "x": 2546,
-          "y": 1304.625,
-          "direction": "left"
-        },
-        "constraintName": "",
-        "visible": true,
-        "id": "758378bf-fa64-4134-9a76-85d84cd25f8a"
       },
       {
         "identification": false,
@@ -4865,7 +4816,7 @@
             "d89f481d-644c-46f3-8321-93f955a69984"
           ],
           "x": 1722.947265625,
-          "y": 651,
+          "y": 667,
           "direction": "right"
         },
         "end": {
@@ -5281,7 +5232,7 @@
             "d89f481d-644c-46f3-8321-93f955a69984"
           ],
           "x": 1722.947265625,
-          "y": 715,
+          "y": 763,
           "direction": "right"
         },
         "end": {

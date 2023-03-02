@@ -79,4 +79,34 @@ public class AdminFileService {
 
     }
 
+    public void insertEventBanner(String eventUid, MultipartFile banner) {
+
+        String eventBannerUid = commonUtils.getUniqueSequence();
+        String directoryName = "files/" + eventBannerUid + "/";
+
+        Map<String, Object> dataMap = new HashMap();
+        dataMap.put("eventBannerUid", eventBannerUid);
+        dataMap.put("eventUid", eventUid);
+        dataMap.put("originFileName", banner.getOriginalFilename());
+        dataMap.put("physicalFileName", banner.getOriginalFilename());
+        dataMap.put("directoryName", directoryName);
+
+        String relativePath = "src/main/resources/static/files/";
+        String absolutePath = commonUtils.getAbsolutePath(relativePath);
+        String storePath = absolutePath + eventBannerUid + File.separator;
+        String storeFileName = storePath + banner.getOriginalFilename();
+        File newPath = new File(storePath);
+        newPath.mkdir();
+
+        try {
+            banner.transferTo(new File(storeFileName));
+        } catch (IllegalStateException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        String sqlMapId = "EventMapper.insertEventBanner";
+        adminDao.insertOne(sqlMapId, dataMap);
+    }
+
 }

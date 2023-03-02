@@ -32,10 +32,27 @@
                             <th>URL</th>
                             <th>노출여부</th>
                             <th>순서</th>
+                            <th>수정</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${eventInfos}" var="event" varStatus="status">
+                        <tr class="align-middle">
+                            <td>${event.EVENT_NAME}</td>
+                            <td>${event.START_DATE}</td>
+                            <td>${event.END_DATE}</td>
+                            <td>${event.URL}</td>
+                            <td>${event.EXPOSURE}</td>
+                            <td>${event.EXPOSURE_ORDER}</td>
+                            <td>
+                                <form method="post" action="/admin/event/edit">
+                                    <input type="hidden" name="event-uid" value="${event.EVENT_UID}">
+                                    <button type="submit" class="btn btn-primary">
+                                        수정하기
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
                         </c:forEach>
                     </tbody>
                 </table>

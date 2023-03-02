@@ -32,7 +32,7 @@
                 <div class="my-3 fs-1">
                     이벤트 수정
                 </div>
-                </c:if>
+            </c:if>
                 <div class="my-3">
                     <label for="event-name" class="form-label">이벤트명</label>
                     <input type="text" name="event-name" id="event-name" class="form-control" value="${eventInfo.EVENT_NAME}" required>
@@ -55,8 +55,12 @@
                         <option value="YES">YES</option>
                         <option value="NO">NO</option>
                     </select>
-                <%-- 객체가 비어있다면 --%>
                 </div>
+                <div class="my-3">
+                    <label for="exposure-order" class="form-label">노출 순서 (숫자만)</label>
+                    <input type="text" name="exposure-order" id="exposure-order" class="form-control" value="${eventInfo.EXPOSURE_ORDER}" required>
+                </div>
+                <%-- 객체가 비어있다면 --%>
                 <c:if test="${empty eventInfo}">
                 <div class="my-3">
                     <label for="event-banner" class="form-label">이벤트 배너</label>
