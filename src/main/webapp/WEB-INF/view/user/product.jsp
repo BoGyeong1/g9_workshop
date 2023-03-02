@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="w-100 m-5 d-flex align-content-between flex-wrap" id="product-info-box">
-                <div id="product-top-info">
+                <div id="product-top-info" class="w-100">
                     <div class="fw-bold">${productDetailInfo.PRODUCT_NAME}</div>
                     <c:if test="${productDetailInfo.DISCOUNT_RATE > 0}">
                         <div class="fw-bold text-success">
@@ -78,11 +78,11 @@
                     <br>
                     <div class="text-secondary"><b>원산지</b>&nbsp;${productDetailInfo.ORIGIN_NAME}</div>
                     <div class="text-secondary"><b>브랜드</b>&nbsp;${productDetailInfo.BRAND_NAME}</div>
-                    <div class="text-secondary"><b>구매혜택</b>&nbsp;1% 적립(143원)</div>
+                    <div class="text-secondary"><b>구매혜택</b>&nbsp;1% 적립</div>
                     <div class="text-secondary"><b>배송방법</b>&nbsp;택배</div>
                     <div class="text-secondary"><b>배송비</b>&nbsp;3,000원 (50,000원 이상 무료배송)</div>
                 </div>
-                <div id="product-bottom-info">
+                <div id="product-bottom-info" class="w-100">
                     <div class="my-3 bg-light">
                         <div class="pt-2 ps-2">수량</div>
                         <hr class="mx-2">
@@ -91,20 +91,25 @@
                                 <button onclick="count('plus')" class="btn btn-success">
                                     <i class="bi bi-plus"></i>
                                 </button>
-                                <input type="text" value="1" id="cnt" class="form-control w-25 mx-1">
+                                <input type="text" value="1" id="cnt" class="form-control w-25 mx-1" onchange="updateTotal()">
                                 <button onclick="count('minus')" class="btn btn-success">
                                     <i class="bi bi-dash-lg"></i>
                                 </button>
                             </div>
                             <div class="pe-2 text-success fw-bold">
-                                <span class="align-middle">총 상품 금액 14,300원</span>
+                                <span class="align-middle text-end" id="total_price"></span>
                             </div>
                         </div>
                     </div>
-                    <form class="d-flex justify-content-between">
-                        <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
-                        <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/buy">
-                        <input class="btn btn-outline-success col-1" type="submit" value="♡" formaction="/like">
+                    <form class="" method="post">
+                        <input type="hidden" value="${params.product_uid}">
+                        <input type="hidden" id="price" value="${productDetailInfo.PRICE}">
+                        <input type="hidden" id="discount_rate" value="${productDetailInfo.DISCOUNT_RATE}">
+                        <div class="d-flex justify-content-between">
+                            <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
+                            <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/buy">
+                            <input class="btn btn-outline-success col-1" type="submit" value="♡" formaction="/like">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -130,7 +135,7 @@
             <hr>
             <div class="fw-bold">교환/환불/AS안내</div>
             <ul class="mt-2">
-                <li>구매자의 단순 변심에 의한 반푸 및 교환 요청은 제품 수령 후 7일 이내에 가능합니다.</li>
+                <li>구매자의 단순 변심에 의한 반품 및 교환 요청은 제품 수령 후 7일 이내에 가능합니다.</li>
                 <li>교환 또는 반품을 원하시는 경우 고객센터로 문의 부탁드립니다.</li>
                 <li>제품을 개봉하였거나 사용하셨을 경우 교환 및 반품이 불가합니다.</li>
                 <li>제품 하자에 의한 교환 및 환불은 가능합니다.</li>

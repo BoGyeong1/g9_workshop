@@ -67,7 +67,7 @@
                 <div class="collapse" id="web-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">게시판 관리</a></li>
-                        <li><a href="#" class="btn link-dark rounded text-decoration-none">이벤트 관리</a></li>
+                        <li><a href="/admin/event" class="btn link-dark rounded text-decoration-none">이벤트 관리</a></li>
                     </ul>
                 </div>
             </li>

@@ -42,7 +42,7 @@
                 <span id="section-title" style="margin-right: 5px;" class="fs-4">Made in</span>
                 <img id="section-img" src="/img/logo/G9_Logo.png" alt="" style="height: 30px;">
             </div>
-            <a href="/shop" class="text-decoration-none text-secondary">더보기 &gt;</a>
+            <a href="/shop/WHOLE" class="text-decoration-none text-secondary">더보기 &gt;</a>
         </div>
         <%-- [SOO] Product List Items 1 - BOX x 4 --%>
         <div id="section-body">

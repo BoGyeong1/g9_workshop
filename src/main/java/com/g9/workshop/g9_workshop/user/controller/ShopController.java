@@ -44,6 +44,7 @@ public class ShopController {
         Object thumbnailImgs = shopService.getThumbnailImgs(params);
         Object detailImgs = shopService.getDetailImgs(params);
 
+        modelAndView.addObject("params", params);
         modelAndView.addObject("productDetailInfo", productDetailInfo);
         modelAndView.addObject("thumbnailImgs", thumbnailImgs);
         modelAndView.addObject("detailImgs", detailImgs);

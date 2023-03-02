@@ -88,7 +88,7 @@
                 <div class="fw-bold fs-5">새활용이 만들어낸 새로운 가치</div>
             </div>
             <span class="py-4">
-                <a href="/shop/whole" class="text-white border border-2 p-2 bg-black bg-opacity-75">Shop 바로가기</a>
+                <a href="/shop/WHOLE" class="text-white border border-2 p-2 bg-black bg-opacity-75">Shop 바로가기</a>
             </span>
         </div>
     </div>
