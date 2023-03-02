@@ -1,8 +1,5 @@
 package com.g9.workshop.g9_workshop.user.dao;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

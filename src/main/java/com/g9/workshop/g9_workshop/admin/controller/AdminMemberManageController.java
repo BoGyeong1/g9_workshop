@@ -16,7 +16,8 @@ public class AdminMemberManageController {
 
     // [SOO] 유저 리스트
     @GetMapping("/list")
-    public ModelAndView userList(ModelAndView modelAndView) {
+    public ModelAndView userList(@RequestParam Map params, ModelAndView modelAndView) {
+
         modelAndView.setViewName("admin/member/list");
         return modelAndView;
     }
