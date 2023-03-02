@@ -28,10 +28,11 @@
           <div class="d-flex justify-content-center">
             <img src="/img/logo/G9_Logo_Black.png" class="logo" />
           </div>
-          <div class="fristText fs-5">회원님의 이메일 주소로</div>
-          <div class="fs-5">임시 비밀번호가 발급되었습니다.</div>
+          <div class="fristText fs-5">회원님의 임시비밀번호는</div>
+          <div class="fs-5">${tempPassword} 입니다.</div>
+          <div>로그인 후 개인정보 보호를 위해 빠른 변경 부탁드립니다.</div>
         </div>
-        <form action="/login">
+        <form action="/user/login">
           <div class="d-flex row justify-content-center mt-5 mb-4">
             <button class="find_password_btn">로그인 하기</button>
           </div>

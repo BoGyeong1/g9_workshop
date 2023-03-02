@@ -35,7 +35,7 @@
             <span class="text-end my-1">
               <a
                 class="text-decoration-none text-secondary"
-                href="/login"
+                href="/user/login"
                 >로그인</a
               >
               <span class="text-secondary">|</span>

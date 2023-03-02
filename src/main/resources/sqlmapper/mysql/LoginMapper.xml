@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="LoginMapper">
+<!-- [GYEONG] USER 로그인 -->
 	<select id="selectByUID" parameterType="String" resultType="Map">
 		SELECT * 
 		FROM USERS 
@@ -9,11 +10,35 @@
 		AND EMAIL = #{username} 
         AND USER_CONDITION_UID IN ("UC1")
 	</select>
-
-    	<select id="selectAdmin" parameterType="String" resultType="Map">
+<!-- [GYEONG] ADMIN 로그인 -->
+    <select id="selectAdmin" parameterType="String" resultType="Map">
 		SELECT * 
 		FROM ADMINS 
 	    WHERE 1 = 1
 		AND ID = #{username} 
-	</select>
+
+</select>
+<!-- [GYEONG] 이메일찾기-->
+<select id="findEmail" parameterType="String" resultType="Map">
+SELECT EMAIL
+FROM USERS
+WHERE USER_NAME=#{USER_NAME}
+AND TEL =#{TEL} 
+</select>
+<!-- [GYEONG] 비밀번호 재발급할때 정보확인 -->
+<select id="matchUserInfo" parameterType="String" resultType="Map">
+SELECT PASSWORD
+FROM USERS
+WHERE USER_NAME=#{USER_NAME}
+AND TEL =#{TEL}
+AND EMAIL = #{EMAIL} 
+</select>
+<!-- [GYEONG] 재발급 비밀번호 수정-->
+<update id="updateUserPassword" parameterType="Map" >
+UPDATE USERS
+SET PASSWORD = #{PASSWORD}
+WHERE EMAIL = #{EMAIL} 
+</update>
+
+
 </mapper>
