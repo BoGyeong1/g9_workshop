@@ -2,8 +2,6 @@ package com.g9.workshop.g9_workshop.user.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
