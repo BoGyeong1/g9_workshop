@@ -108,7 +108,7 @@
                         <input type="hidden" id="discount_rate" name="discount_rate" value="${productDetailInfo.DISCOUNT_RATE}">
                         <div class="d-flex justify-content-between">
                             <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
-                            <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/buy">
+                            <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/order">
                             <input class="btn btn-outline-success col-1" type="submit" value="♡" formaction="/like">
                         </div>
                     </form>

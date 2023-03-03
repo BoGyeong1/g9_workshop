@@ -47,7 +47,7 @@
           <form action="/home">
             <button class="main_btn">메인으로 돌아가기</button>
           </form>
-          <form action="/login">
+          <form action="/user/login">
             <button class="login_btn">로그인 하기</button>
           </form>
         </div>
