@@ -35,41 +35,39 @@
                         <button type="submit" id="searchBtn" class="btn btn-outline-dark mx-2">검색</button>
                     </div>
 </form>
-            <%-- 1. 검색창 --%>
-            <%-- 2. 전체 리스트 + 1줄씩 요약 + 30개 페이징 --%>
-            <%-- ??? 더미 회원 최소 100개 필요 --%>
 
                 <div class="fs-4">회원정보</div>
 
                 <table class="mt-2 mb-5 table table-bordered">
                 <thead>
                 <tr>
+                <th class="text-center table-light">ORDER_UID</th>
                 <th class="text-center table-light">USER_UID</th>
-                <th class="text-center table-light">EMAIL</th>
-                <th class="text-center table-light">이름</th>
-                <th class="text-center table-light">전화번호</th>
-                <th class="text-center table-light">포인트</th>
-                <th class="text-center table-light">광고성 정보 수신여부 <br> 이메일 / 문자</th>
-                <th class="text-center table-light">가입날짜</th>
-                <th class="text-center table-light">회원상태</th>
-                <th class="text-center table-light">수정 / 삭제</th>
+                <th class="text-center table-light">상품명</th>
+                <th class="text-center table-light">총가격</th>
+                <th class="text-center table-light">주문날짜</th>
+                <th class="text-center table-light">주문상태</th>
+
                 </tr>
                 </thead>
                 <tbody id="memberListTable">
                 <c:forEach items="${resultMap.resultList}" var="resultData" varStatus="loop">
                 <tr>
+                <td class="text-center">${resultData.ORDER_UID}</td>
                 <td class="text-center">${resultData.USER_UID}</td>
-                <td class="text-center">${resultData.EMAIL}</td>
-                <td class="text-center">${resultData.USER_NAME}</td>
-                <td class="text-center">${resultData.TEL}</td>
-                <td class="text-center">${resultData.POINT}</td>
-                <td class="text-center">${resultData.EMAIL_INFO_AGREE} / ${resultData.TEL_INFO_AGREE}</td>
-                <td class="text-center">${resultData.JOIN_DATE}</td>
-                <td class="text-center">${resultData.CONDITION_NAME}</td>
-                <td class="text-center ">
-                <a href="/admin/member/editUserInfo/${resultData.USER_UID}" class="btn btn-dark">수정</a>  
-                <a href="/admin/member/deleteUserInfo/${resultData.USER_UID}" class="btn btn-danger">삭제</a>
+                <td class="text-center">${resultData.PRODUCT_NAME}
+                    <c:choose>
+                        <c:when test="${resultData.PRODUCT_COUNT == 1}">
+                            ${resultData.PRODUCT_NAME}
+                        </c:when>
+                        <c:otherwise>
+                            외 ${resultData.PRODUCT_COUNT - 1}개
+                        </c:otherwise>
+                    </c:choose>
                 </td>
+                <td class="text-center">${resultData.CONDITION_NAME}</td>
+                <td class="text-center">${resultData.ORDER_DATE}</td>
+                <td class="text-center">${resultData.CONDITION_NAME}</td>
                 </tr>
                 </c:forEach>
                 </tbody>
@@ -82,7 +80,7 @@
     <div id="page">
         <nav aria-label="Page navigation example" >
         <c:set var="_pagination" value="${resultMap.paginations}"/>
-            <span id="totalCount">총 회원수 : ${_pagination.totalCount}</span>
+            <span id="totalCount">총 주문수 : ${_pagination.totalCount}</span>
             <ul class="pagination  justify-content-center" id="pagination">
             <c:if test="${_pagination.currentPage > 1 }">
                 <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"><a class="page-link"
@@ -114,16 +112,7 @@
         </div>
     </div>
 
-<script>
 
-$(document).ready(function() {
-  $('#searchBtn').click(function() {
-        $('#page').addClass('hidden');
-  });
-});
-
-
-    </script>
 
 
 

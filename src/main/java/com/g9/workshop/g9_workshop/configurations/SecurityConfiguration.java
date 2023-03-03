@@ -19,7 +19,8 @@ public class SecurityConfiguration {
                 .antMatchers("/admin/login", "/admin/register", "/admin/regiSucess").permitAll() // admin 로그인 등록 권한 없이
                                                                                                  // 모두 접근가능
                 .antMatchers("/admin/**").hasRole("ADMIN") // admin 페이지는 admin 권한 가진자만 가능
-                .antMatchers("/mypage/**").authenticated() // mypage는 로그인한 자는 모두 접속가능
+                .antMatchers("/mypage/**", "/cart/**", "/order/**").authenticated() // mypage, cart, order는 로그인한 자는 모두
+                                                                                    // 접속가능
                 .anyRequest().permitAll() // 다른페이지는 로그인 안한 사람도 모두 접속가능
 
                 // 로그인/아웃에 대한 부분

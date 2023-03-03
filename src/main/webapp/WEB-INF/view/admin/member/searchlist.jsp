@@ -35,9 +35,7 @@
                         <button type="submit" id="searchBtn" class="btn btn-outline-dark mx-2">검색</button>
                     </div>
 </form>
-            <%-- 1. 검색창 --%>
-            <%-- 2. 전체 리스트 + 1줄씩 요약 + 30개 페이징 --%>
-            <%-- ??? 더미 회원 최소 100개 필요 --%>
+
 
                 <div class="fs-4">회원정보</div>
 
@@ -79,18 +77,18 @@
                     <span id="searchKeywordDisplay"></span>
                 </div>
             </div>
-    <div id="page">
+    <%-- <div id="page">
         <nav aria-label="Page navigation example" >
         <c:set var="_pagination" value="${resultMap.paginations}"/>
             <span id="totalCount">총 회원수 : ${_pagination.totalCount}</span>
             <ul class="pagination  justify-content-center" id="pagination">
             <c:if test="${_pagination.currentPage > 1 }">
                 <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"><a class="page-link"
-								href="/admin/member/listPagination/1" >맨 처음</a>
+								href="/admin/member/search/1" >맨 처음</a>
 				</li>
             </c:if>
                 <li class="page-item ${_pagination.currentBlock > 1 ? '' : 'disabled'}"><a class="page-link"
-							href="/admin/member/listPagination/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
+							href="/admin/member/search/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
 				</li>
                 
         <c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
@@ -98,35 +96,21 @@
         </c:forEach>
         <li class="page-item ${_pagination.currentBlock <= _pagination.totalBlock ? '' : 'disabled'}"><a
 							class="page-link"
-							href="/admin/member/listPagination/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
+							href="/admin/member/search/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
 	    </li>
 		<c:if test="${_pagination.currentPage < _pagination.totalPage}">
 			<li class="page-item ${_pagination.currentPage < _pagination.totalPage ? '' : 'disabled'}"><a
 					class="page-link"
-					href="/admin/member/listPagination/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
+					href="/admin/member/search/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
 					끝</a>
             </li>
 		</c:if>
         </ul>
         </nav>
-    </div>
+    </div> --%>
 
         </div>
     </div>
-
-<script>
-
-$(document).ready(function() {
-  $('#searchBtn').click(function() {
-        $('#page').addClass('hidden');
-  });
-});
-
-
-    </script>
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

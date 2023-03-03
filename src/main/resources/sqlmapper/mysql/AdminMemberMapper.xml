@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminMemberMapper">
+
+<!-- [GYEONG]유저 리스트 가져오기 -->
+<select id="selectMemberList" parameterType="Map" resultType="Map">
+SELECT U.*, UC.CONDITION_NAME
+FROM USERS U
+INNER JOIN USER_CONDITIONS UC 
+ON UC.USER_CONDITION_UID = U.USER_CONDITION_UID
+ORDER BY U.JOIN_DATE DESC
+</select>
+<!-- [GYEONG]유저의 총 갯수 구하기 -->
+<select id="selectTotal" parameterType="Map" resultType="Int">
+    SELECT COUNT(*) as cnt 
+    FROM USERS
+</select>
+<!-- [GYEONG] 수정할 유저 정보 가져오기 -->
+<select id="selectMemberInfo" parameterType="Map" resultType="Map">
+SELECT U.*, UC.CONDITION_NAME, A.*
+FROM USERS U
+INNER JOIN USER_CONDITIONS UC 
+ON UC.USER_CONDITION_UID = U.USER_CONDITION_UID
+INNER JOIN ADDRESSES A
+ON A.USER_UID = U.USER_UID
+WHERE U.USER_UID = #{USER_UID}
+AND A.ADDRESS_NAME = '기본'
+</select>
+<!-- [GYEONG] 유저 컨디션 테이블 가져오기-->
+<select id="selectUserContions" parameterType="Map" resultType="Map">
+SELECT *
+FROM USER_CONDITIONS
+</select>
+<update id="updateUserInfo" parameterType="Map" >
+UPDATE USERS, ADDRESSES
+SET USERS.USER_NAME=#{USER_NAME}, USERS.TEL = #{TEL}, USERS.POINT=#{POINT}, ADDRESSES.ZIP_CODE=#{ZIP_CODE}, ADDRESSES.ADDRESS=#{ADDRESS}, ADDRESSES.DETAIL=#{DETAIL}
+WHERE USERS.USER_UID=#{USER_UID}
+AND ADDRESSES.USER_UID = USERS.USER_UID
+AND ADDRESSES.ADDRESS_NAME="기본"
+</update>
+
+<select id="selectUserSearch" parameterType="Map" resultType="Map">
+SELECT U.*, UC.CONDITION_NAME
+FROM USERS U
+INNER JOIN USER_CONDITIONS UC 
+ON UC.USER_CONDITION_UID = U.USER_CONDITION_UID 
+WHERE U.${searchType} LIKE CONCAT('%', #{searchKeyword}, '%')
+ORDER BY U.JOIN_DATE DESC
+</select>
+
+<!-- [GYEONG]유저의 총 갯수 구하기 -->
+<select id="selectSearchTotal" parameterType="Map" resultType="Int">
+    SELECT COUNT(*) as cnt 
+    FROM USERS
+    INNER JOIN USER_CONDITIONS UC 
+    ON UC.USER_CONDITION_UID = USERS.USER_CONDITION_UID 
+    WHERE USERS.${searchType} LIKE CONCAT('%', #{searchKeyword}, '%')
+    ORDER BY USERS.JOIN_DATE DESC
+</select>
+
+
+<!--[GYEONG] 회원정보 삭제 -->
+<delete id="deleteUserInfo" parameterType="Map" >
+    SET FOREIGN_KEY_CHECKS = 0;
+    DELETE FROM USERS WHERE USER_UID=#{USER_UID};
+    SET FOREIGN_KEY_CHECKS = 1;
+</delete>
+
+
+<!-- [GYEONG]Admin 리스트 가져오기 -->
+<select id="selectAdminList" parameterType="Map" resultType="Map">
+SELECT *
+FROM ADMINS
+</select>
+
+
+<!--[GYEONG] Admin 삭제 -->
+<delete id="deleteAdminInfo" parameterType="Map" >
+    SET FOREIGN_KEY_CHECKS = 0;
+    DELETE FROM ADMINS WHERE ADMIN_UID=#{ADMIN_UID};
+    SET FOREIGN_KEY_CHECKS = 1;
+</delete>
+
+
+</mapper>

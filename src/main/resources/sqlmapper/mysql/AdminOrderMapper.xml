@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminOrderMapper">
+
+   <!-- [GYEONG] 총 주문내역 뽑기 -->
+    <select id="selectAdminOrderList" parameterType="Map" resultType="Map">
+    SELECT 
+        ORDERS.ORDER_UID,
+        ORDERS.USER_UID,
+        ORDERS.ORDER_DATE,
+        MIN(PRODUCTS.PRODUCT_NAME) AS PRODUCT_NAME,
+        COUNT(DISTINCT ORDER_DETAILS.PRODUCT_UID) AS PRODUCT_COUNT,
+        SUM(ORDER_DETAILS.PRICE * CASE WHEN PRODUCTS.DISCOUNT_RATE > 0 THEN PRODUCTS.DISCOUNT_RATE ELSE 1 END * ORDER_DETAILS.QUANTITY) AS TOTAL_PRICE,
+        ORDER_CONDITIONS.CONDITION_NAME
+    FROM 
+        ORDERS
+        INNER JOIN ORDER_DETAILS ON ORDERS.ORDER_UID = ORDER_DETAILS.ORDER_UID
+        INNER JOIN ORDER_CONDITIONS ON ORDER_CONDITIONS.ORDER_CONDITION_UID = ORDER_DETAILS.ORDER_CONDITION_UID
+        INNER JOIN PRODUCTS ON PRODUCTS.PRODUCT_UID = ORDER_DETAILS.PRODUCT_UID
+        INNER JOIN USERS ON USERS.USER_UID = ORDERS.USER_UID
+    GROUP BY 
+        ORDERS.ORDER_UID
+    </select>
+
+    <!-- [GYEONG] 총주문갯수 구하기 -->
+    <select id="selectOrderCount" parameterType="Map" resultType="Int">
+    SELECT COUNT(*) AS ORDER_COUNT
+    FROM ORDERS
+    </select>
+
+</mapper>
