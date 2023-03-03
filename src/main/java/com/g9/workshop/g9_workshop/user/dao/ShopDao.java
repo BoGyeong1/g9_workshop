@@ -39,4 +39,9 @@ public class ShopDao {
         return result;
     }
 
+    public Object deleteOne(String sqlMapId, Map dataMap) {
+        Object result = sqlSessionTemplate.delete(sqlMapId, dataMap);
+        return result;
+    }
+
 }
