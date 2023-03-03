@@ -86,6 +86,25 @@ public class AdminMemberManageController {
         return modelAndView;
     }
 
+    @GetMapping(value = "/adminList")
+    public ModelAndView adminList(@RequestParam Map params, ModelAndView modelAndView) {
+        Object resultMap = adminMemberService.getAdminList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("admin/member/adminlist");
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteAdminInfo/{adminUid}")
+    public ModelAndView deleteAdminInfo(@RequestParam Map params, @PathVariable String adminUid,
+            ModelAndView modelAndView) {
+        params.put("ADMIN_UID", adminUid);
+        Object resultMap = adminMemberService.deleteAdminInfoGetList(params);
+        modelAndView.addObject("resultMap", resultMap);
+
+        modelAndView.setViewName("admin/member/adminlist");
+        return modelAndView;
+    }
+
     // [SOO] 유저 리스트
     @GetMapping("/detail/{userUid}")
     public ModelAndView userStatus(@PathVariable String userUid, ModelAndView modelAndView) {

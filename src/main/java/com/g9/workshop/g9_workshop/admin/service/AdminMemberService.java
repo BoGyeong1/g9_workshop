@@ -106,4 +106,22 @@ public class AdminMemberService {
         return result;
     }
 
+    public Object getAdminList(Object dataMap) {
+        String sqlMapId = "AdminMemberMapper.selectAdminList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void deleteAdminInfo(Object dataMap) {
+        sharedDao.deleteOne("AdminMemberMapper.deleteAdminInfo", dataMap);
+
+    }
+
+    public Object deleteAdminInfoGetList(Object dataMap) {
+        this.deleteAdminInfo(dataMap);
+        Object result = this.getAdminList(dataMap);
+        return result;
+
+    }
+
 }

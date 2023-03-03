@@ -21,27 +21,33 @@
                 <img src="/img/logo/G9_Logo_Black.png" alt="G9_Logo_Black" class="w-25">
             </div>
             <h1 class="text-center">
-                Admin System
+                Admin System 등록
             </h1>
             <form action="/admin/regiSucess" method="POST" >
-            <br>
-                <label>어드민 ID</label>
-                <input type="text" name="ID">
-                <br>    
+            <div class="d-flex justify-content-center mt-5">
+                <label for='id' class="me-3">어드민 ID</label>
+                <input type="text" name="ID" id="id">
+                  
+             </div>
              <br>
-            <label>패스워드</label>
+             <div class="d-flex justify-content-center mt-3">
+            <label class="me-3">패스워드</label>
             <input type="password" name="PASSWORD">
+            </div>
                 <br>
-                <br>
-                <label>어드민명</label>
+            <div class="d-flex justify-content-center mt-3">
+                <label class="me-3">어드민명</label>
                 <input type="text" name="ADMIN_NAME">
-                <br>        
+            </div>      
                 <br>
-            <label>별명</label>
+            <div class="d-flex justify-content-center mt-3">    
+            <label class="me-3">별명</label>
             <input type="text" name="NICKNAME">
+             </div> 
             <br>
-            <br>
-            <button type="submit"> 가입</button>
+             <div class="d-flex justify-content-center mt-3"> 
+            <button type="submit" class="btn btn-dark"> 가입</button>
+             </div> 
             </form>
         </div>
     </div>
