@@ -36,7 +36,7 @@
                     </div>
 </form>
 
-                <div class="fs-4">회원정보</div>
+                <div class="fs-4">주문내역</div>
 
                 <table class="mt-2 mb-5 table table-bordered">
                 <thead>
