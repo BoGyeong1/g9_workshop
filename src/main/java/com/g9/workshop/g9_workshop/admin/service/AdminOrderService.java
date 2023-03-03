@@ -71,4 +71,22 @@ public class AdminOrderService {
         return result;
     }
 
+    public int getCancelOrderCount(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectCancelOrderListCount";
+        int result = (int) sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getCancelOrderListWithPagination(Object dataMap) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        int totalCount = (int) this.getCancelOrderCount(dataMap);
+        int currentPage = (int) ((Map) dataMap).get("currentPage");
+        Paginations paginations = new Paginations(totalCount, currentPage);
+        result.put("paginations", paginations);
+        ((Map) dataMap).put("pageBegin", paginations.getPageBegin());
+        ((Map) dataMap).put("pageScale", paginations.getPageScale());
+        result.put("resultList", this.getCancelOrderList(dataMap));
+        return result;
+    }
+
 }

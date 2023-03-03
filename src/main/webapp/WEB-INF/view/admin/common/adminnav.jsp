@@ -39,7 +39,7 @@
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                         <li><a href="/admin/order/orderList/1" class="btn link-dark rounded text-decoration-none">주문현황</a></li>
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">배송현황</a></li>
-                        <li><a href="/admin/order/cancelOrder" class="btn link-dark rounded text-decoration-none">취소관리</a></li>
+                        <li><a href="/admin/order/cancelOrder/1" class="btn link-dark rounded text-decoration-none">취소관리</a></li>
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">교환관리</a></li>
                     </ul>
                 </div>

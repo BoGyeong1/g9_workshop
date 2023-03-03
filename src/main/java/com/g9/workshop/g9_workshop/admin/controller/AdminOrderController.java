@@ -46,10 +46,11 @@ public class AdminOrderController {
     }
 
     // [GYEONG] 주문 취소내역
-    @GetMapping("/cancelOrder")
-    public ModelAndView cancelOrder(@RequestParam Map params, ModelAndView modelAndView) {
-
-        Object resultMap = adminOrderService.getCancelOrderList(params);
+    @GetMapping("/cancelOrder/{currentPage}")
+    public ModelAndView cancelOrder(@RequestParam Map params, @PathVariable String currentPage,
+            ModelAndView modelAndView) {
+        params.put("currentPage", Integer.parseInt(currentPage));
+        Object resultMap = adminOrderService.getCancelOrderListWithPagination(params);
         modelAndView.addObject("resultMap", resultMap);
         Object statistics = adminOrderService.getCancelOrderStatistics(params);
         modelAndView.addObject("statistics", statistics);

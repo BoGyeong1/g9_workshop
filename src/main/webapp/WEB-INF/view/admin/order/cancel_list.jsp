@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody id="memberListTable">
-                <c:forEach items="${resultMap}" var="resultData" varStatus="loop">
+                <c:forEach items="${resultMap.resultList}" var="resultData" varStatus="loop">
                 <tr>
                 <td class="text-center">${resultData.CANCELLED_ORDER_UID}</td>
                 <td class="text-center">${resultData.ORDER_UID}</td>
@@ -45,6 +45,38 @@
                 </c:forEach>
                 </tbody>
                 </table>
+
+     <div id="page">
+        <nav aria-label="Page navigation example" >
+        <c:set var="_pagination" value="${resultMap.paginations}"/>
+            <span id="totalCount">총 취소 내역수 : ${_pagination.totalCount}</span>
+            <ul class="pagination  justify-content-center" id="pagination">
+            <c:if test="${_pagination.currentPage > 1 }">
+                <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"><a class="page-link"
+								href="/admin/order/cancelOrder/1" >맨 처음</a>
+				</li>
+            </c:if>
+                <li class="page-item ${_pagination.currentBlock > 1 ? '' : 'disabled'}"><a class="page-link"
+							href="/admin/order/cancelOrder/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
+				</li>
+                
+        <c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
+                <li class="page-item"><a class="page-link" href="/admin/order/orderList/${i}">${i}</a></li>
+        </c:forEach>
+        <li class="page-item ${_pagination.currentBlock <= _pagination.totalBlock ? '' : 'disabled'}"><a
+							class="page-link"
+							href="/admin/order/cancelOrder/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
+	    </li>
+		<c:if test="${_pagination.currentPage < _pagination.totalPage}">
+			<li class="page-item ${_pagination.currentPage < _pagination.totalPage ? '' : 'disabled'}"><a
+					class="page-link"
+					href="/admin/order/cancelOrder/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
+					끝</a>
+            </li>
+		</c:if>
+        </ul>
+        </nav>
+    </div>
            
            
             <div class="fs-4">취소사유 통계</div>
