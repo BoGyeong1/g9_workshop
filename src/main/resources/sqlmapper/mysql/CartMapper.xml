@@ -4,7 +4,21 @@
 <mapper namespace="CartMapper">
 
     <select id="selectCartList" resultType="Map" parameterType="String">
-        SELECT * FROM EVENT_DETAILS
+        SELECT CART_UID, USER_UID, CARTS.PRODUCT_UID, QUANTITY, PRODUCT_NAME, PRICE, DISCOUNT_RATE, DIRECTORY_NAME, PHYSICAL_FILE_NAME
+        FROM CARTS
+        INNER JOIN PRODUCTS ON CARTS.PRODUCT_UID = PRODUCTS.PRODUCT_UID
+        INNER JOIN PRODUCT_IMGS ON CARTS.PRODUCT_UID = PRODUCT_IMGS.PRODUCT_UID
+        WHERE PHYSICAL_FILE_NAME = 'thumbnail-1.jpg' AND USER_UID = #{user-uid}
     </select>
+
+    <insert id="insertCart" parameterType="Map">
+        INSERT INTO CARTS
+        VALUE (#{cart-uid}, #{user-uid}, #{product-uid}, #{count})
+    </insert>
+
+    <delete id="deleteCart" parameterType="Map">
+        DELETE FROM CARTS
+        WHERE CART_UID = #{cart-uid}
+    </delete>
 
 </mapper>
