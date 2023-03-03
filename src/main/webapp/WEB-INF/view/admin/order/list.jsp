@@ -23,18 +23,16 @@
         <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
             <div id="search-form">
-<form action = "/admin/member/search" method ="post">
+                <form action = "/admin/order/search" method ="post">
                     <div class="d-flex justify-content-center">
                         <select class="form-select w-25 mx-2" name="searchType" id="searchType">
-                            <option value="USER_UID">UID</option>
-                            <option value="EMAIL">이메일</option>
-                            <option value="USER_NAME">이름</option>
-                            <option value="TEL">휴대폰</option>
+                            <option value="ORDER_UID">ORDER_UID</option>
+                            <option value="USER_UID">USER_UID</option>
                         </select>
                         <input class="form-control w-25 mx-2" type="text" name="searchKeyword" id="searchKeyword">
                         <button type="submit" id="searchBtn" class="btn btn-outline-dark mx-2">검색</button>
                     </div>
-</form>
+                </form>
 
                 <div class="fs-4">주문내역</div>
 
@@ -53,7 +51,7 @@
                 <tbody id="memberListTable">
                 <c:forEach items="${resultMap.resultList}" var="resultData" varStatus="loop">
                 <tr>
-                <td class="text-center">${resultData.ORDER_UID}</td>
+                <td class="text-center"><a href="/admin/order/orderDetail/${resultData.ORDER_UID}">${resultData.ORDER_UID}</a></td>
                 <td class="text-center">${resultData.USER_UID}</td>
                 <td class="text-center">${resultData.PRODUCT_NAME}
                     <c:choose>
@@ -84,24 +82,24 @@
             <ul class="pagination  justify-content-center" id="pagination">
             <c:if test="${_pagination.currentPage > 1 }">
                 <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"><a class="page-link"
-								href="/admin/member/listPagination/1" >맨 처음</a>
+								href="/admin/order/orderList/1" >맨 처음</a>
 				</li>
             </c:if>
                 <li class="page-item ${_pagination.currentBlock > 1 ? '' : 'disabled'}"><a class="page-link"
-							href="/admin/member/listPagination/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
+							href="/admin/order/orderList/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
 				</li>
                 
         <c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
-                <li class="page-item"><a class="page-link" href="/admin/member/listPagination/${i}">${i}</a></li>
+                <li class="page-item"><a class="page-link" href="/admin/order/orderList/${i}">${i}</a></li>
         </c:forEach>
         <li class="page-item ${_pagination.currentBlock <= _pagination.totalBlock ? '' : 'disabled'}"><a
 							class="page-link"
-							href="/admin/member/listPagination/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
+							href="/admin/order/orderList/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
 	    </li>
 		<c:if test="${_pagination.currentPage < _pagination.totalPage}">
 			<li class="page-item ${_pagination.currentPage < _pagination.totalPage ? '' : 'disabled'}"><a
 					class="page-link"
-					href="/admin/member/listPagination/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
+					href="/admin/order/orderList/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
 					끝</a>
             </li>
 		</c:if>

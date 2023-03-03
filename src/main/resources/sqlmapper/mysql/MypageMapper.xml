@@ -168,9 +168,10 @@ WHERE ORDER_UID = #{orderId}
 SELECT COUNT(*) 
 FROM CANCELLED_ORDERS CO
 INNER JOIN ORDERS O
-ON CO.ORDERS_UID = O.ORDERS_UID
+ON CO.ORDER_UID = O.ORDER_UID
 WHERE O.ORDER_UID = #{orderId}
 </select>
+
 <!-- 반품 / 교환 신청 하려는 Uid, productName List 가져오기 -->
 <select id="selectRefundExchangeUidProductNameList" parameterType="Map" resultType="Map">
 SELECT OD.ORDER_DETAIL_UID, P.PRODUCT_NAME

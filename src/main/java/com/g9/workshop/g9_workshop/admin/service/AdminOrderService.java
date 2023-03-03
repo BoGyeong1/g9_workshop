@@ -47,4 +47,28 @@ public class AdminOrderService {
         return result;
     }
 
+    public Object getOrdeDetailList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectAdminOrderDetailList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getOrdeDetailAddress(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectOrderAddress";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getCancelOrderList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectCancelOrderList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getCancelOrderStatistics(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectCancelOrderStatistics";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
 }

@@ -32,6 +32,31 @@ public class AdminOrderController {
         return modelAndView;
     }
 
+    // [GYEONG] 주문 상세내역 출력
+    @GetMapping("/orderDetail/{orderUid}")
+    public ModelAndView orderDetail(@RequestParam Map params, @PathVariable String orderUid,
+            ModelAndView modelAndView) {
+        params.put("ORDER_UID", orderUid);
+        Object resultMap = adminOrderService.getOrdeDetailList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        Object address = adminOrderService.getOrdeDetailAddress(params);
+        modelAndView.addObject("address", address);
+        modelAndView.setViewName("admin/order/detaillist");
+        return modelAndView;
+    }
+
+    // [GYEONG] 주문 취소내역
+    @GetMapping("/cancelOrder")
+    public ModelAndView cancelOrder(@RequestParam Map params, ModelAndView modelAndView) {
+
+        Object resultMap = adminOrderService.getCancelOrderList(params);
+        modelAndView.addObject("resultMap", resultMap);
+        Object statistics = adminOrderService.getCancelOrderStatistics(params);
+        modelAndView.addObject("statistics", statistics);
+        modelAndView.setViewName("admin/order/cancel_list");
+        return modelAndView;
+    }
+
     // @PostMapping("/search")
     // public ModelAndView userSearch(@RequestParam Map params, ModelAndView
     // modelAndView) {
