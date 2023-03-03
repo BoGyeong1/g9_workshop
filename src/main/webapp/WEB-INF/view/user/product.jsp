@@ -91,7 +91,7 @@
                                 <button onclick="count('plus')" class="btn btn-success">
                                     <i class="bi bi-plus"></i>
                                 </button>
-                                <input type="text" value="1" id="cnt" class="form-control w-25 mx-1" onchange="updateTotal()">
+                                <input type="text" value="1" id="cnt" name="cnt" class="form-control w-25 mx-1" onchange="updateTotal()">
                                 <button onclick="count('minus')" class="btn btn-success">
                                     <i class="bi bi-dash-lg"></i>
                                 </button>
@@ -101,10 +101,11 @@
                             </div>
                         </div>
                     </div>
-                    <form class="" method="post">
-                        <input type="hidden" value="${params.product_uid}">
-                        <input type="hidden" id="price" value="${productDetailInfo.PRICE}">
-                        <input type="hidden" id="discount_rate" value="${productDetailInfo.DISCOUNT_RATE}">
+                    <form class="" method="post" id="product-form">
+                        <input type="hidden" id="count" name="count" value="1">
+                        <input type="hidden" id="product-uid" name="product-uid" value="${params.product_uid}">
+                        <input type="hidden" id="price" name="price" value="${productDetailInfo.PRICE}">
+                        <input type="hidden" id="discount_rate" name="discount_rate" value="${productDetailInfo.DISCOUNT_RATE}">
                         <div class="d-flex justify-content-between">
                             <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
                             <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/buy">
