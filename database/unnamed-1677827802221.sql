@@ -1,10 +1,3 @@
-CREATE DATABASE earth_workshop DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
-
-use earth_workshop;
-
-SET sql_mode='';
-
-
 
 CREATE TABLE ADDRESSES
 (
