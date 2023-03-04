@@ -38,14 +38,17 @@
         <%@ include file="/WEB-INF/view/user/mypage/mypage_nav/mypage_left_nav.jsp" %>
         <!-- 마이페이지 본문 -->
         <div class="content">
+        <c:if test="${not empty message}">
+          <script>
+            alert("${message}");
+          </script>
+        </c:if>
           <div class="title fs-3">회원탈퇴</div>
-
-          <hr class="hr"/>
-    
-              <div class="title"><span class="fs-5">회원확인</span><span class="ms-5" >${email}</span></div>
+          <hr class="hr"/>  
+          <div class="title"><span class="fs-5">회원확인</span><span class="ms-5" >${email}</span></div>
 
        
-<form action="/mypage/withdrawProcess" method="POST">
+      <form action="/mypage/withdrawProcess" method="POST">
           <div class="title mt-5 fs-5">비밀번호 확인</div>
           <hr class="hr"/>
           <div>탈퇴하시려면 비밀번호를 입력해주십시오.</div>

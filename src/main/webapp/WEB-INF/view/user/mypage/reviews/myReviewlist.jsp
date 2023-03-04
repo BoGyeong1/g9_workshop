@@ -62,6 +62,9 @@
     </tr>
   </thead>
   <tbody id="reviewList">
+          <c:if test="${empty resultMap}">
+          <tr><td colspan="5"><div>내가 작성한 리뷰내역이 없습니다.</div></tr>
+          </c:if>
     <c:forEach var="product" items="${resultMap}">
       <tr>
         <td><fmt:formatDate value="${product.CREATE_DATE}" pattern="yyyy-MM-dd" var="createDate" />${createDate}</a></td>

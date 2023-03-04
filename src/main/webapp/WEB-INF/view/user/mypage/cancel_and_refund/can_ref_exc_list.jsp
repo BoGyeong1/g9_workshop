@@ -51,11 +51,18 @@
               </tr>
             </thead>
             <tbody>
+            <c:if test="${empty resultMap}">
+              <tr>
+              <td colspan="3">
+              <div class="text-center">내역이 없습니다.</div>
+              <td>
+              </tr>
+            </c:if> 
             <c:forEach var="item" items="${resultMap}">
               <tr>
              
-<td><fmt:parseDate value="${item.APPLICATION_DATE}" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
-<fmt:formatDate value="${date}" pattern="yyyyMMdd" /></td>
+            <td><fmt:parseDate value="${item.APPLICATION_DATE}" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
+            <fmt:formatDate value="${date}" pattern="yyyyMMdd" /></td>
 
                 <td>${item.PRODUCT_NAME}</a></td>
                 <td>${item.ORDER_CONDITION}</td>

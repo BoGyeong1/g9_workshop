@@ -26,6 +26,7 @@
               <span class="menuTitle">회원정보</span>
               <ul>
                 <li><a class="subTitle" href="/mypage/changeUserInfo">회원정보 변경</a></li>
+                <li><a class="subTitle" href="/mypage/changePasswordMenu">비밀번호 변경</a></li>
                 <li><a class="subTitle" href="/mypage/withdraw">회원탈퇴</a></li>
               </ul>
             </li>

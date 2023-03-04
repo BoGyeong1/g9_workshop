@@ -55,7 +55,7 @@
             </button>
           </form>
         </div>
-        <!-- 네이버 회원가입 버튼 -->
+        <%-- <!-- 네이버 회원가입 버튼 -->
         <div class="button m-4">
           <button id="naver_signup">
             <span>네이버로 회원가입</span>
@@ -64,7 +64,7 @@
         <!-- 카카오 회원가입 버튼 -->
         <div class="button m-4">
           <button id="kakao_signup">카카오로 회원가입</button>
-        </div>
+        </div> --%>
       </div>
     </main>
         <%-- [GYEONG] 23.02.14 footer --%>

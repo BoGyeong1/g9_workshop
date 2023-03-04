@@ -58,6 +58,10 @@
       </tr>
     </thead>
     <tbody>
+          <c:if test="${empty resultMap}">
+          <tr><td colspan="5"><div>위시리스트가 없습니다.</div></tr>
+          </c:if>
+    
       <c:forEach var="item" items="${resultMap}">
         <tr>
           <td><input type="checkbox" name="PRODUCT_UID" value="${item.PRODUCT_UID}" /></td>

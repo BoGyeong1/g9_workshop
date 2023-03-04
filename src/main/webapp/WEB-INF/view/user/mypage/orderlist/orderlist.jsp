@@ -56,6 +56,9 @@
         </tr>
     </thead>
     <tbody>
+          <c:if test="${empty orderList}">
+          <tr><td colspan="5"><div>주문 내역이 없습니다.</div></tr>
+          </c:if>
         <c:forEach var="order" items="${orderList}">
             <tr>
                 <td><a href="/mypage/orderDetail/${order.ORDER_UID}">${order.ORDER_UID}</a></td>

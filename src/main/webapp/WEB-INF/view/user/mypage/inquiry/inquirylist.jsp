@@ -57,6 +57,9 @@
       </tr>
     </thead>
     <tbody>
+          <c:if test="${empty resultMap}">
+          <tr><td colspan="4"><div>1:1문의내역이 없습니다.</div></tr>
+          </c:if>
       <!-- resultMap을 이용하여 문의 리스트를 출력 -->
       <c:forEach var="inquiry" items="${resultMap}">
         <tr>

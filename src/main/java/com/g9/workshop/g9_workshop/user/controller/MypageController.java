@@ -666,7 +666,9 @@ public class MypageController {
                 Object reviewCnt = mypageService.getReviewCnt(params);
                 modelAndView.addObject("reviewCnt", reviewCnt);
 
-                modelAndView.setViewName("/mypage/withdraw");
+                modelAndView.addObject("message", "비밀번호가 일치하지 않습니다.");
+
+                modelAndView.setViewName("forward:/mypage/withdraw");
 
                 return modelAndView;
             }
@@ -717,13 +719,35 @@ public class MypageController {
         return "redirect:/mypage/changeUserInfo";
     }
 
+    @RequestMapping(value = "/changePasswordMenu")
+    public ModelAndView changePasswordMenu(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String userUid = principal.getUserUid();
+        int point = principal.getPoint();
+        String userName = principal.getMemberName();
+        String email = principal.getUsername();
+        modelAndView.addObject("userUid", userUid);
+        modelAndView.addObject("point", point);
+        modelAndView.addObject("userName", userName);
+        modelAndView.addObject("email", email);
+        Object reviewCnt = mypageService.getReviewCnt(params);
+        modelAndView.addObject("reviewCnt", reviewCnt);
+
+        modelAndView.setViewName("/user/mypage/change_password");
+        return modelAndView;
+    }
+
     @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
-    @ResponseBody
-    public Map<String, Object> changePassword(@RequestParam Map params) {
-        Map<String, Object> response = new HashMap<>();
-        String existingPassword = (String) params.get("existingPassword");
-        String newPassword = (String) params.get("newPassword");
-        String newPasswordConfirm = (String) params.get("newPasswordConfirm");
+    public ModelAndView changePassword(@RequestParam Map<String, String> params,
+            HttpServletRequest request,
+            HttpServletResponse response) {
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        String existingPassword = params.get("existingPassword");
+        String newPassword = params.get("newPassword");
+        String newPasswordConfirm = params.get("newPasswordCheck");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
@@ -731,26 +755,42 @@ public class MypageController {
 
             if (!passwordEncoder.matches(existingPassword, userDetails.getPassword())) {
                 // 현재 비밀번호가 일치하지 않는 경우
-                response.put("success", false);
-                response.put("message", "현재 비밀번호가 일치하지 않습니다.");
+                modelAndView.addObject("success", false);
+                modelAndView.addObject("message", "현재 비밀번호가 일치하지 않습니다.");
+                modelAndView.setViewName("forward:/mypage/changePasswordMenu"); // forward로 View 설정
             } else if (!newPassword.equals(newPasswordConfirm)) {
                 // 새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않는 경우
-                response.put("success", false);
-                response.put("message", "새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않습니다.");
+                modelAndView.addObject("success", false);
+                modelAndView.addObject("message", "새로운 비밀번호와 새로운 비밀번호 확인이 일치하지 않습니다.");
+                modelAndView.setViewName("forward:/mypage/changePasswordMenu"); // forward로 View 설정
             } else {
                 // 비밀번호 변경
                 mypageService.updatePassword(params);
 
-                response.put("success", true);
-                response.put("message", "비밀번호가 변경되었습니다.");
+                // 로그아웃
+                SecurityContextHolder.clearContext();
+                HttpSession session = request.getSession(false);
+                if (session != null) {
+                    session.invalidate();
+                }
+                Cookie[] cookies = request.getCookies();
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        cookie.setMaxAge(0);
+                        response.addCookie(cookie);
+                    }
+                }
+
+                modelAndView.addObject("success", true);
+                modelAndView.addObject("message", "비밀번호가 변경되었습니다.");
+                modelAndView.setViewName("redirect:/home"); // redirect로 View 설정
             }
         } else {
             // 로그인 되어 있지 않은 경우
-            response.put("success", false);
-            response.put("message", "로그인 되어 있지 않습니다.");
+            modelAndView.setViewName("redirect:/user/login"); // 로그인 페이지로 redirect
         }
 
-        return response;
+        return modelAndView;
     }
 
     // [GYEONG] 리뷰 수정하러가기

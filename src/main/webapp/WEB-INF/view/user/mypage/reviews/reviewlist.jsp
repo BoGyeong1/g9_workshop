@@ -59,6 +59,9 @@
     </tr>
   </thead>
   <tbody id="reviewList">
+            <c:if test="${empty resultMap}">
+          <tr><td colspan="3"><div>작성가능한 리뷰 상품이 없습니다.</div></tr>
+          </c:if>
     <c:forEach var="product" items="${resultMap}">
       <tr>
         <td><fmt:formatDate value="${product.ORDER_DATE}" pattern="yyyy-MM-dd" var="orderDate" />${orderDate}</td>
