@@ -89,4 +89,117 @@ public class AdminOrderService {
         return result;
     }
 
+    public Object getCancelOrderSearchList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectAdminOrderSearchList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getShippingList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectShippingList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getShippingListCount(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectShippingListCount";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getShippingListWithPagination(Object dataMap) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        int totalCount = (int) this.getShippingListCount(dataMap);
+        int currentPage = (int) ((Map) dataMap).get("currentPage");
+        Paginations paginations = new Paginations(totalCount, currentPage);
+        result.put("paginations", paginations);
+        ((Map) dataMap).put("pageBegin", paginations.getPageBegin());
+        ((Map) dataMap).put("pageScale", paginations.getPageScale());
+        result.put("resultList", this.getShippingList(dataMap));
+        return result;
+    }
+
+    public Object getShippingListRadio(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectShippingListRadio";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getLogisticsList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectLogistics";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getOrderConditions(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectOrderConditions";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getWaybillInfo(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectWaybill";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void updateWaybillInfo(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.updateWaybill";
+        sharedDao.update(sqlMapId, dataMap);
+        sqlMapId = "AdminOrderMapper.updateOrderDetailWaybill";
+        sharedDao.update(sqlMapId, dataMap);
+    }
+
+    public Object getListAndUpdateWaybillInfo(Object dataMap) {
+        this.updateWaybillInfo(dataMap);
+        Object result = this.getShippingList(dataMap);
+        return result;
+    }
+
+    public Object getRefundList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectRefundList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void updateRefund(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.updateRefund";
+        sharedDao.update(sqlMapId, dataMap);
+    }
+
+    public Object getListAndUpdateRefund(Object dataMap) {
+        this.updateRefund(dataMap);
+        Object result = this.getRefundList(dataMap);
+        return result;
+    }
+
+    public Object getExchangeList(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectExchangeList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public void updateExchange(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.updateExchange";
+        sharedDao.update(sqlMapId, dataMap);
+    }
+
+    public Object getListAndUpdateExchange(Object dataMap) {
+        this.updateExchange(dataMap);
+        Object result = this.getExchangeList(dataMap);
+        return result;
+    }
+
+    public Object getRefundDetail(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectRefundDetail";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getExchageDetail(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectExchangeDetail";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
 }

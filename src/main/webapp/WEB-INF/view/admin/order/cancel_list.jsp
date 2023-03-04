@@ -61,7 +61,7 @@
 				</li>
                 
         <c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
-                <li class="page-item"><a class="page-link" href="/admin/order/orderList/${i}">${i}</a></li>
+                <li class="page-item"><a class="page-link" href="/admin/order/cancelOrder/${i}">${i}</a></li>
         </c:forEach>
         <li class="page-item ${_pagination.currentBlock <= _pagination.totalBlock ? '' : 'disabled'}"><a
 							class="page-link"
