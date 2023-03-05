@@ -32,4 +32,21 @@
         WHERE ADDRESS_UID = #{addressUid} AND EXPOSURE = 'YES'
     </select>
 
+    <insert id="insertSelfAddress" parameterType="Map">
+        INSERT INTO ADDRESSES
+        VALUE (#{userUid}, #{address-uid}, 'Self', #{zipcode}, #{address}, #{detail}, 'NO')
+    </insert>
+
+    <insert id="insertSelfDeliveryLocation" parameterType="Map">
+        INSERT INTO DELIVERY_LOCATIONS
+        VALUE (#{delivery-location-uid}, #{delivery-location-self}, 'NO')
+    </insert>
+
+    <insert id="insertOrder" parameterType="Map">
+        INSERT INTO Orders
+        VALUE (#{orderUid}, #{userUid}, #{address-uid}, #{delivery-location-uid}, #{paymentMethod-uid}, sysdate(), #{recipient_name}, #{recipient_tel})
+    </insert>
+
+
+
 </mapper>

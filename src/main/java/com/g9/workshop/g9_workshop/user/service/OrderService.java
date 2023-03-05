@@ -88,4 +88,30 @@ public class OrderService {
         return resultMap;
     }
 
+    public void orderSubmit(Map params) {
+        String sqlMapId;
+        String addressUid = (String) params.get("address-uid");
+        String deliveryLocationUid = (String) params.get("delivery-location-uid");
+        // 주소가 직접 입력인 경우
+        if (addressUid.equals("self")) {
+            addressUid = commonUtils.getUniqueSequence();
+            params.put("address-uid", addressUid);
+            sqlMapId = "OrderMapper.insertSelfAddress";
+            sharedDao.insert(sqlMapId, params);
+        }
+        // 배송장소가 직접 입력인 경우
+        if (deliveryLocationUid.equals("self")) {
+            deliveryLocationUid = commonUtils.getUniqueSequence();
+            params.put("delivery-location-uid", deliveryLocationUid);
+            sqlMapId = "OrderMapper.insertSelfDeliveryLocation";
+            sharedDao.insert(sqlMapId, params);
+        }
+        // 주문내역 생성
+        String orderUid = commonUtils.getUniqueSequence();
+        params.put("orderUid", orderUid);
+        sqlMapId = "OrderMapper.insertOrder";
+        sharedDao.insert(sqlMapId, params);
+
+    }
+
 }

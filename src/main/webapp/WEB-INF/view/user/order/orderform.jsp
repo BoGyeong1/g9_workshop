@@ -189,8 +189,8 @@
                 </div>
                 <hr>
                 <div class="form-check">
-                    <input class="form-check-input" type="agree" value="" id="flexCheckDefault" required>
-                    <label class="form-check-label" for="agree">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                    <label class="form-check-label" for="flexCheckDefault">
                         주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.
                     </label>
                 </div>

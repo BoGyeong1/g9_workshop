@@ -87,4 +87,15 @@ public class OrderController {
         return resultMap;
     }
 
+    @PostMapping("")
+    public ModelAndView orderSubmit(@RequestParam Map params, ModelAndView modelAndView) {
+        PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        String userUid = principal.getUserUid();
+        params.put("userUid", userUid);
+        orderService.orderSubmit(params);
+
+        modelAndView.setViewName("user/order/orderform");
+        return modelAndView;
+    }
 }
