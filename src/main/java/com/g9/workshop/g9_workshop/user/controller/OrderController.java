@@ -28,7 +28,6 @@ public class OrderController {
 
     @GetMapping("")
     public ModelAndView orderForm(ModelAndView modelAndView) {
-
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userUid = principal.getUserUid();
         modelAndView.addObject("userUid", userUid);
@@ -54,7 +53,6 @@ public class OrderController {
 
     @PostMapping("/add/address")
     public String addAddress(@RequestParam Map params) {
-
         String address = (String) params.get("address");
         String detail = (String) params.get("detail");
 
