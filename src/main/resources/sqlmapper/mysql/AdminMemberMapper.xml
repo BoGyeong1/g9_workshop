@@ -9,7 +9,11 @@
     FROM USERS U
     INNER JOIN USER_CONDITIONS UC 
     ON UC.USER_CONDITION_UID = U.USER_CONDITION_UID
+    <if test="pageScale != null">
     ORDER BY U.JOIN_DATE DESC
+    LIMIT #{pageBegin}, #{pageScale} 
+    </if> 
+
 </select>
 
 <!-- [GYEONG]유저의 총 갯수 구하기 -->

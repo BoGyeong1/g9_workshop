@@ -19,8 +19,13 @@
         INNER JOIN ORDER_CONDITIONS ON ORDER_CONDITIONS.ORDER_CONDITION_UID = ORDER_DETAILS.ORDER_CONDITION_UID
         INNER JOIN PRODUCTS ON PRODUCTS.PRODUCT_UID = ORDER_DETAILS.PRODUCT_UID
         INNER JOIN USERS ON USERS.USER_UID = ORDERS.USER_UID
-    GROUP BY 
+
+    <if test="pageScale != null">
+        GROUP BY 
         ORDERS.ORDER_UID
+        LIMIT #{pageBegin}, #{pageScale} 
+    </if> 
+
     </select>
    <!-- [GYEONG] 검색한 결과 뽑기 -->
     <select id="selectAdminOrderSearchList" parameterType="Map" resultType="Map">
@@ -109,6 +114,11 @@
         ON CANCELLED_ORDERS.REASON_UID = CANCELLED_REASONS.REASON_UID 
         INNER JOIN ORDERS
         ON CANCELLED_ORDERS.ORDER_UID = ORDERS.ORDER_UID
+        <if test="pageScale != null">
+        ORDER BY 
+        CANCELLED_ORDERS.CANCELLED_ORDER_UID
+        LIMIT #{pageBegin}, #{pageScale} 
+        </if> 
     </select>
 
 

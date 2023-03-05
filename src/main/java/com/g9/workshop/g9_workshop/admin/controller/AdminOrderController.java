@@ -28,6 +28,7 @@ public class AdminOrderController {
     public ModelAndView userListWithPagination(@RequestParam Map params, @PathVariable String currentPage,
             ModelAndView modelAndView) {
         params.put("currentPage", Integer.parseInt(currentPage));
+        params.put("pageScale", 10);
         Object resultMap = adminOrderService.getOrderListWithPagination(params);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("admin/order/list");
@@ -61,6 +62,7 @@ public class AdminOrderController {
             ModelAndView modelAndView) {
         params.put("currentPage", Integer.parseInt(currentPage));
         Object resultMap = adminOrderService.getCancelOrderListWithPagination(params);
+        params.put("pageScale", 10);
         modelAndView.addObject("resultMap", resultMap);
         Object statistics = adminOrderService.getCancelOrderStatistics(params);
         modelAndView.addObject("statistics", statistics);

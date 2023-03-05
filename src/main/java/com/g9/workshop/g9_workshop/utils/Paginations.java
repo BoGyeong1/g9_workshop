@@ -54,7 +54,7 @@ public class Paginations {
 
     public void setPageRange() {
         pageBegin = (this.currentPage - 1) * this.pageScale;
-        pageEnd = (this.pageBegin + pageScale) - 1;
+        pageEnd = Math.min(this.pageBegin + pageScale - 1, this.totalCount);
     }
 
     public void setTotalPage(int totalCount) {
