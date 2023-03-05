@@ -82,6 +82,12 @@
               연속된 숫자, 통일 반복된 숫자 등 다른 사람이 쉽게 알아 낼 수 있는
               비밀번호는 사용하지 않도록 주의하여 주시기 바랍니다.
             </div>
+            <div>
+              비밀번호 변경시 바로 로그아웃 처리되며, 메인페이지로 이동합니다.
+            </div>
+            <div>
+              다시 로그인 부탁드립니다.
+            </div>
           </div>
           <div class="d-flex justify-content-center">
             <button class="editBtn mb-5" id="submit">수정</button>
