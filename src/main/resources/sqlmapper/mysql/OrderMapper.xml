@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="OrderMapper">
+
+    <select id="selectAddresses" resultType="Map" parameterType="Map">
+        SELECT * FROM ADDRESSES
+        WHERE USER_UID = #{userUid} AND EXPOSURE = 'YES'
+    </select>
+
+    <insert id="insertAddress" parameterType="Map">
+        INSERT INTO ADDRESSES
+        VALUE (#{user-uid}, #{address-uid}, #{address-name}, #{zipcode}, #{address}, #{detail}, 'YES')
+    </insert>
+
+    <select id="selectDeliveryLocations" resultType="Map">
+        SELECT * FROM DELIVERY_LOCATIONS
+        WHERE EXPOSURE = 'YES'
+    </select>
+
+    <select id="selectUserPoint" resultType="Map" parameterType="String">
+        SELECT POINT FROM USERS
+        WHERE USER_UID = #{userUid}
+    </select>
+
+    <select id="selectPaymentMethods" resultType="Map">
+        SELECT * FROM PAYMENT_METHODS
+    </select>
+
+    <select id="selectAddressesWithAddressUid" resultType="Map" parameterType="String">
+        SELECT * FROM ADDRESSES
+        WHERE ADDRESS_UID = #{addressUid} AND EXPOSURE = 'YES'
+    </select>
+
+</mapper>

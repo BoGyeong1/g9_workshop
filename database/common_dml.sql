@@ -99,3 +99,8 @@ VALUES ('AD1', 'ADMIN_SOO', 'ADMIN_SOO1', '하성수', 'SOO', 'ADMIN'),
 ('AD2', 'ADMIN_GYEONG', 'ADMIN_GYEONG1', '진보경', 'GYEONG', 'ADMIN'),
 ('AD3', 'ADMIN_JUNG', 'ADMIN_JUNG1', '김현정', 'JUNG', 'ADMIN');
 
+INSERT INTO PAYMENT_METHODS
+VALUES ('PAY1', '무통장입금'),
+('PAY2', '카카오페이'),
+('PAY3', '네이버페이'),
+('PAY4', '카드');

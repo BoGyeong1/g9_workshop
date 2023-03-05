@@ -27,6 +27,11 @@ public class SharedDao {
         return result;
     }
 
+    public Object getOne(String sqlMapId, String dataString) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, dataString);
+        return result;
+    }
+
     // 갯수로 리턴된다 (update delete)
     public Object update(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.update(sqlMapId, dataMap);
@@ -40,6 +45,11 @@ public class SharedDao {
 
     public Object insert(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getList(String sqlMapId) {
+        Object result = sqlSessionTemplate.selectList(sqlMapId);
         return result;
     }
 

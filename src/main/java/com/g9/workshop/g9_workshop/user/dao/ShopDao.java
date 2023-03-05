@@ -29,7 +29,7 @@ public class ShopDao {
         return result;
     }
 
-    public Object getList(String sqlMapId, Map dataMap) {
+    public Object getList(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.selectList(sqlMapId, dataMap);
         return result;
     }
