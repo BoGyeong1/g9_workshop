@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>지구공방 - 마이페이지</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -56,6 +56,9 @@
         </tr>
     </thead>
     <tbody>
+          <c:if test="${empty orderList}">
+          <tr><td colspan="5"><div>주문 내역이 없습니다.</div></tr>
+          </c:if>
         <c:forEach var="order" items="${orderList}">
             <tr>
                 <td><a href="/mypage/orderDetail/${order.ORDER_UID}">${order.ORDER_UID}</a></td>

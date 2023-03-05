@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 3700,
     "height": 3700,
-    "scrollTop": -1291.3333123392547,
-    "scrollLeft": -323,
-    "zoomLevel": 0.8,
+    "scrollTop": -1309.3333020077835,
+    "scrollLeft": -1139.5000497698766,
+    "zoomLevel": 0.3,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -887,7 +887,7 @@
           "active": false,
           "left": 120.1851,
           "top": 1438.2043,
-          "zIndex": 34,
+          "zIndex": 33,
           "widthName": 126.8076171875,
           "widthComment": 71.5703125
         },
@@ -1381,7 +1381,7 @@
           "active": false,
           "left": 2965,
           "top": 402,
-          "zIndex": 35,
+          "zIndex": 34,
           "widthName": 123.00537109375,
           "widthComment": 71.5703125
         },
@@ -1512,7 +1512,7 @@
           "active": false,
           "left": 50,
           "top": 619,
-          "zIndex": 36,
+          "zIndex": 35,
           "widthName": 106.0888671875,
           "widthComment": 71.5703125
         },
@@ -1774,7 +1774,7 @@
           "active": false,
           "left": 1308,
           "top": 619,
-          "zIndex": 32,
+          "zIndex": 31,
           "widthName": 60,
           "widthComment": 60
         },
@@ -3422,7 +3422,7 @@
           "active": false,
           "left": 1806.1664,
           "top": 1922.8328,
-          "zIndex": 30,
+          "zIndex": 29,
           "widthName": 96.81494140625,
           "widthComment": 102.140625
         },
@@ -3622,7 +3622,7 @@
           "active": false,
           "left": 2546,
           "top": 1114.5,
-          "zIndex": 37,
+          "zIndex": 36,
           "widthName": 93.431640625,
           "widthComment": 60
         },
@@ -3819,10 +3819,10 @@
           }
         ],
         "ui": {
-          "active": true,
+          "active": false,
           "left": 70.0001,
           "top": 1714.3333,
-          "zIndex": 40,
+          "zIndex": 30,
           "widthName": 60,
           "widthComment": 67
         },
@@ -3929,7 +3929,7 @@
             "id": "1358f20b-0d50-4cf7-8f3d-c52ee81243c0",
             "name": "CONTENT",
             "comment": "게시글 내용",
-            "dataType": "VARCHAR(255)",
+            "dataType": "TEXT",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -3944,7 +3944,7 @@
               "pfk": false,
               "widthName": 60.6142578125,
               "widthComment": 71.5703125,
-              "widthDataType": 89.29296875,
+              "widthDataType": 60,
               "widthDefault": 60
             }
           },
@@ -4022,7 +4022,7 @@
           "active": false,
           "left": 709,
           "top": 1413.5,
-          "zIndex": 28,
+          "zIndex": 37,
           "widthName": 60,
           "widthComment": 84.5703125
         },
@@ -4291,7 +4291,7 @@
           "active": false,
           "left": 1358,
           "top": 1413.5,
-          "zIndex": 33,
+          "zIndex": 32,
           "widthName": 60,
           "widthComment": 60
         },
@@ -4583,7 +4583,7 @@
           "active": false,
           "left": 1987,
           "top": 1413.5,
-          "zIndex": 29,
+          "zIndex": 28,
           "widthName": 67.97119140625,
           "widthComment": 60
         },

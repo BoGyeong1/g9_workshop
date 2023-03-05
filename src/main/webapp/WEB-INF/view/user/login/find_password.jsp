@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>지구공방 - 비밀번호 찾기</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -30,6 +30,14 @@
       <form action="/user/showPassword" method="POST">
         <div class="title fs-3">비밀번호 찾기</div>
         <hr class="hr" />
+
+          <c:if test="${not empty error.error}">
+            <div class="alert alert-warning mt-3 mx-auto text-center" role="alert">
+              이메일 주소나 이름, <br>
+              휴대폰 번호가 일치하지 않습니다.<br>
+              다시 확인해주세요.
+            </div>
+          </c:if>
         <div class="d-flex row justify-content-center mt-5 mb-3">
           <input
             type="email"

@@ -26,7 +26,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="../css/signup/agree_terms.css" />
-    <title>지구공방</title>
+    <title>지구공방 - 회원가입</title>
   </head>
   <body>
     <%-- [GYEONG] 23.02.14 header --%>

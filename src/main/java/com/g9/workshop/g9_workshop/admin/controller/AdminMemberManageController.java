@@ -35,6 +35,7 @@ public class AdminMemberManageController {
     public ModelAndView userListWithPagination(@RequestParam Map params, @PathVariable String currentPage,
             ModelAndView modelAndView) {
         params.put("currentPage", Integer.parseInt(currentPage));
+        params.put("pageScale", 10);
         Object resultMap = adminMemberService.getUserListWithPagination(params);
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.setViewName("admin/member/list");

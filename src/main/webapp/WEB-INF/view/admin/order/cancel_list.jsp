@@ -22,98 +22,85 @@
     <div class="d-flex">
         <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
-            <div id="search-form">
-                <form action = "/admin/order/search" method ="post">
-                    <div class="d-flex justify-content-center">
-                        <select class="form-select w-25 mx-2" name="searchType" id="searchType">
-                            <option value="ORDER_UID">ORDER_UID</option>
-                            <option value="USER_UID">USER_UID</option>
-                        </select>
-                        <input class="form-control w-25 mx-2" type="text" name="searchKeyword" id="searchKeyword">
-                        <button type="submit" id="searchBtn" class="btn btn-outline-dark mx-2">검색</button>
-                    </div>
-                </form>
-
-                <div class="fs-4">주문내역</div>
+           
+                <div class="fs-4">취소내역</div>
 
                 <table class="mt-2 mb-5 table table-bordered">
                 <thead>
                 <tr>
-                <th class="text-center table-light">ORDER_UID</th>
-                <th class="text-center table-light">USER_UID</th>
-                <th class="text-center table-light">상품명</th>
-                <th class="text-center table-light">총가격</th>
-                <th class="text-center table-light">주문날짜</th>
-                <th class="text-center table-light">주문상태</th>
-
+                <th class="text-center table-light">취소내역번호</th>
+                <th class="text-center table-light">주문번호</th>
+                <th class="text-center table-light">취소사유</th>
+                <th class="text-center table-light">신청날짜</th>
                 </tr>
                 </thead>
                 <tbody id="memberListTable">
                 <c:forEach items="${resultMap.resultList}" var="resultData" varStatus="loop">
                 <tr>
-                <td class="text-center"><a href="/admin/order/orderDetail/${resultData.ORDER_UID}">${resultData.ORDER_UID}</a></td>
-                <td class="text-center">${resultData.USER_UID}</td>
-                <td class="text-center">${resultData.PRODUCT_NAME}
-                    <c:choose>
-                        <c:when test="${resultData.PRODUCT_COUNT == 1}">
-                            ${resultData.PRODUCT_NAME}
-                        </c:when>
-                        <c:otherwise>
-                            외 ${resultData.PRODUCT_COUNT - 1}개
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td class="text-center">${resultData.CONDITION_NAME}</td>
-                <td class="text-center">${resultData.ORDER_DATE}</td>
-                <td class="text-center">${resultData.CONDITION_NAME}</td>
+                <td class="text-center">${resultData.CANCELLED_ORDER_UID}</td>
+                <td class="text-center">${resultData.ORDER_UID}</td>
+                <td class="text-center">${resultData.REASON}</td>
+                <td class="text-center">${resultData.DATE}</td>
                 </tr>
                 </c:forEach>
                 </tbody>
                 </table>
-                <div>
-                    <span id="searchResultCount"></span>
-                    <span id="searchKeywordDisplay"></span>
-                </div>
-            </div>
-    <div id="page">
+
+     <div id="page">
         <nav aria-label="Page navigation example" >
         <c:set var="_pagination" value="${resultMap.paginations}"/>
-            <span id="totalCount">총 주문수 : ${_pagination.totalCount}</span>
+            <span id="totalCount">총 취소 내역수 : ${_pagination.totalCount}</span>
             <ul class="pagination  justify-content-center" id="pagination">
             <c:if test="${_pagination.currentPage > 1 }">
                 <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"><a class="page-link"
-								href="/admin/order/orderList/1" >맨 처음</a>
+								href="/admin/order/cancelOrder/1" >맨 처음</a>
 				</li>
             </c:if>
                 <li class="page-item ${_pagination.currentBlock > 1 ? '' : 'disabled'}"><a class="page-link"
-							href="/admin/order/orderList/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
+							href="/admin/order/cancelOrder/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
 				</li>
                 
         <c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
-                <li class="page-item"><a class="page-link" href="/admin/order/orderList/${i}">${i}</a></li>
+                <li class="page-item"><a class="page-link" href="/admin/order/cancelOrder/${i}">${i}</a></li>
         </c:forEach>
         <li class="page-item ${_pagination.currentBlock <= _pagination.totalBlock ? '' : 'disabled'}"><a
 							class="page-link"
-							href="/admin/order/orderList/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
+							href="/admin/order/cancelOrder/${_pagination.nextPage}" value=${_pagination.nextPage}>&raquo;</a>
 	    </li>
 		<c:if test="${_pagination.currentPage < _pagination.totalPage}">
 			<li class="page-item ${_pagination.currentPage < _pagination.totalPage ? '' : 'disabled'}"><a
 					class="page-link"
-					href="/admin/order/orderList/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
+					href="/admin/order/cancelOrder/${_pagination.totalPage}"  value=${_pagination.totalPage}>맨
 					끝</a>
             </li>
 		</c:if>
         </ul>
         </nav>
     </div>
+           
+           
+            <div class="fs-4">취소사유 통계</div>
 
+                <table class="mt-2 mb-5 table table-bordered">
+                <thead>
+                <tr>
+                <th class="text-center table-light">취소사유</th>
+                <th class="text-center table-light">COUNT</th>
+                </tr>
+                </thead>
+                <tbody id="memberListTable">
+                <c:forEach items="${statistics}" var="resultData" varStatus="loop">
+                <tr>
+                <td class="text-center">${resultData.REASON}</td>
+                <td class="text-center">${resultData.COUNT}</td>
+                </tr>
+                </c:forEach>
+                </tbody>
+                </table>
+            
+          
         </div>
     </div>
-
-
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

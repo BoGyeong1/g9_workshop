@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>지구공방 - 마이페이지</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -51,11 +51,18 @@
               </tr>
             </thead>
             <tbody>
+            <c:if test="${empty resultMap}">
+              <tr>
+              <td colspan="3">
+              <div class="text-center">내역이 없습니다.</div>
+              <td>
+              </tr>
+            </c:if> 
             <c:forEach var="item" items="${resultMap}">
               <tr>
              
-<td><fmt:parseDate value="${item.APPLICATION_DATE}" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
-<fmt:formatDate value="${date}" pattern="yyyyMMdd" /></td>
+            <td><fmt:parseDate value="${item.APPLICATION_DATE}" pattern="yyyy-MM-dd HH:mm:ss" var="date" />
+            <fmt:formatDate value="${date}" pattern="yyyyMMdd" /></td>
 
                 <td>${item.PRODUCT_NAME}</a></td>
                 <td>${item.ORDER_CONDITION}</td>

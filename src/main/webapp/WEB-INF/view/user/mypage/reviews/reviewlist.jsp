@@ -8,7 +8,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>지구공방 - 마이페이지</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -59,6 +59,9 @@
     </tr>
   </thead>
   <tbody id="reviewList">
+            <c:if test="${empty resultMap}">
+          <tr><td colspan="3"><div>작성가능한 리뷰 상품이 없습니다.</div></tr>
+          </c:if>
     <c:forEach var="product" items="${resultMap}">
       <tr>
         <td><fmt:formatDate value="${product.ORDER_DATE}" pattern="yyyy-MM-dd" var="orderDate" />${orderDate}</td>

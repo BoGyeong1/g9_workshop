@@ -179,7 +179,7 @@
       <%-- Footer Include --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
 
-    <%-- 에디터 --%>
+    <%-- ITEM 명  --%>
     <script>
         function setSelectedItem(item) {
             document.getElementById("selected-item").innerHTML = ": " + item;

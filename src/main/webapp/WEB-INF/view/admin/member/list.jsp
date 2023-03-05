@@ -85,7 +85,7 @@
             <span id="totalCount">총 회원수 : ${_pagination.totalCount}</span>
             <ul class="pagination  justify-content-center" id="pagination">
             <c:if test="${_pagination.currentPage > 1 }">
-                <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"><a class="page-link"
+                <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"> <a class="page-link"
 								href="/admin/member/listPagination/1" >맨 처음</a>
 				</li>
             </c:if>
@@ -113,6 +113,8 @@
 
         </div>
     </div>
+
+
 
 <script>
 

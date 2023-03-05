@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>지구공방</title>
+    <title>지구공방 - 로그인</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -97,17 +97,17 @@
           </span>
         </div>
         <div class="m-4"></div>
-        <hr class="hr" />
+        <%-- <hr class="hr" /> --%>
         <%-- [GYEONG] 23.02.14 간편 로그인 --%>
-        <div class="row justify-content-center mt-3">
+        <%-- <div class="row justify-content-center mt-3">
           <div class="text-center mb-2">간편 로그인</div>
         </div>
         <div class="row justify-content-center mt-3">
-          <button class="naver_login_btn">Naver 로그인</button>
+          <button id="naver_id_login"class="naver_login_btn">Naver 로그인</button>
         </div>
         <div class="row justify-content-center mt-3">
           <button class="kakao_login_btn">Kakao 로그인</button>
-        </div>
+        </div> --%>
       </div>
     </main>
 
@@ -132,7 +132,8 @@ if (savedUsername) {
   usernameInput.value = savedUsername;
   idSaveCheckbox.checked = true;
 }
-     </script>
+      
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
