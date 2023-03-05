@@ -14,6 +14,9 @@ import com.g9.workshop.g9_workshop.utils.CommonUtils;
 public class OrderService {
 
     @Autowired
+    CartService cartService;
+
+    @Autowired
     SharedDao sharedDao;
 
     @Autowired
@@ -111,7 +114,54 @@ public class OrderService {
         params.put("orderUid", orderUid);
         sqlMapId = "OrderMapper.insertOrder";
         sharedDao.insert(sqlMapId, params);
-
+        // 운송장 생성
+        String waybillUid = commonUtils.getUniqueSequence();
+        params.put("waybillUid", waybillUid);
+        sqlMapId = "OrderMapper.insertWaybill";
+        sharedDao.insert(sqlMapId, waybillUid);
+        // 주문내역 상세 생성
+        String userUid = (String) params.get("userUid");
+        sqlMapId = "OrderMapper.selectCartInfoForOrderDetails";
+        List cartList = (List) sharedDao.getList(sqlMapId, userUid);
+        Map cart;
+        String orderDetailUid;
+        sqlMapId = "OrderMapper.insertOrderDetails";
+        for (int i = 0; i < cartList.size(); i++) {
+            cart = (Map) cartList.get(i);
+            orderDetailUid = commonUtils.getUniqueSequence();
+            cart.put("orderDetailUid", orderDetailUid);
+            cart.put("orderUid", orderUid);
+            // PRODUCT_UID, QUANTITY, PRICE 내장
+            cart.put("orderCondition", "OC1");
+            cart.put("waybillUid", waybillUid);
+            sharedDao.insert(sqlMapId, cart);
+        }
+        // 장바구니 비우기
+        sqlMapId = "OrderMapper.allDeleteCart";
+        sharedDao.deleteOne(sqlMapId, userUid);
+        // 포인트 깎고 주기
+        int usePoint = Integer.parseInt((String) params.get("point-use"));
+        int savePoint = Integer.parseInt((String) params.get("payPrice")) / 100;
+        int updatePoint;
+        Map point = new HashMap<>();
+        // 포인트 깎기
+        if (usePoint > 0) {
+            sqlMapId = "OrderMapper.getUserPoint";
+            point = (Map) sharedDao.getOne(sqlMapId, userUid);
+            updatePoint = ((int) point.get("POINT")) - usePoint;
+            point.put("userUid", userUid);
+            point.put("point", updatePoint);
+            sqlMapId = "OrderMapper.updateUserPoint";
+            sharedDao.update(sqlMapId, point);
+        }
+        // 포인트 주기
+        sqlMapId = "OrderMapper.getUserPoint";
+        point = (Map) sharedDao.getOne(sqlMapId, userUid);
+        updatePoint = ((int) point.get("POINT")) + savePoint;
+        point.put("userUid", userUid);
+        point.put("point", updatePoint);
+        sqlMapId = "OrderMapper.updateUserPoint";
+        sharedDao.update(sqlMapId, point);
     }
 
 }

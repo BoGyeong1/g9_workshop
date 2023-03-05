@@ -1,6 +1,7 @@
 window.onload = function () {
     getAddressDetail();
     getPrice();
+    updateTotalPrice();
 };
 
 
@@ -156,6 +157,8 @@ function getPrice() {
     const productPrice = document.getElementById("printProductPrice");
     const deliveryPrice = document.getElementById("printDeliveryPrice");
     const totalPrice = document.getElementById("printTotalPrice");
+    const payPrice = document.getElementById("payPrice");
+
 
     $.ajax({
         url: '/order/getPrice',
@@ -167,6 +170,7 @@ function getPrice() {
             productPrice.innerHTML = parseInt(priceInfo.productPrice).toLocaleString();
             deliveryPrice.innerHTML = parseInt(priceInfo.deliveryPrice).toLocaleString();
             totalPrice.innerHTML = parseInt(priceInfo.totalPrice).toLocaleString();
+            payPrice.value = parseInt(priceInfo.totalPrice);
         },
         error: function (xhr, status, error) {
             console.error(error);
@@ -175,10 +179,11 @@ function getPrice() {
 
 }
 
-document.getElementById("point-use").addEventListener("change", function () {
+// 이벤트 리스너 함수 정의
+function updateTotalPrice() {
+    // 변경된 포인트 값과 포인트 잔고를 가져옴
     var pointUse = document.getElementById("point-use").value;
     var pointBalance = parseInt(document.getElementById("pointBalance").innerHTML);
-    var printTotalPrice = document.getElementById("printTotalPrice");
 
     // 입력값이 숫자가 아닐 경우
     if (isNaN(pointUse)) {
@@ -194,7 +199,18 @@ document.getElementById("point-use").addEventListener("change", function () {
         return;
     }
 
+    // 표시할 값을 재계산
+    var printProductPrice = document.getElementById("printProductPrice").innerHTML;
+    var productPrice = parseInt(printProductPrice.replace(",", ""));
+    var printDeliveryPrice = document.getElementById("printDeliveryPrice").innerHTML;
+    var deliveryPrice = parseInt(printDeliveryPrice.replace(",", ""));
+    var printTotalPrice = productPrice + deliveryPrice - pointUse;
+
     // 총 가격 출력
-    var totalPrice = parseInt(printTotalPrice.innerHTML) - parseInt(pointUse);
-    printTotalPrice.innerHTML = totalPrice;
-});
+    document.getElementById("printTotalPrice").innerHTML = printTotalPrice.toLocaleString();
+    document.getElementById("printPointPrice").innerHTML = pointUse.toLocaleString();
+    document.getElementById("payPrice").value = printTotalPrice;
+}
+
+// 이벤트 리스너 등록
+document.getElementById("point-use").addEventListener("change", updateTotalPrice);
