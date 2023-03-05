@@ -47,6 +47,37 @@
         VALUE (#{orderUid}, #{userUid}, #{address-uid}, #{delivery-location-uid}, #{paymentMethod-uid}, sysdate(), #{recipient_name}, #{recipient_tel})
     </insert>
 
+    <insert id="insertWaybill" parameterType="Map">
+        INSERT INTO WAYBILLS
+        VALUE (#{waybillUid}, null, null, null)
+    </insert>
 
+    <insert id="insertOrderDetails" parameterType="Map">
+        INSERT INTO ORDER_DETAILS
+        VALUE (#{orderDetailUid}, #{orderUid}, #{PRODUCT_UID}, #{QUANTITY}, #{PRICE}, #{orderCondition}, #{waybillUid})
+    </insert>
+
+    <select id="selectCartInfoForOrderDetails" parameterType="String" resultType="Map">
+        SELECT CARTS.PRODUCT_UID, QUANTITY,
+            CAST(ROUND(PRODUCTS.PRICE * (100 - PRODUCTS.DISCOUNT_RATE) / 100 * CARTS.QUANTITY) AS SIGNED) AS PRICE
+        FROM CARTS
+        INNER JOIN PRODUCTS ON CARTS.PRODUCT_UID = PRODUCTS.PRODUCT_UID
+        WHERE USER_UID = #{userUid}
+    </select>
+
+    <delete id="allDeleteCart" parameterType="String">
+        DELETE FROM CARTS
+        WHERE USER_UID = #{uerUid}
+    </delete>
+
+    <select id="getUserPoint" parameterType="String" resultType="Map">
+        SELECT POINT FROM USERS
+        WHERE USER_UID = #{uerUid}
+    </select>
+
+    <update id="updateUserPoint" parameterType="Map">
+        UPDATE USERS SET POINT = #{point}
+        WHERE USER_UID = #{userUid}
+    </update>
 
 </mapper>

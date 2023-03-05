@@ -177,6 +177,7 @@
                         </div>
                         <div>
                             <span>총 금액 : </span><span id="printTotalPrice"></span>
+                            <input type="hidden" id="payPrice" name="payPrice" value="">
                         </div>
                         <div class="row my-3">
                             <div class="col-md-3">
