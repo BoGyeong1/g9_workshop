@@ -74,9 +74,7 @@
                 <td class="text-center">${resultData.LOGISTICS_NAME}</td>
                 <td class="text-center">${resultData.WAYBILL_CODE}</td>
                 <td class="text-center">
-                <a href="/admin/order/waybillCode/${resultData.ORDER_DETAIL_UID}" class="btn btn-primary" id="waybillBtn">운송장 등록</a>
-            
-                </td>
+                    <a href="/admin/order/waybillCode/${resultData.ORDER_DETAIL_UID}" class="btn btn-dark " id="waybillBtn"> 등록</a>                </td>
                 </tr>
                 </c:forEach>
                 </tbody>
@@ -118,6 +116,7 @@ $(document).ready(function() {
       tableHtml += '<td class="text-center">' + resultData.WAYBILL_TYPE + '</td>';
       tableHtml += '<td class="text-center">' + resultData.LOGISTICS_NAME + '</td>';
       tableHtml += '<td class="text-center">' + resultData.WAYBILL_CODE + '</td>';
+      tableHtml += '<td class="text-center">' + "<a href='/admin/order/waybillCode/"+resultData.ORDER_DETAIL_UID+"' class='btn btn-dark ' id='waybillBtn'>등록</a>" + '</td>';
       tableHtml += '</tr>';
     });
     $('#memberListTable').html(tableHtml);

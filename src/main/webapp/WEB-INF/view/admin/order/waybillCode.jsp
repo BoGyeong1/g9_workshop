@@ -28,8 +28,11 @@
     <div class="col-md-6 col-md-offset-3">
       <h2 class="text-center">운송장 등록</h2>
       <form action="/admin/order/waybillCode${formAction}" id="waybillForm" method="POST">
-        <div class="form-group">
+        
+        <div class="form-group m-4">
+        
         <input type="hidden" name="ORDER_DETAIL_UID" value="${waybills.ORDER_DETAIL_UID}">
+          
           <label for="waybillType">택배사</label>
             <select class="form-control" id="logistics" name="LOGISTICS_UID">
                 <c:forEach var="logistics" items="${logistics}">
@@ -37,15 +40,24 @@
                 </c:forEach>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group m-4">
           <label for="waybillCode">운송장 번호</label>
           <input type="text" class="form-control" id="waybillCode" name="WAYBILL_CODE" value="${waybills.WAYBILL_CODE}" >
         </div>
-        <div class="form-group">
+        <div class="form-group m-4">
           <label for="orderConditions">배송 진행 상태</label>
             <select class="form-control" id="orderConditions" name="ORDER_CONDITION_UID">
                 <c:forEach var="orderConditions" items="${orderConditions}">
                     <option value="${orderConditions.ORDER_CONDITION_UID}" ${waybills.ORDER_CONDITION_UID == orderConditions.ORDER_CONDITION_UID ? 'selected' : ''}>${orderConditions.CONDITION_NAME}</option>
+                </c:forEach>
+            </select>
+        </div>
+
+        <div class="form-group m-4">
+          <label for="orderConditions">배송 / 반송</label>
+            <select class="form-control" id="waybillType" name="WAYBILL_TYPE_UID">
+                <c:forEach var="waybillType" items="${waybillType}">
+                    <option value="${waybillType.WAYBILL_TYPE_UID}" ${waybills.WAYBILL_TYPE_UID == waybillType.WAYBILL_TYPE_UID ? 'selected' : ''}>${waybillType.WAYBILL_TYPE}</option>
                 </c:forEach>
             </select>
         </div>

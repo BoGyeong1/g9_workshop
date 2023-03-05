@@ -137,6 +137,12 @@ public class AdminOrderService {
         return result;
     }
 
+    public Object getWaybillType(Object dataMap) {
+        String sqlMapId = "AdminOrderMapper.selectWaybillType";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object getWaybillInfo(Object dataMap) {
         String sqlMapId = "AdminOrderMapper.selectWaybill";
         Object result = sharedDao.getOne(sqlMapId, dataMap);
@@ -154,6 +160,16 @@ public class AdminOrderService {
         this.updateWaybillInfo(dataMap);
         Object result = this.getShippingList(dataMap);
         return result;
+    }
+
+    public void insertAndUpdateWayBills(Object dataMap) {
+        ((Map<String, Object>) dataMap).put("WAYBILL_UID", commonUtils.getUniqueSequence());
+        String sqlMapId = "AdminOrderMapper.insertWaybill";
+        sharedDao.insert(sqlMapId, dataMap);
+        sqlMapId = "AdminOrderMapper.insertOrderDetailWaybill";
+        sharedDao.insert(sqlMapId, dataMap);
+        sqlMapId = "AdminOrderMapper.updateOrderDetailOrdercondition";
+        sharedDao.update(sqlMapId, dataMap);
     }
 
     public Object getRefundList(Object dataMap) {

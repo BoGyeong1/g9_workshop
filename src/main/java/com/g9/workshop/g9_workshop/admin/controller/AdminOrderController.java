@@ -108,9 +108,11 @@ public class AdminOrderController {
         Object logistics = adminOrderService.getLogisticsList(params);
         Object orderConditions = adminOrderService.getOrderConditions(params);
         Object waybill = adminOrderService.getWaybillInfo(params);
+        Object waybillType = adminOrderService.getWaybillType(params);
         modelAndView.addObject("logistics", logistics);
         modelAndView.addObject("orderConditions", orderConditions);
         modelAndView.addObject("waybills", waybill);
+        modelAndView.addObject("waybillType", waybillType);
         modelAndView.setViewName("admin/order/waybillCode");
         return modelAndView;
     }
@@ -118,6 +120,16 @@ public class AdminOrderController {
     // [GYEONG] 운송장등록
     @PostMapping("/waybillCodeUpdate")
     public ModelAndView waybillCodeUpdate(@RequestParam Map params,
+            ModelAndView modelAndView) {
+        Object resultMap = adminOrderService.getListAndUpdateWaybillInfo(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("admin/order/shipping");
+        return modelAndView;
+    }
+
+    // [GYEONG] 운송장등록
+    @PostMapping("/waybillCodeInsert")
+    public ModelAndView waybillCodeInsert(@RequestParam Map params,
             ModelAndView modelAndView) {
         Object resultMap = adminOrderService.getListAndUpdateWaybillInfo(params);
         modelAndView.addObject("resultMap", resultMap);
