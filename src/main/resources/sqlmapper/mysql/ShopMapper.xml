@@ -59,4 +59,9 @@
         ORDER BY EXPOSURE_ORDER
     </select>
 
+    <select id="getFavorite" parameterType="Map" resultType="Map">
+        SELECT * FROM FAVORITES
+        WHERE USER_UID = #{userUid} AND PRODUCT_UID = #{product_uid}
+    </select>
+
 </mapper>

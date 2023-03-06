@@ -3,4 +3,14 @@
 
 <mapper namespace="CommonMapper">
 
+    <insert id="like" parameterType="Map">
+        INSERT INTO FAVORITES
+        VALUE (#{userUid}, #{product-uid})
+    </insert>
+
+    <delete id="dislike" parameterType="Map">
+        DELETE FROM FAVORITES
+        WHERE USER_UID = #{userUid} AND PRODUCT_UID = #{product-uid}
+    </delete>
+
 </mapper>

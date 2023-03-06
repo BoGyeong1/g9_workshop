@@ -91,7 +91,7 @@ public class OrderService {
         return resultMap;
     }
 
-    public void orderSubmit(Map params) {
+    public String orderSubmit(Map params) {
         String sqlMapId;
         String addressUid = (String) params.get("address-uid");
         String deliveryLocationUid = (String) params.get("delivery-location-uid");
@@ -162,6 +162,7 @@ public class OrderService {
         point.put("point", updatePoint);
         sqlMapId = "OrderMapper.updateUserPoint";
         sharedDao.update(sqlMapId, point);
+        return orderUid;
     }
 
 }

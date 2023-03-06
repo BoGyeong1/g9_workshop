@@ -107,9 +107,8 @@
                         <input type="hidden" id="price" name="price" value="${productDetailInfo.PRICE}">
                         <input type="hidden" id="discount_rate" name="discount_rate" value="${productDetailInfo.DISCOUNT_RATE}">
                         <div class="d-flex justify-content-between">
-                            <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
-                            <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/order">
-                            <input class="btn btn-outline-success col-1" type="submit" value="♡" formaction="/like">
+                            <input class="btn btn-success col-10" type="submit" value="장바구니" formaction="/cart">
+                            <input class="btn ${favorite.PRODUCT_UID == params.product_uid ? 'btn-danger' : 'btn-outline-success'} col-1" type="submit" value="♡" formaction="/${favorite.PRODUCT_UID == params.product_uid ? 'dislike' : 'like'}">
                         </div>
                     </form>
                 </div>
@@ -206,29 +205,6 @@
                     </div>
                 </div>
                 <div id="revidivew-box-right">
-                    <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
-                    </div>
-                    <div class="m-2 text-end" id="writer">
-                        잗우
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="produt-inquery-box" class="w-75 m-auto">
-            <hr>
-            <div class="fw-bold">상품문의</div>
-            <hr>
-            <div id="inquery-box" class="d-flex justify-content-between">
-                <div id="inquery-box-left" class="w-75">
-                    <div class="m-2" id="inquery-text-box">
-                        문의내용
-                    </div>
-                    <div class="m-2 bg-light" id="inquery-text-box">
-                        답변내용
-                    </div>
-                </div>
-                <div id="inquery-box-right">
                     <div class="m-2 text-end" id="date">
                         2023-02-28 07:51
                     </div>

@@ -86,14 +86,13 @@ public class OrderController {
     }
 
     @PostMapping("")
-    public ModelAndView orderSubmit(@RequestParam Map params, ModelAndView modelAndView) {
+    public String orderSubmit(@RequestParam Map params, ModelAndView modelAndView) {
         PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
         String userUid = principal.getUserUid();
         params.put("userUid", userUid);
-        orderService.orderSubmit(params);
-
+        String orderUid = orderService.orderSubmit(params);
         modelAndView.setViewName("user/order/orderform");
-        return modelAndView;
+        return "redirect:/mypage/orderDetail/" + orderUid;
     }
 }
