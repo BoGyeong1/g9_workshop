@@ -74,6 +74,8 @@ public class OrderController {
         return addressInfo;
     }
 
+    static final double PI = 3.14;
+
     @ResponseBody
     @GetMapping("/getPrice")
     public Map<String, String> getPrice() {
