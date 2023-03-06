@@ -64,7 +64,7 @@
                 <td><a href="/mypage/orderDetail/${order.ORDER_UID}">${order.ORDER_UID}</a></td>
                 <td><fmt:formatDate value="${order.ORDER_DATE}" pattern="yyyy-MM-dd" /></td>
                 <td>${order.PRODUCT_NAME} <c:if test="${order.PRODUCT_COUNT > 1}">외 ${order.PRODUCT_COUNT - 1}개</c:if></td>
-                <td>${order.TOTAL_PRICE+2500}</td>
+                <td>${order.TOTAL_PRICE+3000}</td>
                 <td>${order.CONDITION_NAME}</td>
             </tr>
         </c:forEach>

@@ -60,7 +60,7 @@
       <th>주문일자</th>
       <th>주문번호</th>
       <th>주문상품정보</th>
-      <th>결제금액</th>
+      <th>상품가격</th>
       <th>신청</th>
     </tr>
   </thead>
@@ -78,7 +78,7 @@
             <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /></td>
             <td>${item.ORDER_UID}</td>
             <td><a href="#">${item.PRODUCT_NAME}</a></td>
-            <td>${item.PAY_AMOUNT+2500}원</td>
+            <td>${item.PAY_AMOUNT}원</td>
             <td>
               <c:choose>
                 <c:when test="${item.CONDITION_NAME == '주문완료'or item.CONDITION_NAME == '상품준비중' or item.CONDITION_NAME == '결제완료'}">

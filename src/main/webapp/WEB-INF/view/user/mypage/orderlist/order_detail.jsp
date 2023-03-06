@@ -57,7 +57,7 @@ for(Map<String, Object> orderDetail : orderDetails) {
     totalAmount += (discountedPrice * quantity);
 }
 
-int shippingFee = 2500;
+int shippingFee = 3000;
 int totalPrice = totalAmount + shippingFee;
 %>
           <div class="title fs-3">주문 / 배송 내역</div>
