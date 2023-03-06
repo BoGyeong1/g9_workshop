@@ -44,37 +44,37 @@
 
           <hr class="hr" />
           <div class="mt-5">
-<form>
-  <button type="submit" formaction="/mypage/reviewlist" id="possibleReviewBtn" class="possibleReview">작성가능한 상품</button>
-  <button type="submit" formaction="/mypage/myReviewList" class="recordReview ms-3">내가 작성한 리뷰</button>
-</form>
+            <form>
+              <button type="submit" formaction="/mypage/reviewlist" id="possibleReviewBtn" class="possibleReview">작성가능한 상품</button>
+              <button type="submit" formaction="/mypage/myReviewList" class="recordReview ms-3">내가 작성한 리뷰</button>
+            </form>
           </div>
 
-          <table class="table text-center mt-5" id="table">
-  <thead>
-    <tr class="border-top border-bottom border-dark border-3">
-      <th>주문날짜</th>
-      <th>주문상품정보</th>
-      <th>리뷰 작성</th>
-    </tr>
-  </thead>
-  <tbody id="reviewList">
-            <c:if test="${empty resultMap}">
-          <tr><td colspan="3"><div>작성가능한 리뷰 상품이 없습니다.</div></tr>
-          </c:if>
-    <c:forEach var="product" items="${resultMap}">
-      <tr>
-        <td><fmt:formatDate value="${product.ORDER_DATE}" pattern="yyyy-MM-dd" var="orderDate" />${orderDate}</td>
-        <td>${product.PRODUCT_NAME}</td>
-        <td>
-          <form action="/mypage/reviewRegi/${product.ORDER_DETAIL_UID}">
-            <button type="submit" class="reviewRegiBtn" data-order-detail-uid="${product.ORDER_DETAIL_UID}">리뷰 등록</button>
-          </form>
-        </td>
-      </tr>
-    </c:forEach>
-  </tbody>
-</table>
+            <table class="table text-center mt-5" id="table">
+              <thead>
+                <tr class="border-top border-bottom border-dark border-3">
+                  <th>주문날짜</th>
+                  <th>주문상품정보</th>
+                  <th>리뷰 작성</th>
+                </tr>
+              </thead>
+              <tbody id="reviewList">
+                        <c:if test="${empty resultMap}">
+                      <tr><td colspan="3"><div>작성가능한 리뷰 상품이 없습니다.</div></tr>
+                      </c:if>
+                <c:forEach var="product" items="${resultMap}">
+                  <tr>
+                    <td><fmt:formatDate value="${product.ORDER_DATE}" pattern="yyyy-MM-dd" var="orderDate" />${orderDate}</td>
+                    <td>${product.PRODUCT_NAME}</td>
+                    <td>
+                      <form action="/mypage/reviewRegi/${product.ORDER_DETAIL_UID}">
+                        <button type="submit" class="reviewRegiBtn" data-order-detail-uid="${product.ORDER_DETAIL_UID}">리뷰 등록</button>
+                      </form>
+                    </td>
+                  </tr>
+                </c:forEach>
+              </tbody>
+            </table>
         </div>
       </div>
     </main>
