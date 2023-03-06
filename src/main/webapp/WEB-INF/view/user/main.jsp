@@ -48,7 +48,7 @@
         <div id="section-body">
             <div class="row">
                 <c:forEach items="${mainProducts}" var="item" varStatus="status">
-                <div class="col col-12 col-md-3">
+                <div class="col col-12 col-md-3 my-2">
                     <form action="/shop/product/detail" method="post">
                         <input type="hidden" name="product_uid" value="${item.PRODUCT_UID}">
                         <button type="submit" style="border: none; background: none;">
