@@ -28,8 +28,7 @@
 
 <!-- call BoardMapper.insertBoard -->
     <insert id="insertBoard" parameterType="Map">
-        INSERT INTO POSTS 
-        (POST_UID, POST_CATEGORY_UID, ADMIN_UID, TITLE, CONTENT, sysdate(),sysdate(),TOP_FIXED )
+        INSERT INTO POSTS
         VALUE
         (#{POST_UID}, 
         #{POST_CATEGORY_UID}, 
@@ -44,12 +43,10 @@
 
 <!-- call BoardMapper.updateByPost  -->
     <update id="updateByPost"  parameterType="Map">
-
     UPDATE POSTS
-    SET POST_CATEGORY_UID = #{POST_CATEGORY_UID} ,
+    SET POST_CATEGORY_UID = #{POST_CATEGORY_UID},
         TITLE =  #{TITLE},
         CONTENT =  #{CONTENT},
-        CREATE_DATE = sysdate(),
         MODIFIED_DATE = sysdate(),
         TOP_FIXED =  #{TOP_FIXED}
     WHERE POST_UID = #{POST_UID}
