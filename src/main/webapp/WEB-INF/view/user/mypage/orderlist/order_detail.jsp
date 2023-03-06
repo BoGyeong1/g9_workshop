@@ -57,8 +57,12 @@ for(Map<String, Object> orderDetail : orderDetails) {
     totalAmount += (discountedPrice * quantity);
 }
 
-int shippingFee = 3000;
-int totalPrice = totalAmount + shippingFee;
+  int shippingFee = 0;
+  if (totalAmount < 50000) {
+      shippingFee = 3000;
+  }
+
+  int totalPrice = totalAmount + shippingFee;
 %>
           <div class="title fs-3">주문 / 배송 내역</div>
           <hr class="hr" />
@@ -85,9 +89,9 @@ int totalPrice = totalAmount + shippingFee;
         <td>
           <c:choose>
             <c:when test="${item.DISCOUNT_RATE > 0}">
-              <span class="text-muted">${item.PRICE}</span>
+              <span class="text-muted"><del>${item.PRICE}</del> / <span style="color:red">${item.DISCOUNT_RATE}%</span></span>
               <br>
-              <strong>${item.PRICE - (item.PRICE * item.DISCOUNT_RATE / 100)}</strong>
+              <strong>${(item.PRICE - (item.PRICE * item.DISCOUNT_RATE / 100)).intValue()}</strong>
             </c:when>
             <c:otherwise>
               ${item.PRICE}
