@@ -20,6 +20,7 @@
 
   <%-- header --%>
     <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
+
     <!-- main  -->
     <main>
         <div style="height: 900px;">
@@ -33,7 +34,8 @@
                         <tr>
                             <th>
                                 <!-- 게시글 카테고리 -->
-                                <div class="fs-5 border-bottom border-success border-4 text-success">공지사항
+                                  <c:forEach items="${boardList}" var="board" varStatus="status">
+                                <div class="fs-5 border-bottom border-success border-4 text-success">${boardList.}
                                     <!-- 게시글 제목 -->
                                     <div class="fs-3">2023년 설날 연휴 배송안내 및 휴무안내</div>
                                 </div>
@@ -78,7 +80,7 @@
 
                         지구공방 대표, 개발팀 드림.
                     </div>
-                </div>
+                    </c:forEach>
 
 
             </div>
