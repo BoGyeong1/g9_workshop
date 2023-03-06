@@ -40,4 +40,10 @@ public class MainService {
         return result;
     }
 
+    public Object getMainProducts() {
+        String sqlMapId = "CommonMapper.getSixProduct";
+        Object result = sharedDao.getList(sqlMapId);
+        return result;
+    }
+
 }
