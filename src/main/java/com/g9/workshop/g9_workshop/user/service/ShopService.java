@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.g9.workshop.g9_workshop.user.dao.SharedDao;
 import com.g9.workshop.g9_workshop.user.dao.ShopDao;
 
 @Service
@@ -12,6 +13,9 @@ public class ShopService {
 
     @Autowired
     ShopDao shopDao;
+
+    @Autowired
+    SharedDao sharedDao;
 
     public Object getCategories() {
         String sqlMapId = "ShopMapper.getCategories";
@@ -64,6 +68,18 @@ public class ShopService {
     public Object getDetailImgs(Map dataMap) {
         String sqlMapId = "ShopMapper.getDetailImgs";
         Object result = shopDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getFavorite(Map dataMap) {
+        String sqlMapId = "ShopMapper.getFavorite";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getReview(Map dataMap) {
+        String sqlMapId = "ShopMapper.getReview";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
         return result;
     }
 

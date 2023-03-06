@@ -112,7 +112,7 @@
           </table>
           <div class="d-flex justify-content-center">
            
-              <button class="saveBtn mb-5">저장하기</button>
+              <button class="reviewRegiBtn mb-5">저장하기</button>
           </div>
             </form>
         </div>

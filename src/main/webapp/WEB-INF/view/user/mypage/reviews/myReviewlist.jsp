@@ -23,7 +23,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="/css/mypage/reviews/reviewlist.css" />
+    <link rel="stylesheet" href="/css/mypage/reviews/reviewlist2.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>
@@ -45,59 +45,59 @@
           <hr class="hr" />
           <div class="mt-5">
           <span>
-  <form>
-  <button type="submit" formaction="/mypage/reviewlist" id="possibleReviewBtn" class="possibleReview">작성가능한 상품</button>
-  <button type="submit" formaction="/mypage/myReviewList" class="recordReview ms-3">내가 작성한 리뷰</button>
-</form>
+            <form>
+            <button type="submit" formaction="/mypage/reviewlist" id="possibleReviewBtn" class="possibleReview">작성가능한 상품</button>
+            <button type="submit" formaction="/mypage/myReviewList" class="recordReview ms-3">내가 작성한 리뷰</button>
+          </form>
           </div>
 
-<table class="table text-center mt-5" id="table">
-  <thead>
-    <tr class="border-top border-bottom border-dark border-3">
-      <th>작성날짜</th>
-      <th>상품명</th>
-      <th>내용</th>
-      <th>별점</th>
-      <th>수정 / 삭제</th>
-    </tr>
-  </thead>
-  <tbody id="reviewList">
-          <c:if test="${empty resultMap}">
-          <tr><td colspan="5"><div>내가 작성한 리뷰내역이 없습니다.</div></tr>
-          </c:if>
-    <c:forEach var="product" items="${resultMap}">
-      <tr>
-        <td><fmt:formatDate value="${product.CREATE_DATE}" pattern="yyyy-MM-dd" var="createDate" />${createDate}</a></td>
-        <td>${product.PRODUCT_NAME}</td>
-        <td>
-          <form action="/mypage/reviewRegi/${product.ORDER_DETAIL_UID}">
-            <a class="">${product.CONTENT}</a>
-          </form>
-        </td>
-        <td>
-<span class="rating">
-  <input type="radio" id="star5-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="5" disabled="disabled" ${product.RATING eq 5 ? "checked" : ""}/>
-  <label class="full" for="star5-${product.REVIEW_UID}"></label>
-  <input type="radio" id="star4-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="4" disabled="disabled" ${product.RATING eq 4 ? "checked" : ""}/>
-  <label class="full" for="star4-${product.REVIEW_UID}"></label>
-  <input type="radio" id="star3-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="3" disabled="disabled" ${product.RATING eq 3 ? "checked" : ""}/>
-  <label class="full" for="star3-${product.REVIEW_UID}"></label>
-  <input type="radio" id="star2-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="2" disabled="disabled" ${product.RATING eq 2 ? "checked" : ""}/>
-  <label class="full" for="star2-${product.REVIEW_UID}"></label>
-  <input type="radio" id="star1-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="1" disabled="disabled" ${product.RATING eq 1 ? "checked" : ""}/>
-  <label class="full" for="star1-${product.REVIEW_UID}"></label>
-</span>
-        </td>
-        <td>
-<form >
-  <button type="submit" id="editBtn" formaction="/mypage/editReview/${product.REVIEW_UID}">수정</button>
-  <button type="submit" id="deleteBtn"formaction="/mypage/deleteReview/${product.REVIEW_UID}">삭제</button>
-</form>
-        </td>
-      </tr>
-    </c:forEach>
-  </tbody>
-</table>
+                <table class="table text-center mt-5" id="table">
+                  <thead>
+                    <tr class="border-top border-bottom border-dark border-3">
+                      <th>작성날짜</th>
+                      <th>상품명</th>
+                      <th>내용</th>
+                      <th>별점</th>
+                      <th>수정 / 삭제</th>
+                    </tr>
+                  </thead>
+                  <tbody id="reviewList">
+                          <c:if test="${empty resultMap}">
+                          <tr><td colspan="5"><div>내가 작성한 리뷰내역이 없습니다.</div></tr>
+                          </c:if>
+                    <c:forEach var="product" items="${resultMap}">
+                      <tr>
+                        <td><fmt:formatDate value="${product.CREATE_DATE}" pattern="yyyy-MM-dd" var="createDate" />${createDate}</a></td>
+                        <td>${product.PRODUCT_NAME}</td>
+                        <td>
+                          <form action="/mypage/reviewRegi/${product.ORDER_DETAIL_UID}">
+                            <a class="">${product.CONTENT}</a>
+                          </form>
+                        </td>
+                        <td>
+                <span class="rating">
+                  <input type="radio" id="star5-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="5" disabled="disabled" ${product.RATING eq 5 ? "checked" : ""}/>
+                  <label class="full" for="star5-${product.REVIEW_UID}"></label>
+                  <input type="radio" id="star4-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="4" disabled="disabled" ${product.RATING eq 4 ? "checked" : ""}/>
+                  <label class="full" for="star4-${product.REVIEW_UID}"></label>
+                  <input type="radio" id="star3-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="3" disabled="disabled" ${product.RATING eq 3 ? "checked" : ""}/>
+                  <label class="full" for="star3-${product.REVIEW_UID}"></label>
+                  <input type="radio" id="star2-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="2" disabled="disabled" ${product.RATING eq 2 ? "checked" : ""}/>
+                  <label class="full" for="star2-${product.REVIEW_UID}"></label>
+                  <input type="radio" id="star1-${product.REVIEW_UID}" name="rating-${product.REVIEW_UID}" value="1" disabled="disabled" ${product.RATING eq 1 ? "checked" : ""}/>
+                  <label class="full" for="star1-${product.REVIEW_UID}"></label>
+                </span>
+                        </td>
+                        <td>
+                <form >
+                  <button type="submit" id="editBtn" formaction="/mypage/editReview/${product.REVIEW_UID}">수정</button>
+                  <button type="submit" id="deleteBtn"formaction="/mypage/deleteReview/${product.REVIEW_UID}">삭제</button>
+                </form>
+                        </td>
+                      </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
         </div>
       </div>
     </main>

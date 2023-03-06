@@ -33,13 +33,6 @@
                         <img src="/img/logo/G9_Logo_Black.png" alt="g9_logo"
                             style="width: 15vw; margin-right: 1vw;">
                     </a>
-                    <form action="/search">
-                        <input type="search" id="search" name="search"
-                            class="border-top-0 border-start-0 border-end-0 border-dark" required>
-                        <button type="submit" class="border-0 bg-white">
-                            <i class="bi bi-search fs-4"></i>
-                        </button>
-                    </form>
                 </div>
                 <div id="menu-container">
                     <a href="/mypage/orderlist" class="text-decoration-none text-dark">

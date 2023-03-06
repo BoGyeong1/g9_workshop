@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -107,9 +108,8 @@
                         <input type="hidden" id="price" name="price" value="${productDetailInfo.PRICE}">
                         <input type="hidden" id="discount_rate" name="discount_rate" value="${productDetailInfo.DISCOUNT_RATE}">
                         <div class="d-flex justify-content-between">
-                            <input class="btn btn-success col-5" type="submit" value="장바구니" formaction="/cart">
-                            <input class="btn btn-outline-success col-5" type="submit" value="구매하기" formaction="/order">
-                            <input class="btn btn-outline-success col-1" type="submit" value="♡" formaction="/like">
+                            <input class="btn btn-success col-10" type="submit" value="장바구니" formaction="/cart">
+                            <input class="btn ${favorite.PRODUCT_UID == params.product_uid ? 'btn-danger' : 'btn-outline-success'} col-1" type="submit" value="♡" formaction="/${favorite.PRODUCT_UID == params.product_uid ? 'dislike' : 'like'}">
                         </div>
                     </form>
                 </div>
@@ -146,97 +146,37 @@
             <hr>
             <div class="fw-bold">구매평</div>
             <hr>
+            <c:forEach items="${reviewList}" var="review" varStatus="status">
             <div id="review-box" class="d-flex justify-content-between">
                 <div id="review-box-left">
                     <div class="m-2" id="star-rating-box">
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
+                        <c:forEach varStatus="status" begin="1" end="${review.RATING}" step="1">
+                            <i class="bi bi-star-fill text-danger"></i>
+                        </c:forEach>
                     </div>
                     <div class="m-2" id="review-text-box">
-                        귀여워요
+                        ${review.CONTENT}
                     </div>
                 </div>
                 <div id="review-box-right">
                     <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
+                        ${review.CREATE_DATE}
                     </div>
                     <div class="m-2 text-end" id="writer">
-                        잗우
+                    <c:choose>
+                        <c:when test="${fn:length(review.USER_NAME) eq 2}">
+                            <c:set var="hiddenName" value="${fn:substring(review.USER_NAME,0,1)}*"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="hiddenName" value="${fn:substring(review.USER_NAME,0,1)}*${fn:substring(review.USER_NAME,fn:length(review.USER_NAME)-1,fn:length(review.USER_NAME))}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    ${hiddenName}
                     </div>
                 </div>
             </div>
             <hr>
-            <div id="review-box" class="d-flex justify-content-between">
-                <div id="review-box-left">
-                    <div class="m-2" id="star-rating-box">
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                    </div>
-                    <div class="m-2" id="review-text-box">
-                        귀여워요
-                    </div>
-                </div>
-                <div id="review-box-right">
-                    <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
-                    </div>
-                    <div class="m-2 text-end" id="writer">
-                        잗우
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div id="review-box" class="d-flex justify-content-between">
-                <div id="review-box-left">
-                    <div class="m-2" id="star-rating-box">
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                    </div>
-                    <div class="m-2" id="review-text-box">
-                        귀여워요
-                    </div>
-                </div>
-                <div id="revidivew-box-right">
-                    <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
-                    </div>
-                    <div class="m-2 text-end" id="writer">
-                        잗우
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="produt-inquery-box" class="w-75 m-auto">
-            <hr>
-            <div class="fw-bold">상품문의</div>
-            <hr>
-            <div id="inquery-box" class="d-flex justify-content-between">
-                <div id="inquery-box-left" class="w-75">
-                    <div class="m-2" id="inquery-text-box">
-                        문의내용
-                    </div>
-                    <div class="m-2 bg-light" id="inquery-text-box">
-                        답변내용
-                    </div>
-                </div>
-                <div id="inquery-box-right">
-                    <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
-                    </div>
-                    <div class="m-2 text-end" id="writer">
-                        잗우
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
 

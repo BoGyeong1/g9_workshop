@@ -124,7 +124,7 @@ int totalPrice = totalAmount + shippingFee;
             <div class="title fs-3 mt-5">배송지 정보 수정</div>
 <hr />
 
-<div>기본 배송지 수정 시 기본이라는 이름은 수정하지 말아주세요. </div>
+<div>기본 배송지 수정 시 기본이라는 이름은 수정하지 마십시오. </div>
 <div>기본 배송지 누락 시 접속에 문제가 생길 수 있습니다.</div>
 <form action="/mypage/editAddressProcess/${resultMap[0].ORDER_UID}" method ="post">
   <div>

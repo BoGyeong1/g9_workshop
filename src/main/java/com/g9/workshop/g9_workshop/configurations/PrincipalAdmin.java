@@ -13,6 +13,15 @@ public class PrincipalAdmin implements UserDetails {
     private Map userInfo;
     private String memberName;
     private String adminUid;
+    private String ninkName;
+
+    public String getNinkName() {
+        return ninkName;
+    }
+
+    public void setNinkName(String ninkName) {
+        this.ninkName = ninkName;
+    }
 
     public String getAdminUid() {
         return adminUid;
@@ -34,6 +43,7 @@ public class PrincipalAdmin implements UserDetails {
         this.userInfo = userInfo;
         this.memberName = (String) userInfo.get("ADMIN_NAME");
         this.adminUid = (String) userInfo.get("ADMIN_UID");
+        this.ninkName = (String) userInfo.get("NICKNAME");
         int i = 1;
     }
 

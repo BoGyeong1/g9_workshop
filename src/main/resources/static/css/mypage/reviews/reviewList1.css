@@ -1,6 +1,3 @@
-/* * {
-  border: 1px solid gray;
-} */
 main {
   margin-top: 100px;
 }
@@ -42,6 +39,10 @@ a {
   width: 155px;
   float: left;
   margin-top: 60px;
+}
+
+table thead tr {
+  border-bottom: 2px solid #000;
 }
 
 a,
@@ -93,47 +94,19 @@ li {
 li {
   vertical-align: top;
 }
-
-.select {
+.possibleReview {
+  background-color: white;
   width: 180px;
-  height: 30px;
+  color: black;
+  height: 40px;
 }
-.phone {
-  width: 100px;
-  height: 30px;
+.recordReview {
+  background-color: white;
+  width: 180px;
+  color: black;
+  height: 40px;
 }
-.title {
-  width: 617px;
-  height: 30px;
-}
-.text {
-  font-size: 0.8rem;
-}
-fieldset {
-  display: inline-block;
-  direction: rtl;
-  border: 0;
-}
-fieldset legend {
-  text-align: right;
-}
-fieldset input[type="radio"] {
-  display: none;
-}
-fieldset label {
-  font-size: 3em;
-  color: transparent;
-  text-shadow: 0 0 0 #f0f0f0;
-}
-fieldset label:hover {
-  text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-fieldset label:hover ~ label {
-  text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
-fieldset input[type="radio"]:checked ~ label {
-  text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-}
+
 .reviewRegiBtn {
   width: 140px;
   height: 30px;
@@ -141,6 +114,15 @@ fieldset input[type="radio"]:checked ~ label {
   color: white;
 }
 
+#editBtn {
+  color: black;
+  background-color: white;
+}
+
+#deleteBtn {
+  color: white;
+  background-color: black;
+}
 footer {
   clear: both;
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
 import com.g9.workshop.g9_workshop.user.service.ShopService;
 
 @Controller
@@ -39,13 +41,25 @@ public class ShopController {
     // [SOO] Product Detail
     @RequestMapping(value = "/product/detail", method = RequestMethod.POST)
     public ModelAndView root(@RequestParam Map params, ModelAndView modelAndView) {
+        Object favorite;
+        try {
+            PrincipalUser principal = (PrincipalUser) SecurityContextHolder.getContext().getAuthentication()
+                    .getPrincipal();
+            String userUid = principal.getUserUid();
+            params.put("userUid", userUid);
+            favorite = shopService.getFavorite(params);
+            modelAndView.addObject("favorite", favorite);
+        } catch (Exception e) {
+        }
 
+        Object reviewList = shopService.getReview(params);
         Object productDetailInfo = shopService.getProductDetailInfo(params);
         Object thumbnailImgs = shopService.getThumbnailImgs(params);
         Object detailImgs = shopService.getDetailImgs(params);
 
         modelAndView.addObject("params", params);
         modelAndView.addObject("productDetailInfo", productDetailInfo);
+        modelAndView.addObject("reviewList", reviewList);
         modelAndView.addObject("thumbnailImgs", thumbnailImgs);
         modelAndView.addObject("detailImgs", detailImgs);
 
