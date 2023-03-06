@@ -38,4 +38,5 @@ public class BoardService {
         Object result = adminDao.getOne(sqlMapId, dataMap);
         return result;
     }
+
 }
