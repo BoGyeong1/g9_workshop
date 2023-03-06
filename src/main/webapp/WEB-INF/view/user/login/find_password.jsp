@@ -45,6 +45,7 @@
             id="email"
             class="input"
             placeholder="이메일 주소"
+            required
           />
         </div>
         <div class="d-flex row justify-content-center mb-3">
@@ -54,6 +55,7 @@
             id="name"
             class="input"
             placeholder="이름"
+            required
           />
         </div>
         <div class="d-flex row justify-content-center mt-3 mb-3">
@@ -63,6 +65,7 @@
             id="phone"
             class="input"
             placeholder="휴대폰 번호"
+            required
           />
         </div>
       <%-- 발급버튼 --%>
