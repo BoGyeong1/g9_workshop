@@ -39,6 +39,7 @@
             id="name"
             class="input margin"
             placeholder="이름"
+            required
           />
         </div>
         <div class="d-flex row justify-content-center mt-3 mb-3">
@@ -48,6 +49,7 @@
             id="phone"
             class="input"
             placeholder="휴대폰 번호"
+            required
           />
         </div>
         <%-- [GYEONG] 23.02.14 찾기버튼 --%>

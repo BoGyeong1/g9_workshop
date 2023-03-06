@@ -26,12 +26,17 @@
       <div class="container width">
         <div>
         <%-- [GYEONG] 23.02.14 이메일 표시 --%>
-          <div class="d-flex justify-content-center">
-            <img src="/img/logo/G9_Logo_Black.png" class="logo" />
-          </div>
-          <div class="fristText">회원님의 아이디는</div>
-          <div><span class="email">${resultMap.EMAIL}</span> 입니다.</div>
-        </div>
+     <div class="d-flex justify-content-center">
+      <img src="/img/logo/G9_Logo_Black.png" class="logo" />
+    </div>
+    <c:if test="${resultMap == null}">
+      <div class ="fristText">이메일을 찾을 수 없습니다.</div> 
+    </c:if>
+    <c:if test="${resultMap != null}">
+      <div class="fristText">회원님의 아이디는</div>
+      <div><span class="email">${resultMap.EMAIL}</span> 입니다.</div>
+    </c:if>
+
 
         <%-- [GYEONG] 23.02.14 비밀번호 찾기 / 로그인하기 버튼  --%>
         <form action="/user/findPassword">
