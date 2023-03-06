@@ -65,22 +65,43 @@
     </tr>
   </thead>
   <tbody>
+
     <c:forEach var="item" items="${resultMap}">
+
       <c:choose>
-        <c:when test="${item.CONDITION_NAME == '취소완료' or item.CONDITION_NAME == '반품준비중' or item.CONDITION_NAME == '반품완료' or item.CONDITION_NAME == '교환신청' or item.CONDITION_NAME == '교환준비중'}">
+        <c:when test="${empty resultMap}">
+    <tr>
+      <td colspan="5">
+        <div>취소/교환/반품 신청할 내역이 없습니다.</div>
+      </td>
+    </tr>
+  </c:when>
+        <%-- <c:when test="${item.CONDITION_NAME == '취소완료' or item.CONDITION_NAME == '배송중' 
+        or item.CONDITION_NAME == '반품준비중' or item.CONDITION_NAME == '반품완료' 
+        or item.CONDITION_NAME == '교환신청' or item.CONDITION_NAME == '배송완료'
+        or item.CONDITION_NAME == '교환준비중'}">
           <tr>
           <td colspan="5">
           <div> 취소/교환/반품 신청할 내역이 없습니다.</div>
           </td>
           </tr>
-        </c:when>
+        </c:when> --%>
         <c:otherwise>
           <tr>
             <td><fmt:formatDate value="${item.ORDER_DATE}" pattern="yyyyMMdd" /></td>
             <td>${item.ORDER_UID}</td>
 
               <td>${item.PRODUCT_NAME} <c:if test="${item.PRODUCT_COUNT > 1}">외 ${item.PRODUCT_COUNT - 1}개</c:if></td>
-            <td>${item.TOTAL_PRICE+3000}원</td>
+            <td>
+              <c:choose>
+                <c:when test="${item.TOTAL_PRICE >= 50000}">
+                  ${item.TOTAL_PRICE}원
+                </c:when>
+                <c:otherwise>
+                  ${item.TOTAL_PRICE + 3000}원
+                </c:otherwise>
+              </c:choose>
+            </td>
             <td>
               <c:choose>
                 <c:when test="${item.CONDITION_NAME == '주문완료'or item.CONDITION_NAME == '상품준비중' or item.CONDITION_NAME == '결제완료'}">
