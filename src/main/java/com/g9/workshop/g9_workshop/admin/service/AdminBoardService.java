@@ -90,4 +90,10 @@ public class AdminBoardService {
         return result;
     }
 
+    public Object delete(Map dataMap) {
+        String sqlMapId = "BoardMapper.deleteByPost";
+        Object result = adminDao.delete(sqlMapId,dataMap);
+        return result;
+    }
+
 }

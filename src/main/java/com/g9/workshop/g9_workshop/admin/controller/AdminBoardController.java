@@ -83,4 +83,16 @@ public class AdminBoardController {
         modelAndView.setViewName("admin/web/board");
         return modelAndView;
     }
+
+    // delete
+    @PostMapping("/delete")
+    public ModelAndView delete(@RequestParam Map<String, Object> params,
+            ModelAndView modelAndView) {
+        adminBoardService.delete(params);
+        Object resultMap = adminBoardService.selectBoard(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("admin/web/board");
+        return modelAndView;
+    }
+
 }

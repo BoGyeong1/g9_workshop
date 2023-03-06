@@ -70,8 +70,8 @@
                             </td>
 
                             <td>    
-                                <form method="get" action="/admin/board/edit">
-                                    <input type="hidden" name="event-uid" value="${board.POST_UID}">
+                                <form method="post" action="/admin/board/delete">
+                                    <input type="hidden" name="POST_UID" value="${board.POST_UID}">
                                     <button type="submit" class="btn btn-danger">
                                         삭제하기
                                     </button>

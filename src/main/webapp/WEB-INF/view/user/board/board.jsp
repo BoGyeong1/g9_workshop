@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -13,6 +13,7 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/style.css">
+    
     <style>
         .page-link {
             color: #000;
@@ -72,153 +73,60 @@
                 <table class="text-center" width="900px">
                     <thead>
                         <tr class="bg-light">
-                            <th class="border border-dark ">글번호</th>
                             <th class="border  border-dark">구분</th>
                             <th class="border  border-dark ">제목</th>
                             <th class="border  border-dark">작성일</th>
-                            <th class="border  border-dark ">조회수</th>
+                            <th class="border  border-dark">수정일</th>
                         </tr>
                     </thead>
                     <tbody>
+
+                        <c:forEach items="${resultMap}" var="board" varStatus="status">
                         <tr>
-                            <td class="border border-dark ">공지</td>
-                            <td class="border border-dark ">공지사항</td>
-                            <td class="border border-dark ">
-                                <a href="#">2023년 설날 연휴 배송안내 및 휴무안내</a>
-                            </td>
-                            <td class="border border-dark">2023-01-01</td>
-                            <td class="border border-dark">0</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">공지</td>
-                            <td class="border border-dark">공지사항</td>
+                         <td class="border border-dark">
+                         <c:if test="${board.POST_CATEGORY_UID eq 'PC1'}">
+                                       공지사항
+                                     </c:if>
+                                 <c:if test="${board.POST_CATEGORY_UID eq 'PC2'}">
+                                       이벤트
+                                     </c:if>
+                                      <c:if test="${board.POST_CATEGORY_UID eq 'PC3'}">
+                                       소식
+                                     </c:if></td>
                             <td class="border border-dark">
-                                <a href="#">2023년 1월 네이처가든 세계자연기금(WWF) 정기후원</a>
+                              <a href="/your-link-here">${board.TITLE}</a>
                             </td>
-                            </td>
-                            <td class="border border-dark">2023-01-01</td>
-                            <td class="border border-dark">0</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">150</td>
-                            <td class="border border-dark">공지사항</td>
                             <td class="border border-dark">
-                                <a href="#">22022년 12월 네이처가든 세계자연기금(WWF) 정기후원</a>
-                            </td>
-                            </td>
-                            <td class="border border-dark">2022-12-01</td>
-                            <td class="border border-dark">0</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">149</td>
-                            <td class="border border-dark">이벤트</td>
+                                <fmt:formatDate value="${board.CREATE_DATE}" pattern="yy-MM-dd" />
+                                </td>
                             <td class="border border-dark">
-                                <a href="#">2지구공방 회원들이 말하는 지구공방이 좋은 이유</a>
-                            </td>
-                            <td class="border border-dark">2022-11-28</td>
-                            <td class="border border-dark">0</td>
+                                <fmt:formatDate value="${board.MODIFIED_DATE}" pattern="yy-MM-dd" />
+                                </td>
                         </tr>
-                        <tr>
-                            <td class="border border-dark">148</td>
-                            <td class="border border-dark">소식</td>
-                            <td class="border border-dark">
-                                <a href="#"></a>플라스틱 새활용 신제품 입고</a>
-                            </td>
-                            <td class="border border-dark">2022-11-21</td>
-                            <td class="border border-dark">0</td>
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
-                        <tr>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-                            <td class="border border-dark">...</td>
-
-                        </tr>
+                    
 
                     </tbody>
+                    </c:forEach>
                 </table>
             </div>
 
+                        <%-- <div class="pagination">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item <c:if test="${pageNo == 1}">disabled</c:if>">
+                                    <a class="page-link" href="?pageNo=${pageNo - 1}&itemsPerPage=${itemsPerPage}">Previous</a>
+                                </li>
+                                <c:forEach var="page" begin="1" end="${pagenav.totalPages}">
+                                    <li class="page-item <c:if test="${pageNo == page}">active</c:if>">
+                                        <a class="page-link" href="?pageNo=${page}&itemsPerPage=${itemsPerPage}">${page}</a>
+                                    </li>
+                                </c:forEach>
+                                <li class="page-item <c:if test="${pageNo == resultMap.totalPages}">disabled</c:if>">
+                                    <a class="page-link" href="?pageNo=${pageNo + 1}&itemsPerPage=${itemsPerPage}">Next</a>
+                                </li>
+                            </ul>
+            </div> --%>
 
-            <div class="d-flex justify-content-center mt-3">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-
-            <form action="" class="container d-flex justify-content-center">
+            <%-- <form action="" class="container d-flex justify-content-center" method="GET">
                 <select class="form-select-sm me-1" name="searchtitle" id="">
                     <option selected value="st1">제목</option>
                     <option value="st2">내용</option>
@@ -228,7 +136,7 @@
                 </button><br>
                 <button type="button" class="btn btn-outline-dark ms-1">검색</button></td>
                 </tr>
-            </form>
+            </form> --%>
         </div>
 
     </main>

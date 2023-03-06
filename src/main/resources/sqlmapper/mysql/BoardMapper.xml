@@ -25,6 +25,11 @@
     </select>
 
 
+        <select id="selectBoardCount" resultType="int">
+    SELECT COUNT(*) FROM POSTS
+    </select>
+
+
 
 <!-- call BoardMapper.insertBoard -->
     <insert id="insertBoard" parameterType="Map">
@@ -51,5 +56,13 @@
         TOP_FIXED =  #{TOP_FIXED}
     WHERE POST_UID = #{POST_UID}
     </update>
+
+<!-- call BoardMapper.deleteByPost  -->
+   <delete id="deleteByPost"  parameterType="Map">
+        DELETE FROM POSTS
+        WHERE POST_UID = #{POST_UID}
+   </delete>
+
+
 
 </mapper>
