@@ -28,6 +28,12 @@ public class BoardController {
         return modelAndView;
     }
 
-    
+    @GetMapping("/view")
+    public ModelAndView boardview(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+        Object resultMap = boardService.selectBoard(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("user/board/boardView");
+        return modelAndView;
+    }
 
 }
