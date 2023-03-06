@@ -23,7 +23,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="/css/mypage/reviews/reviewlist.css" />
+    <link rel="stylesheet" href="/css/mypage/reviews/reviewlist2.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
   <body>

@@ -1,0 +1,160 @@
+main {
+  margin-top: 100px;
+}
+.topArea {
+  width: 1300px;
+  height: 150px;
+}
+.mypagelogo {
+  color: white;
+  width: 200px;
+  height: 140px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.name {
+  font-size: 2rem;
+}
+.gradeBtn {
+  font-size: 1rem;
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 12px;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+
+.leftMenu {
+  width: 155px;
+  float: left;
+  margin-top: 60px;
+}
+
+table thead tr {
+  border-bottom: 2px solid #000;
+}
+
+a,
+a:active,
+a:hover {
+  text-decoration: none;
+}
+.subTitle {
+  color: #555;
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0px;
+  margin: 1px;
+}
+.menuTitle {
+  font-size: 1.3rem;
+  font-weight: bolder;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.titleBorder {
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+  border-left: 1px;
+  border-right: 1px;
+  margin-left: 15px;
+}
+
+.content {
+  float: left;
+  width: 1080px;
+  margin-top: 50px;
+  margin-left: 50px;
+  margin-bottom: 200px;
+}
+
+.hr {
+  background-color: black;
+  height: 2px;
+  border: 0;
+}
+
+li {
+  vertical-align: top;
+}
+.possibleReview {
+  background-color: white;
+  width: 180px;
+  color: black;
+  height: 40px;
+}
+.recordReview {
+  background-color: white;
+  width: 180px;
+  color: black;
+  height: 40px;
+}
+
+.reviewRegiBtn {
+  width: 140px;
+  height: 30px;
+  background-color: black;
+  color: white;
+}
+
+.rating {
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  line-height: 20px;
+  font-size: 20px;
+}
+
+.rating input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label {
+  color: #ddd;
+  float: right;
+}
+
+.rating label:before {
+  content: "\f005";
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.rating input:checked ~ label:before,
+.rating:not(:checked) label:hover:before {
+  color: #ffd700;
+}
+
+#editBtn {
+  color: black;
+  background-color: white;
+}
+
+#deleteBtn {
+  color: white;
+  background-color: black;
+}
+footer {
+  clear: both;
+}
