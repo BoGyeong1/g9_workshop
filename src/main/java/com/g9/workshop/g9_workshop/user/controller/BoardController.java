@@ -19,8 +19,12 @@ public class BoardController {
     @Autowired
     BoardService boardService;
 
-    @GetMapping("")
-    public ModelAndView boardMain(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
+    @GetMapping("/{currentPage}")
+    public ModelAndView boardMain(@RequestParam Map<String, Object> params, ModelAndView modelAndView,
+            @PathVariable String currentPage) {
+        params.put("currentPage", Integer.parseInt(currentPage));
+        params.put("pageScale", 10);
+
         Object resultMap = boardService.selectBoard(params);
         Object boardList = boardService.getBoardList();
         modelAndView.addObject("resultMap", resultMap);

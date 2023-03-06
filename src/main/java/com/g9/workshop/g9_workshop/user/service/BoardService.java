@@ -11,10 +11,10 @@ public class BoardService {
 
     @Autowired
     SharedDao sharedDao;
-    
+
     @Autowired
     AdminDao adminDao;
-    
+
     public Object selectBoard(Object dataMap) {
         String sqlMapId = "BoardMapper.selectBoard";
         Object result = sharedDao.getList(sqlMapId);
@@ -26,13 +26,13 @@ public class BoardService {
         Object result = sharedDao.getList(sqlMapId);
         return result;
     }
-    
+
     public Object getBoardUid(Object dataMap) {
         String sqlMapId = "BoardMapper.selectBoardUID ";
         Object result = sharedDao.getList(sqlMapId);
         return result;
     }
-    
+
     public Object getOne(Object dataMap) {
         String sqlMapId = "BoardMapper.selectBoardUID";
         Object result = adminDao.getOne(sqlMapId, dataMap);
