@@ -25,8 +25,8 @@ public class BoardController {
         params.put("currentPage", Integer.parseInt(currentPage));
         params.put("pageScale", 10);
 
-        Object resultMap = boardService.selectBoard(params);
-        Object boardList = boardService.getBoardList();
+        Object boardList = boardService.getBoardList(params);
+
         modelAndView.addObject("resultMap", resultMap);
         modelAndView.addObject("boardList", boardList);
         modelAndView.setViewName("user/board/board");
