@@ -19,39 +19,61 @@
     <div class="d-flex">
         <%@ include file="/WEB-INF/view/admin/common/adminnav.jsp" %>
         <div class="w-100 m-5">
-            <a href="/admin/board/insert" class="btn btn-primary">
-                게시판 등록
-            </a>
-                        <a href="/admin/board/update" class="btn btn-primary">
-                게시판 수정
-            </a>
+             <div class="fs-4">게시판 관리     <a href="/admin/board/form" class="btn btn-dark">
+              신규 게시글 등록
+            </a> </div>
+            
+        
+    
             <div class="my-3">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>이벤트명</th>
-                            <th>시작</th>
-                            <th>종료</th>
-                            <th>URL</th>
-                            <th>노출여부</th>
-                            <th>순서</th>
+                            <th>게시글 UID </th>
+                            <th>카테고리</th>
+                            <th>게시글 제목</th>
+                            <th>작성일</th>
+                            <th>수정일</th>
+                            <th>고정여부</th>
                             <th>수정</th>
+                            <th>삭제</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${eventInfos}" var="event" varStatus="status">
+                        <c:forEach items="${resultMap}" var="board" varStatus="status">
+                        
                         <tr class="align-middle">
-                            <td>${event.EVENT_NAME}</td>
-                            <td>${event.START_DATE}</td>
-                            <td>${event.END_DATE}</td>
-                            <td>${event.URL}</td>
-                            <td>${event.EXPOSURE}</td>
-                            <td>${event.EXPOSURE_ORDER}</td>
+                        <td>${board.POST_UID}</td>
+                            <td>   <c:if test="${board.POST_CATEGORY_UID eq 'PC1'}">
+                                       공지사항
+                                     </c:if>
+                                 <c:if test="${board.POST_CATEGORY_UID eq 'PC2'}">
+                                       이벤트
+                                     </c:if>
+                                      <c:if test="${board.POST_CATEGORY_UID eq 'PC3'}">
+                                       소식
+                                     </c:if></td>
+
+                            <td>${board.TITLE}</td>
+                            <td>${board.CREATE_DATE}</td>
+                            <td>${board.MODIFIED_DATE}</td>
+                            <td>${board.TOP_FIXED}</td>
+
                             <td>
-                                <form method="post" action="/admin/event/edit">
-                                    <input type="hidden" name="event-uid" value="${event.EVENT_UID}">
-                                    <button type="submit" class="btn btn-primary">
+                                <form method="get" action="/admin/board/edit/${board.POST_UID}">
+                                    <button class="btn btn-primary">
                                         수정하기
+                                    </button>
+
+                                </form>
+                            </td>
+
+                            <td>    
+                                <form method="get" action="/admin/board/edit">
+                                    <input type="hidden" name="event-uid" value="${board.POST_UID}">
+                                    <button type="submit" class="btn btn-danger">
+                                        삭제하기
                                     </button>
                                 </form>
                             </td>

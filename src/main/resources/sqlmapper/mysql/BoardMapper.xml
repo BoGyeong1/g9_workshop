@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardMapper">
+
+<!-- call BoardMapper.selectBoard -->
+    <select id="selectBoard" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM POSTS
+    </select>
+
+
+<!-- call BoardMapper.selectBoardUID -->
+    <select id="selectBoardUID" parameterType="Map" resultType="Map">
+        SELECT * 
+        FROM POSTS
+        WHERE POST_UID = #{POST_UID}
+    </select>
+
+<!-- 카테고리 가져옴 -->
+<!-- call BoardMapper.selectBoardCategory -->
+    <select id="selectBoardCategory" parameterType="Map" resultType="Map">
+      SELECT * 
+      FROM POST_CATEGOIES
+    </select>
+
+
+
+<!-- call BoardMapper.insertBoard -->
+    <insert id="insertBoard" parameterType="Map">
+        INSERT INTO POSTS 
+        (POST_UID, POST_CATEGORY_UID, ADMIN_UID, TITLE, CONTENT, sysdate(),sysdate(),TOP_FIXED )
+        VALUE
+        (#{POST_UID}, 
+        #{POST_CATEGORY_UID}, 
+        #{ADMIN_UID}, 
+        #{TITLE},
+        #{CONTENT},
+        sysdate(),
+        sysdate(),
+        #{TOP_FIXED})
+    </insert>
+
+
+<!-- call BoardMapper.updateByPost  -->
+    <update id="updateByPost"  parameterType="Map">
+
+    UPDATE POSTS
+    SET POST_CATEGORY_UID = #{POST_CATEGORY_UID} ,
+        TITLE =  #{TITLE},
+        CONTENT =  #{CONTENT},
+        CREATE_DATE = sysdate(),
+        MODIFIED_DATE = sysdate(),
+        TOP_FIXED =  #{TOP_FIXED}
+    WHERE POST_UID = #{POST_UID}
+    </update>
+
+</mapper>

@@ -36,6 +36,11 @@ public class AdminDao {
         Object result = sqlSessionTemplate.selectList(sqlMapId);
         return result;
     }
+    public Object selectBoardCategories() {
+        String sqlMapId = "BoardMapper.selectBoardCategory";
+        Object result = sqlSessionTemplate.selectList(sqlMapId);
+        return result;
+    }
 
     public Object selectPurposes() {
         String sqlMapId = "AdminMapper.selectPurposes";
@@ -73,13 +78,13 @@ public class AdminDao {
         return result;
     }
 
-    public Object insertOne(String sqlMapId, Map dataMap) {
+    public Object insertOne(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.insert(sqlMapId, dataMap);
         return result;
     }
 
     // 오버로딩
-    public Object selectList(String sqlMapId, Map dataMap) {
+    public Object selectList(String sqlMapId, Object dataMap) {
         Object result = sqlSessionTemplate.selectList(sqlMapId, dataMap);
         return result;
     }
@@ -105,4 +110,14 @@ public class AdminDao {
         return result;
     }
 
+    public Object getOne(String sqlMapId, Object dataMap) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object update(String sqlMapId, Object dataMap) {
+        Object result = sqlSessionTemplate.update(sqlMapId, dataMap);
+        return result;
+    }
+    
 }
