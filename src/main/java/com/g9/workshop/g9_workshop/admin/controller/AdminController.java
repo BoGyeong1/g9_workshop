@@ -45,6 +45,10 @@ public class AdminController {
     // [SOO] Admin Main
     @GetMapping({ "/home", "" })
     public ModelAndView adminMain(ModelAndView modelAndView) {
+        PrincipalAdmin principal = (PrincipalAdmin) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+        String nickName = principal.getMemberName();
+        modelAndView.addObject("nickName", nickName);
         modelAndView.setViewName("admin/common/main");
         return modelAndView;
     }
