@@ -8,9 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin/board")
 public class AdminBoardController {
-    
 
-    @GetMapping({""})
+    @GetMapping({ "" })
     public ModelAndView boardMain(ModelAndView modelAndView) {
         modelAndView.setViewName("admin/web/board");
         return modelAndView;
