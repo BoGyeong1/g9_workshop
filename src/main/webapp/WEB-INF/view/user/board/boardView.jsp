@@ -35,14 +35,14 @@
                             <th>
                                 <!-- 게시글 카테고리 -->
                                   <c:forEach items="${boardList}" var="board" varStatus="status">
-                                <div class="fs-5 border-bottom border-success border-4 text-success">${boardList.}
+                                <div class="fs-5 border-bottom border-success border-4 text-success">${boardList.CATEGORY_NAME}
                                     <!-- 게시글 제목 -->
-                                    <div class="fs-3">2023년 설날 연휴 배송안내 및 휴무안내</div>
+                                    <div class="fs-3">${boardList.TITLE}</div>
                                 </div>
                             </th>
                         </tr>
                         <!-- 작성일 -->
-                        <div style="font-size: 0.8rem;" class="text-end">작성일 <span>2023-1-1 </span></div>
+                        <div style="font-size: 0.8rem;" class="text-end">작성일 <span>${boardList.CREATE_DATE}</span></div>
 
                     </table>
 
