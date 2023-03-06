@@ -80,7 +80,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${boardList}" var="board" varStatus="status">
+                    <c:forEach items="${boardList}" var="board" varStatus="status">
                         <tr>
                             <td class="border border-dark">${board.CATEGORY_NAME}</td>
                             <td class="border border-dark">
@@ -89,10 +89,8 @@
                             <td class="border border-dark">${board.CREATE_DATE}</td>
                             <td class="border border-dark">${board.MODIFIED_DATE}</td>
                         </tr>
-                    
-
-                    </tbody>
                     </c:forEach>
+                    </tbody>
                 </table>
             </div>
 
