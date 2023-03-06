@@ -77,4 +77,10 @@ public class ShopService {
         return result;
     }
 
+    public Object getReview(Map dataMap) {
+        String sqlMapId = "ShopMapper.getReview";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
 }

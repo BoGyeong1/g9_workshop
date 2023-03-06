@@ -52,12 +52,14 @@ public class ShopController {
         } catch (Exception e) {
         }
 
+        Object reviewList = shopService.getReview(params);
         Object productDetailInfo = shopService.getProductDetailInfo(params);
         Object thumbnailImgs = shopService.getThumbnailImgs(params);
         Object detailImgs = shopService.getDetailImgs(params);
 
         modelAndView.addObject("params", params);
         modelAndView.addObject("productDetailInfo", productDetailInfo);
+        modelAndView.addObject("reviewList", reviewList);
         modelAndView.addObject("thumbnailImgs", thumbnailImgs);
         modelAndView.addObject("detailImgs", detailImgs);
 

@@ -64,4 +64,13 @@
         WHERE USER_UID = #{userUid} AND PRODUCT_UID = #{product_uid}
     </select>
 
+    <select id="getReview" parameterType="Map" resultType="Map">
+        SELECT CREATE_DATE, CONTENT, RATING, USER_NAME FROM REVIEWS
+        INNER JOIN ORDER_DETAILS ON REVIEWS.ORDER_DETAIL_UID = ORDER_DETAILS.ORDER_DETAIL_UID
+        INNER JOIN ORDERS ON ORDER_DETAILS.ORDER_UID = ORDERS.ORDER_UID
+        INNER JOIN USERS ON ORDERS.USER_UID = USERS.USER_UID
+        WHERE REVIEWS.PRODUCT_UID = #{product_uid}
+        ORDER BY CREATE_DATE DESC
+    </select>
+
 </mapper>

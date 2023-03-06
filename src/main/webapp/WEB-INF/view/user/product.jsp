@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -145,74 +146,37 @@
             <hr>
             <div class="fw-bold">구매평</div>
             <hr>
+            <c:forEach items="${reviewList}" var="review" varStatus="status">
             <div id="review-box" class="d-flex justify-content-between">
                 <div id="review-box-left">
                     <div class="m-2" id="star-rating-box">
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
+                        <c:forEach varStatus="status" begin="1" end="${review.RATING}" step="1">
+                            <i class="bi bi-star-fill text-danger"></i>
+                        </c:forEach>
                     </div>
                     <div class="m-2" id="review-text-box">
-                        귀여워요
+                        ${review.CONTENT}
                     </div>
                 </div>
                 <div id="review-box-right">
                     <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
+                        ${review.CREATE_DATE}
                     </div>
                     <div class="m-2 text-end" id="writer">
-                        잗우
+                    <c:choose>
+                        <c:when test="${fn:length(review.USER_NAME) eq 2}">
+                            <c:set var="hiddenName" value="${fn:substring(review.USER_NAME,0,1)}*"/>
+                        </c:when>
+                        <c:otherwise>
+                            <c:set var="hiddenName" value="${fn:substring(review.USER_NAME,0,1)}*${fn:substring(review.USER_NAME,fn:length(review.USER_NAME)-1,fn:length(review.USER_NAME))}"/>
+                        </c:otherwise>
+                    </c:choose>
+                    ${hiddenName}
                     </div>
                 </div>
             </div>
             <hr>
-            <div id="review-box" class="d-flex justify-content-between">
-                <div id="review-box-left">
-                    <div class="m-2" id="star-rating-box">
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                    </div>
-                    <div class="m-2" id="review-text-box">
-                        귀여워요
-                    </div>
-                </div>
-                <div id="review-box-right">
-                    <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
-                    </div>
-                    <div class="m-2 text-end" id="writer">
-                        잗우
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div id="review-box" class="d-flex justify-content-between">
-                <div id="review-box-left">
-                    <div class="m-2" id="star-rating-box">
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                        <i class="bi bi-star-fill text-danger"></i>
-                    </div>
-                    <div class="m-2" id="review-text-box">
-                        귀여워요
-                    </div>
-                </div>
-                <div id="revidivew-box-right">
-                    <div class="m-2 text-end" id="date">
-                        2023-02-28 07:51
-                    </div>
-                    <div class="m-2 text-end" id="writer">
-                        잗우
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </div>
 
