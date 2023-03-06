@@ -82,46 +82,45 @@
                     <tbody>
                     <c:forEach items="${boardList}" var="board" varStatus="status">
                         <tr>
-                            <td class="border border-dark">${board.CATEGORY_NAME}</td>
+                            <td class="border border-dark col-1">${board.CATEGORY_NAME}</td>
                             <td class="border border-dark">
-                                <a href="/your-link-here">${board.TITLE}</a>
+                                <form action="/board/view" method="get">
+                                    <input type="hidden" name="POST_UID" value="${board.POST_UID}">
+                                    <button style="border: none; background: none;" type="submit">
+                                        ${board.TITLE}
+                                    </button>
+                                </form>
                             </td>
-                            <td class="border border-dark">${board.CREATE_DATE}</td>
-                            <td class="border border-dark">${board.MODIFIED_DATE}</td>
+                            <td class="border border-dark col-2">
+                                <fmt:formatDate value="${board.CREATE_DATE}" pattern="yyyy-MM-dd" />
+                            </td>
+                            <td class="border border-dark col-2">
+                                <fmt:formatDate value="${board.MODIFIED_DATE}" pattern="yyyy-MM-dd" />
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
             </div>
-
-                        <%-- <div class="pagination">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item <c:if test="${pageNo == 1}">disabled</c:if>">
-                                    <a class="page-link" href="?pageNo=${pageNo - 1}&itemsPerPage=${itemsPerPage}">Previous</a>
-                                </li>
-                                <c:forEach var="page" begin="1" end="${pagenav.totalPages}">
-                                    <li class="page-item <c:if test="${pageNo == page}">active</c:if>">
-                                        <a class="page-link" href="?pageNo=${page}&itemsPerPage=${itemsPerPage}">${page}</a>
-                                    </li>
-                                </c:forEach>
-                                <li class="page-item <c:if test="${pageNo == resultMap.totalPages}">disabled</c:if>">
-                                    <a class="page-link" href="?pageNo=${pageNo + 1}&itemsPerPage=${itemsPerPage}">Next</a>
-                                </li>
-                            </ul>
-            </div> --%>
-
-            <%-- <form action="" class="container d-flex justify-content-center" method="GET">
-                <select class="form-select-sm me-1" name="searchtitle" id="">
-                    <option selected value="st1">제목</option>
-                    <option value="st2">내용</option>
-                    <option value="st3">작성자</option>
-                </select>
-                <input type="search" id="searchBoard" name="searchBoard" class="border border-1 border-dark" />
-                </button><br>
-                <button type="button" class="btn btn-outline-dark ms-1">검색</button></td>
-                </tr>
-            </form> --%>
-        </div>
+            <div class="my-5">
+                <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    </li>
+                </ul>
+                </nav>
+            </div>
 
     </main>
 
