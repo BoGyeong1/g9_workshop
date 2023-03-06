@@ -9,6 +9,11 @@
         FROM POSTS
     </select>
 
+    <select id="selectBoardLIst" resultType="Map">
+        SELECT POST_UID, CATEGORY_NAME, TITLE, CREATE_DATE, MODIFIED_DATE FROM POSTS
+        INNER JOIN POST_CATEGOIES ON POSTS.POST_CATEGORY_UID = POST_CATEGOIES.POST_CATEGORY_UID;
+    </select>
+
 
 <!-- call BoardMapper.selectBoardUID -->
     <select id="selectBoardUID" parameterType="Map" resultType="Map">
@@ -20,8 +25,8 @@
 <!-- 카테고리 가져옴 -->
 <!-- call BoardMapper.selectBoardCategory -->
     <select id="selectBoardCategory" parameterType="Map" resultType="Map">
-      SELECT * 
-      FROM POST_CATEGOIES
+        SELECT * 
+        FROM POST_CATEGOIES
     </select>
 
 

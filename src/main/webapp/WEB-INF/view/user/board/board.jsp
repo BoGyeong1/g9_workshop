@@ -73,40 +73,24 @@
                 <table class="text-center" width="900px">
                     <thead>
                         <tr class="bg-light">
-                            <th class="border  border-dark">구분</th>
-                            <th class="border  border-dark ">제목</th>
-                            <th class="border  border-dark">작성일</th>
-                            <th class="border  border-dark">수정일</th>
+                            <th class="border border-dark">구분</th>
+                            <th class="border border-dark ">제목</th>
+                            <th class="border border-dark">작성일</th>
+                            <th class="border border-dark">수정일</th>
                         </tr>
                     </thead>
                     <tbody>
-
-                        <c:forEach items="${resultMap}" var="board" varStatus="status">
+                    <c:forEach items="${boardList}" var="board" varStatus="status">
                         <tr>
-                         <td class="border border-dark">
-                         <c:if test="${board.POST_CATEGORY_UID eq 'PC1'}">
-                                       공지사항
-                                     </c:if>
-                                 <c:if test="${board.POST_CATEGORY_UID eq 'PC2'}">
-                                       이벤트
-                                     </c:if>
-                                      <c:if test="${board.POST_CATEGORY_UID eq 'PC3'}">
-                                       소식
-                                     </c:if></td>
+                            <td class="border border-dark">${board.CATEGORY_NAME}</td>
                             <td class="border border-dark">
-                              <a href="/your-link-here">${board.TITLE}</a>
+                                <a href="/your-link-here">${board.TITLE}</a>
                             </td>
-                            <td class="border border-dark">
-                                <fmt:formatDate value="${board.CREATE_DATE}" pattern="yy-MM-dd" />
-                                </td>
-                            <td class="border border-dark">
-                                <fmt:formatDate value="${board.MODIFIED_DATE}" pattern="yy-MM-dd" />
-                                </td>
+                            <td class="border border-dark">${board.CREATE_DATE}</td>
+                            <td class="border border-dark">${board.MODIFIED_DATE}</td>
                         </tr>
-                    
-
-                    </tbody>
                     </c:forEach>
+                    </tbody>
                 </table>
             </div>
 
