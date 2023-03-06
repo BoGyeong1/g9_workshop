@@ -23,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.g9.workshop.g9_workshop.configurations.PrincipalUser;
 import com.g9.workshop.g9_workshop.user.service.MainService;
-import com.g9.workshop.g9_workshop.user.service.ShopService;
 
 @Controller
 public class MainController {
@@ -34,6 +33,8 @@ public class MainController {
     // [SOO] root controller - HOME
     @RequestMapping(value = { "", "/home" }, method = RequestMethod.GET)
     public ModelAndView root(ModelAndView modelAndView) {
+        Object mainProducts = mainService.getMainProducts();
+        modelAndView.addObject("mainProducts", mainProducts);
         modelAndView.setViewName("user/main");
         return modelAndView;
     }

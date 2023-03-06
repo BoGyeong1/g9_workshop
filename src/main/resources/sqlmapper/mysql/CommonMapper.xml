@@ -13,4 +13,12 @@
         WHERE USER_UID = #{userUid} AND PRODUCT_UID = #{product-uid}
     </delete>
 
+    <select id="getSixProduct" parameterType="Map" resultType="Map">
+        SELECT PRODUCTS.PRODUCT_UID, DIRECTORY_NAME, PHYSICAL_FILE_NAME FROM PRODUCTS
+        INNER JOIN PRODUCT_IMGS ON PRODUCTS.PRODUCT_UID = PRODUCT_IMGS.PRODUCT_UID
+        WHERE EXPOSURE_ORDER = 1
+        ORDER BY CREATE_DATE DESC
+        LIMIT 8
+    </select>
+
 </mapper>

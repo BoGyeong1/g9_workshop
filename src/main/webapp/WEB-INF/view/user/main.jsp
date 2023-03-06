@@ -47,26 +47,16 @@
         <%-- [SOO] Product List Items 1 - BOX x 4 --%>
         <div id="section-body">
             <div class="row">
+                <c:forEach items="${mainProducts}" var="item" varStatus="status">
                 <div class="col col-12 col-md-3">
-                    <a href="">
-                        <img src="./img/item/item1.png" alt="" class="w-100">
-                    </a>
+                    <form action="/shop/product/detail" method="post">
+                        <input type="hidden" name="product-uid" value="${item.PRODUCT_UID}">
+                        <button type="submit" style="border: none; background: none;">
+                            <img src="/${item.DIRECTORY_NAME}${item.PHYSICAL_FILE_NAME}" alt="" class="w-100">
+                        </button>
+                    </form>
                 </div>
-                <div class="col col-12 col-md-3">
-                    <a href="">
-                        <img src="./img/item/item2.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="col col-12 col-md-3">
-                    <a href="">
-                        <img src="./img/item/item3.png" alt="" class="w-100">
-                    </a>
-                </div>
-                <div class="col col-12 col-md-3">
-                    <a href="">
-                        <img src="./img/item/item4.png" alt="" class="w-100">
-                    </a>
-                </div>
+                </c:forEach>
             </div>
         </div>
         <%-- [SOO] TODO // DB COMM - Item List Importing --%>
