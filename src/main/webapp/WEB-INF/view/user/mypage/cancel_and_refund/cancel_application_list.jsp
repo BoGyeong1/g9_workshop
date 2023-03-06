@@ -65,13 +65,14 @@
     </tr>
   </thead>
   <tbody>
-      <c:if test="${empty resultMap}">
-      <tr><td colspan="5"><div>주문 내역이 없습니다.</div></tr>
-      </c:if>
     <c:forEach var="item" items="${resultMap}">
       <c:choose>
         <c:when test="${item.CONDITION_NAME == '취소완료' or item.CONDITION_NAME == '반품준비중' or item.CONDITION_NAME == '반품완료' or item.CONDITION_NAME == '교환신청' or item.CONDITION_NAME == '교환준비중'}">
-          <tr><td colspan="5"><div> 취소/교환/반품 신청할 내역이 없습니다.<td></div></tr>
+          <tr>
+          <td colspan="5">
+          <div> 취소/교환/반품 신청할 내역이 없습니다.</div>
+          </td>
+          </tr>
         </c:when>
         <c:otherwise>
           <tr>
