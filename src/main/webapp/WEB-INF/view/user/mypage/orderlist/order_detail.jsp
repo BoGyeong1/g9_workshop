@@ -89,9 +89,9 @@ for(Map<String, Object> orderDetail : orderDetails) {
         <td>
           <c:choose>
             <c:when test="${item.DISCOUNT_RATE > 0}">
-              <span class="text-muted">${item.PRICE}</span>
+              <span class="text-muted"><del>${item.PRICE}</del> / <span style="color:red">${item.DISCOUNT_RATE}%</span></span>
               <br>
-              <strong>${item.PRICE - (item.PRICE * item.DISCOUNT_RATE / 100)}</strong>
+              <strong>${(item.PRICE - (item.PRICE * item.DISCOUNT_RATE / 100)).intValue()}</strong>
             </c:when>
             <c:otherwise>
               ${item.PRICE}
