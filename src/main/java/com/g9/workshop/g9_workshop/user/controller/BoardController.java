@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.g9.workshop.g9_workshop.user.dao.SharedDao;
 import com.g9.workshop.g9_workshop.user.service.BoardService;
 
 @Controller
 @RequestMapping(value = "/board")
-
 public class BoardController {
 
     @Autowired
@@ -23,11 +21,11 @@ public class BoardController {
     @GetMapping("")
     public ModelAndView boardMain(@RequestParam Map<String, Object> params, ModelAndView modelAndView) {
         Object resultMap = boardService.selectBoard(params);
+        Object boardList = boardService.getBoardList();
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("boardList", boardList);
         modelAndView.setViewName("user/board/board");
         return modelAndView;
     }
-
-    
 
 }
