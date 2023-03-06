@@ -34,7 +34,7 @@ public class BoardService {
     }
     
     public Object getOne(Object dataMap) {
-        String sqlMapId = "BoardMapper.selectBoardUID";
+        String sqlMapId = "BoardMapper.selectBoardLIst";
         Object result = adminDao.getOne(sqlMapId, dataMap);
         return result;
     }
