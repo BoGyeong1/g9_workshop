@@ -134,6 +134,13 @@ fieldset label:hover ~ label {
 fieldset input[type="radio"]:checked ~ label {
   text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
+.reviewRegiBtn {
+  width: 140px;
+  height: 30px;
+  background-color: black;
+  color: white;
+}
+
 footer {
   clear: both;
 }

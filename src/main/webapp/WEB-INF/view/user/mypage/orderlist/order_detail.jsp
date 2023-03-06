@@ -50,10 +50,10 @@ List<Map<String, Object>> orderDetails = (List<Map<String, Object>>)request.getA
 // 총 결제금액 계산
 int totalAmount = 0;
 for(Map<String, Object> orderDetail : orderDetails) {
-    int price = (Integer)orderDetail.get("PRICE");
-    int quantity = (Integer)orderDetail.get("QUANTITY");
-    int discountRate = (Integer)orderDetail.get("DISCOUNT_RATE");
-    int discountedPrice = price - (price * discountRate / 100); // 할인율 반영된 상품가격
+    int price = ((Number) orderDetail.get("PRICE")).intValue();
+    int quantity = ((Number) orderDetail.get("QUANTITY")).intValue();
+    double discountRate = ((Number) orderDetail.get("DISCOUNT_RATE")).doubleValue();
+    int discountedPrice = (int) Math.round(price - (price * discountRate / 100)); // 할인율 반영된 상품가격
     totalAmount += (discountedPrice * quantity);
 }
 
@@ -69,7 +69,7 @@ int totalPrice = totalAmount + shippingFee;
     <tr class="border-bottom border-3 border-dark">
       <th>주문날짜/번호</th>
       <th>상품정보</th>
-      <th>판매가 (할인율)</th>
+      <th>판매가 (할인된 가격)</th>
       <th>수량</th>
       <th>주문상태</th>
       <th>택배정보</th>
