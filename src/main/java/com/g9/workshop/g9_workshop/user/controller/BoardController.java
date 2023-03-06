@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.g9.workshop.g9_workshop.user.dao.SharedDao;
 import com.g9.workshop.g9_workshop.user.service.BoardService;
 
 @Controller
