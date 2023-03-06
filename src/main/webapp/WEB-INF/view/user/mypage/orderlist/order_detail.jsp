@@ -69,7 +69,7 @@ int totalPrice = totalAmount + shippingFee;
     <tr class="border-bottom border-3 border-dark">
       <th>주문날짜/번호</th>
       <th>상품정보</th>
-      <th>판매가 (할인율)</th>
+      <th>판매가 (할인된 가격)</th>
       <th>수량</th>
       <th>주문상태</th>
       <th>택배정보</th>
