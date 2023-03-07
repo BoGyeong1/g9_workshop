@@ -63,7 +63,7 @@
     <%-- header --%>
     <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
     <!-- main  -->
-    <main>
+    <main style="min-height: 600px;">
         <div>
             <div class="m-5">
                 <div class="text-center display-6 fw-bold">게시판</div>
