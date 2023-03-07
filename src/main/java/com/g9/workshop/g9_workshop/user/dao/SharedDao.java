@@ -27,6 +27,11 @@ public class SharedDao {
         return result;
     }
 
+    public Object getOne(String sqlMapId) {
+        Object result = sqlSessionTemplate.selectOne(sqlMapId);
+        return result;
+    }
+
     public Object getOne(String sqlMapId, String dataString) {
         Object result = sqlSessionTemplate.selectOne(sqlMapId, dataString);
         return result;

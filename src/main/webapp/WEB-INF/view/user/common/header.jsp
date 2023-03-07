@@ -55,7 +55,7 @@
         <%-- <a href="/project" class="mx-3 text-decoration-none text-dark fw-bold">PROJECT</a> --%>
         <a href="/shop/WHOLE" class="mx-3 text-decoration-none text-dark fw-bold">SHOP</a>
         <a href="/event/ongoing" class="mx-3 text-decoration-none text-dark fw-bold">EVENT</a>
-        <a href="/board" class="mx-3 text-decoration-none text-dark fw-bold">BOARD</a>
+        <a href="/board/1" class="mx-3 text-decoration-none text-dark fw-bold">BOARD</a>
     </div>
     <hr>
 </nav>

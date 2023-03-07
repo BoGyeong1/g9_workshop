@@ -29,8 +29,8 @@
     </select>
 
 
-    <select id="selectBoardCount" resultType="int">
-        SELECT COUNT(*) AS CNT FROM POSTS
+    <select id="selectBoardCount" resultType="Int">
+        SELECT COUNT(*) FROM POSTS
     </select>
 
 <!-- call BoardMapper.insertBoard -->
@@ -49,7 +49,7 @@
 
 
 <!-- call BoardMapper.updateByPost  -->
-    <update id="updateByPost"  parameterType="Map">
+    <update id="updateByPost" parameterType="Map">
     UPDATE POSTS
     SET POST_CATEGORY_UID = #{POST_CATEGORY_UID},
         TITLE =  #{TITLE},
@@ -60,9 +60,18 @@
     </update>
 
 <!-- call BoardMapper.deleteByPost  -->
-    <delete id="deleteByPost"  parameterType="Map">
+    <delete id="deleteByPost" parameterType="Map">
         DELETE FROM POSTS
         WHERE POST_UID = #{POST_UID}
     </delete>
+
+    <select id="getPostList" parameterType="Map" resultType="Map">
+        SELECT POST_UID, CATEGORY_NAME, TITLE, CREATE_DATE, MODIFIED_DATE,CONTENT FROM POSTS
+        INNER JOIN POST_CATEGOIES ON POSTS.POST_CATEGORY_UID = POST_CATEGOIES.POST_CATEGORY_UID
+        <if test="pageScale != null">
+            ORDER BY POSTS.CREATE_DATE DESC
+            LIMIT #{pageBegin}, #{pageScale} 
+        </if> 
+    </select>
 
 </mapper>

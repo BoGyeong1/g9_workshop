@@ -80,7 +80,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${boardList}" var="board" varStatus="status">
+                    <c:forEach items="${resultList.postList}" var="board" varStatus="status">
                         <tr>
                             <td class="border border-dark col-1">${board.CATEGORY_NAME}</td>
                             <td class="border border-dark">
@@ -103,25 +103,38 @@
                 </table>
             </div>
             <div class="my-5">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
+                <div id="page">
+                    <nav aria-label="Page navigation example" >
+                    <c:set var="_pagination" value="${resultMap.paginations}"/>
+                        <ul class="pagination justify-content-center" id="pagination">
+                        <c:if test="${_pagination.currentPage > 1 }">
+                            <li class="page-item ${_pagination.currentPage > 1 ? '' : 'disabled'}"> <a class="page-link"
+                                            href="/board/1" >맨 처음</a>
+                            </li>
+                        </c:if>
+                            <li class="page-item ${_pagination.currentBlock > 1 ? '' : 'disabled'}"><a class="page-link"
+                                        href="/board/${_pagination.previousPage}" value="${_pagination.previousPage}" >&laquo;</a>
+                            </li>
+                            
+                    <c:forEach var="i" begin="${_pagination.blockStart}" end="${_pagination.blockEnd}">
+                            <li class="page-item"><a class="page-link" href="/board/${i}">${i}</a></li>
+                    </c:forEach>
+                    <li class="page-item ${_pagination.currentBlock <= _pagination.totalBlock ? '' : 'disabled'}"><a
+                                        class="page-link"
+                                        href="/board/${_pagination.nextPage}" value="${_pagination.nextPage}">&raquo;</a>
+                    </li>
+                    <c:if test="${_pagination.currentPage < _pagination.totalPage}">
+                        <li class="page-item ${_pagination.currentPage < _pagination.totalPage ? '' : 'disabled'}"><a
+                                class="page-link"
+                                href="/board/${_pagination.totalPage}"  value="${_pagination.totalPage}">맨
+                                끝</a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                        </li>
+                    </c:if>
                     </ul>
-                </nav>
+                    </nav>
+                </div>
             </div>
-
+        </div>
     </main>
 
 
