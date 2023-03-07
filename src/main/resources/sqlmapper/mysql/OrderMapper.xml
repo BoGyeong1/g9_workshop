@@ -43,7 +43,7 @@
     </insert>
 
     <insert id="insertOrder" parameterType="Map">
-        INSERT INTO Orders
+        INSERT INTO ORDER
         VALUE (#{orderUid}, #{userUid}, #{address-uid}, #{delivery-location-uid}, #{paymentMethod-uid}, sysdate(), #{recipient_name}, #{recipient_tel})
     </insert>
 
