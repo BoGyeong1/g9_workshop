@@ -56,7 +56,6 @@
                 <td class="text-center">${resultData.PRODUCT_NAME}
                     <c:choose>
                         <c:when test="${resultData.PRODUCT_COUNT == 1}">
-                            ${resultData.PRODUCT_NAME}
                         </c:when>
                         <c:otherwise>
                             외 ${resultData.PRODUCT_COUNT - 1}개
