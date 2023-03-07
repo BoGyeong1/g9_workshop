@@ -84,7 +84,7 @@
                         <tr>
                             <td class="border border-dark col-1">${board.CATEGORY_NAME}</td>
                             <td class="border border-dark">
-                                <form action="/board/view" method="get">
+                                <form action="/board/view/${board.POST_UID}" method="get">
                                     <input type="hidden" name="POST_UID" value="${board.POST_UID}">
                                     <button style="border: none; background: none;" type="submit">
                                         ${board.TITLE}
