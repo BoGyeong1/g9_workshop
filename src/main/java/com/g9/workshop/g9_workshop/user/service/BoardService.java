@@ -51,7 +51,7 @@ public class BoardService {
 
     public Object getOne(Object dataMap) {
         String sqlMapId = "BoardMapper.selectBoardLIst";
-        Object result = adminDao.getOne(sqlMapId, dataMap);
+        Object result = adminDao.selectList(sqlMapId, dataMap);
         return result;
     }
 
