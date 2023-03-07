@@ -80,7 +80,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${resultList.postList}" var="board" varStatus="status">
+                    <c:forEach items="${resultMap.postList}" var="board" varStatus="status">
                         <tr>
                             <td class="border border-dark col-1">${board.CATEGORY_NAME}</td>
                             <td class="border border-dark">
@@ -135,10 +135,7 @@
         </div>
     </main>
 
-
-
-
-  <%-- Footer Include --%>
+    <%-- Footer Include --%>
     <%@ include file="/WEB-INF/view/user/common/footer.jsp" %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
