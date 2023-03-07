@@ -46,4 +46,10 @@ public class MainService {
         return result;
     }
 
+    public Object getMainPosts() {
+        String sqlMapId = "CommonMapper.getFivePost";
+        Object result = sharedDao.getList(sqlMapId);
+        return result;
+    }
+
 }

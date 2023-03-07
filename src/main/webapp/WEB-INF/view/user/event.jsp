@@ -34,8 +34,8 @@
         </div>
         <div class="my-3">
             <c:forEach items="${eventList}" var="event" varStatus="status" >
-                <a href="" class="w-100 my-3">
-                    <img src="/${event.DIRECTORY_NAME}${event.PHYSICAL_FILE_NAME}" class="img-fluid my-3">
+                <a href="${event.URL}" class="w-100 my-3">
+                    <img src="/${event.DIRECTORY_NAME}${event.PHYSICAL_FILE_NAME}" class="img-fluid my-3"> 
                 </a>
             </c:forEach>
         </div>
