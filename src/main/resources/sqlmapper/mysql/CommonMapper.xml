@@ -21,4 +21,11 @@
         LIMIT 8
     </select>
 
+    <select id="getFivePost" parameterType="Map" resultType="Map">
+        SELECT POST_UID, TITLE, CATEGORY_NAME FROM POSTS
+        INNER JOIN POST_CATEGOIES ON POSTS.POST_CATEGORY_UID = POST_CATEGOIES.POST_CATEGORY_UID
+        ORDER BY CREATE_DATE DESC
+        LIMIT 5;
+    </select>
+
 </mapper>

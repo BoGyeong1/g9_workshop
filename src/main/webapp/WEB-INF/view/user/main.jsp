@@ -67,45 +67,15 @@
                 <img id="section-img" src="/img/logo/G9_Logo.png" alt="" style="height: 30px;">
                 <span id="section-title" class="fs-4">&nbsp;News</span>
             </div>
-            <a href="/board" class="text-decoration-none text-secondary">더보기 &gt;</a>
+            <a href="/board/1" class="text-decoration-none text-secondary">더보기 &gt;</a>
         </div>
         <%-- [SOO] News Items --%>
         <div id="section-body">
-            <div class="row">
-                <div class="col col-12 col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
+            <c:forEach items="${mainPosts}" var="post" varStatus="status">
+                <div class="my-1">
+                    <a href="/board/view/${post.POST_UID}" class="text-decoration-none text-dark">${post.CATEGORY_NAME} ${post.TITLE}</a>
                 </div>
-                <div class="col col-12 col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-12 col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
         </div>
         <%-- [SOO] TODO // DB COMM - News List Importing --%>
     </div>
