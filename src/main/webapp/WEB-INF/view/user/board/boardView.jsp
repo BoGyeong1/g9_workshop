@@ -18,7 +18,8 @@
     <title>EarthWorkshop - BoardView</title>
 
 <body>
-
+ <%-- header --%>
+    <%@ include file="/WEB-INF/view/user/common/header.jsp" %>
 <div class="container d-flex justify-content-center">
   <div>
     <table style="text-align: left;">
