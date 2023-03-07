@@ -14,7 +14,6 @@
         INNER JOIN POST_CATEGOIES ON POSTS.POST_CATEGORY_UID = POST_CATEGOIES.POST_CATEGORY_UID;
     </select>
 
-
 <!-- call BoardMapper.selectBoardUID -->
     <select id="selectBoardUID" parameterType="Map" resultType="Map">
         SELECT * 
@@ -30,11 +29,9 @@
     </select>
 
 
-        <select id="selectBoardCount" resultType="int">
-    SELECT COUNT(*) FROM POSTS
+    <select id="selectBoardCount" resultType="int">
+        SELECT COUNT(*) AS CNT FROM POSTS
     </select>
-
-
 
 <!-- call BoardMapper.insertBoard -->
     <insert id="insertBoard" parameterType="Map">
@@ -63,11 +60,9 @@
     </update>
 
 <!-- call BoardMapper.deleteByPost  -->
-   <delete id="deleteByPost"  parameterType="Map">
+    <delete id="deleteByPost"  parameterType="Map">
         DELETE FROM POSTS
         WHERE POST_UID = #{POST_UID}
-   </delete>
-
-
+    </delete>
 
 </mapper>

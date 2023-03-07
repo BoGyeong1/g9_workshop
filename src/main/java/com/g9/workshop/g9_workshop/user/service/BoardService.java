@@ -1,5 +1,8 @@
 package com.g9.workshop.g9_workshop.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +24,9 @@ public class BoardService {
         return result;
     }
 
-    public Object getBoardList() {
+    public Object getBoardList(Object params) {
+        Map<String, Object> result = new HashMap();
+
         String sqlMapId = "BoardMapper.selectBoardLIst";
         Object result = sharedDao.getList(sqlMapId);
         return result;
@@ -38,4 +43,9 @@ public class BoardService {
         Object result = adminDao.selectList(sqlMapId, dataMap);
         return result;
     }
+
+    public Object getPostCount() {
+        String sqlMapId = ""
+    }
+
 }
