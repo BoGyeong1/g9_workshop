@@ -26,8 +26,10 @@ public class BoardController {
         params.put("pageScale", 10);
 
         Object resultMap = boardService.getBoardList(params);
-
+        Object fix = boardService.getFixList(params);
+        
         modelAndView.addObject("resultMap", resultMap);
+        modelAndView.addObject("fix", fix);
 
         modelAndView.setViewName("user/board/board");
         return modelAndView;

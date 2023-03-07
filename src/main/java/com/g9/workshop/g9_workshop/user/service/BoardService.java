@@ -43,6 +43,13 @@ public class BoardService {
         return result;
     }
 
+    public Object getFixList(Object dataMap) {
+        String sqlMapId = "BoardMapper.getTOP_FIXED";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
+
     public Object getBoardUid(Object dataMap) {
         String sqlMapId = "BoardMapper.selectBoardUID ";
         Object result = sharedDao.getList(sqlMapId);
@@ -51,7 +58,7 @@ public class BoardService {
 
     public Object getOne(Object dataMap) {
         String sqlMapId = "BoardMapper.selectBoardLIst";
-        Object result = adminDao.selectList(sqlMapId, dataMap);
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
         return result;
     }
 
