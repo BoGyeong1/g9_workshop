@@ -34,7 +34,9 @@ public class MainController {
     @RequestMapping(value = { "", "/home" }, method = RequestMethod.GET)
     public ModelAndView root(ModelAndView modelAndView) {
         Object mainProducts = mainService.getMainProducts();
+        Object mainPosts = mainService.getMainPosts();
         modelAndView.addObject("mainProducts", mainProducts);
+        modelAndView.addObject("mainPosts", mainPosts);
         modelAndView.setViewName("user/main");
         return modelAndView;
     }
