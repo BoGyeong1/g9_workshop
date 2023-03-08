@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminInquiryMapper">
+    <!-- [GYEONG] 답변이 필요한 1:1 문의 가져오기 -->
+    <select id="selectInquiryInfo" parameterType="Map" resultType="Map">
+        SELECT pi.PRIVATE_INQUIRY_UID, pi.USER_UID, ic.CATEGORY_NAME, pi.TITLE, pi.CONTENT, pi.CREATE_DATE
+        FROM PRIVATE_INQUIRIES pi
+        LEFT JOIN INQUIRY_CATEGORIES ic
+        ON pi.INQUIRY_CATEGORY_UID = ic.INQUIRY_CATEGORY_UID
+        LEFT JOIN PRIVATE_INQUIRY_ANSWERS pia
+        ON pi.PRIVATE_INQUIRY_UID = pia.PRIVATE_INQUIRY_UID
+        WHERE pia.PRIVATE_INQUIRY_ANSWER_UID IS NULL
+    </select>
+
+        <!-- [GYEONG]  1:1 문의 상세 -->
+    <select id="selectInquiryDetail" parameterType="Map" resultType="Map">
+        SELECT *
+        FROM PRIVATE_INQUIRIES 
+        WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
+    </select>
+
+
+            <!-- [GYEONG]  1:1 문의 상세 -->
+    <insert id="insertInquiryAnswer" parameterType="Map" >
+    INSERT INTO PRIVATE_INQUIRY_ANSWERS
+    (PRIVATE_INQUIRY_ANSWER_UID, PRIVATE_INQUIRY_UID, ADMIN_UID, CONTENT, CREATE_DATE)
+    VALUES
+    (#{PRIVATE_INQUIRY_ANSWER_UID},#{PRIVATE_INQUIRY_UID},#{ADMIN_UID},#{CONTENT},sysdate())
+    </insert>
+ 
+</mapper>

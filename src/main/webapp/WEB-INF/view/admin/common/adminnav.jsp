@@ -53,7 +53,7 @@
                 <div class="collapse" id="cs-collapse" style="">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">문의현황</a></li>
-                        <li><a href="#" class="btn link-dark rounded text-decoration-none">응답 필요 문의</a></li>
+                        <li><a href="/admin/inquiry/inquiryList" class="btn link-dark rounded text-decoration-none">응답 필요 문의</a></li>
                         <li><a href="#" class="btn link-dark rounded text-decoration-none">FAQ</a></li>
                     </ul>
                 </div>
