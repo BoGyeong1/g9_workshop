@@ -361,14 +361,16 @@ SELECT
   c.CATEGORY_NAME,
   p.TITLE,
   p.CONTENT,
-  p.CREATE_DATE
+  p.CREATE_DATE,
+  a.PRIVATE_INQUIRY_ANSWER_UID
 FROM 
   PRIVATE_INQUIRIES p
   INNER JOIN INQUIRY_CATEGORIES c ON p.INQUIRY_CATEGORY_UID = c.INQUIRY_CATEGORY_UID
+  LEFT JOIN PRIVATE_INQUIRY_ANSWERS a ON p.PRIVATE_INQUIRY_UID = a.PRIVATE_INQUIRY_UID
 WHERE 
   p.USER_UID = #{USER_UID} 
 ORDER BY 
-  p.CREATE_DATE DESC
+  p.CREATE_DATE DESC;
   </select >
 <!-- [GYEONG] 1:1문의 내역리스트 가져오기-->
 <select id="selectInquiryCategoryList" parameterType="Map" resultType="Map">
@@ -400,9 +402,15 @@ WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
 </update>
 
 <!--[GYEONG] 1:1 문의삭제 -->
+<delete id="deletePrivateInquiriesAnswer" parameterType="Map">
+
+</delete>
+
 <delete id="deletePrivateInquiries" parameterType="Map">
+DELETE FROM PRIVATE_INQUIRY_ANSWERS
+WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID};
   DELETE FROM PRIVATE_INQUIRIES
-  WHERE  PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
+  WHERE  PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID};
 </delete>
 <!--[GYEONG] 찜목록 가져오기 -->
 <select id="selectFavoritesList" parameterType="Map" resultType="Map">
