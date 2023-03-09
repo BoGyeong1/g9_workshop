@@ -28,6 +28,12 @@ public class AdminInquiryService {
         return result;
     }
 
+        public Object getInquiryLists(Object dataMap) {
+        String sqlMapId = "AdminInquiryMapper.selectInquiryList";
+        Object result = sharedDao.getList(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object getInquiryOne(Object dataMap) {
         String sqlMapId = "AdminInquiryMapper.selectInquiryDetail";
         Object result = sharedDao.getOne(sqlMapId, dataMap);

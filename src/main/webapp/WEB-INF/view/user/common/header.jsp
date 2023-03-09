@@ -20,7 +20,7 @@
                 <a class="text-decoration-none text-secondary" href="/selectSignup">회원가입</a>
                 <span class="text-secondary">|</span>
             </c:if>
-                <a class="text-decoration-none text-secondary" href="/cs">고객센터</a>
+                <a class="text-decoration-none text-secondary" href="/Cscenter">고객센터</a>
             </div>
         </div>
     </div>

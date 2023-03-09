@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FaqMapper">
+
+   
+<!-- FaqMapper.selectFAQ
+    <select id="selectFAQ" resultType="Map">
+        SELECT TITLE,CONTENT
+        FROM FAQS
+        WHERE FAQ_UID = #{FAQ_UID};
+    </select> -->
+<!-- FaqMapper.selectFAQ -->
+    <select id="selectFAQ" resultType="Map">
+        SELECT *
+        FROM FAQS
+    </select>
+
+    <insert id="insertFAQ" parameterType="Map">
+        INSERT INTO FAQS
+        VALUES (#{FAQ_UID}, #{INQUIRY_CATEGORY_UID}, #{ADMIN_UID}, #{TITLE}, #{CONTENT}, sysdate())
+    </insert>
+
+
+    <select id="selectCategory" parameterType="Map" resultType="Map">
+        SELECT * FROM INQUIRY_CATEGORIES
+    </select>
+<!-- 
+    <update id="updateEventInfo" parameterType="Map">
+        UPDATE EVENT_DETAILS
+        SET EVENT_NAME = #{event-name},
+        START_DATE = #{start-date},
+        END_DATE = #{end-date},
+        URL = #{url},
+        EXPOSURE = #{exposure},
+        EXPOSURE_ORDER = #{exposure-order}
+        WHERE EVENT_UID = #{event-uid}
+    </update> -->
+
+    <!-- <delete id="deleteBanner" parameterType="Map">
+        DELETE FROM EVENT_BANNERS
+        WHERE EVENT_UID = #{event-uid}
+    </delete> -->
+
+    <select id="getFaqPost" parameterType="Map" resultType="Map">
+        SELECT * FROM FAQS
+        WHERE FAQ_UID = #{FAQ_UID}
+    </select>
+
+    <update id="updateFaqPost" parameterType="Map">
+        UPDATE FAQS
+        SET INQUIRY_CATEGORY_UID = #{INQUIRY_CATEGORY_UID},
+        ADMIN_UID = #{ADMIN_UID},
+        TITLE = #{TITLE},
+        CONTENT = #{CONTENT},
+        UPDATE_DATE = sysdate()
+        WHERE FAQ_UID = #{FAQ_UID}
+    </update>
+
+    <delete id="deleteFaq" parameterType="Map">
+        DELETE FROM FAQS
+        WHERE FAQ_UID = #{FAQ_UID}
+    </delete>
+</mapper>

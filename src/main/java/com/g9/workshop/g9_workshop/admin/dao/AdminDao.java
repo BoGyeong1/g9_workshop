@@ -41,6 +41,11 @@ public class AdminDao {
         Object result = sqlSessionTemplate.selectList(sqlMapId);
         return result;
     }
+    public Object selectCsCategories() {
+        String sqlMapId = "FaqMapper.selectCategory";
+        Object result = sqlSessionTemplate.selectList(sqlMapId);
+        return result;
+    }
 
     public Object selectPurposes() {
         String sqlMapId = "AdminMapper.selectPurposes";

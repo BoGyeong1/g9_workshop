@@ -33,6 +33,12 @@ public class AdminBoardService {
         return result;
     }
 
+    public Object selectCs(Object dataMap) {
+        String sqlMapId = "FaqMapper.selectFAQ";
+        Object result = adminDao.selectList(sqlMapId);
+        return result;
+    }
+
     public Object insertAdmin(Object dataMap) {
         String sqlMapId = "BoardMapper.insertBoard";
         ((Map) dataMap).put("POST_UID", commonUtils.getUniqueSequence());
@@ -48,6 +54,11 @@ public class AdminBoardService {
 
     public Object getBoardCategories() {
         Object result = adminDao.selectBoardCategories();
+        return result;
+    }
+
+    public Object getCsCategories() {
+        Object result = adminDao.selectCsCategories();
         return result;
     }
 
@@ -90,9 +101,34 @@ public class AdminBoardService {
         return result;
     }
 
+    public Object csPost(Map dataMap) {
+        String FAQ_UID = commonUtils.getUniqueSequence();
+        dataMap.put("FAQ_UID", FAQ_UID);
+        String sqlMapId = "FaqMapper.insertFAQ";
+        Object result = sharedDao.insert(sqlMapId, dataMap);
+        return result;
+    }
+
     public Object delete(Map dataMap) {
         String sqlMapId = "BoardMapper.deleteByPost";
-        Object result = adminDao.delete(sqlMapId,dataMap);
+        Object result = adminDao.delete(sqlMapId, dataMap);
+        return result;
+    }
+    public Object deleteFaq(Map dataMap) {
+        String sqlMapId = "FaqMapper.deleteFaq";
+        Object result = adminDao.delete(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object getFaqPost(Map dataMap) {
+        String sqlMapId = "FaqMapper.getFaqPost";
+        Object result = sharedDao.getOne(sqlMapId, dataMap);
+        return result;
+    }
+
+    public Object updateFaqPost(Map dataMap) {
+        String sqlMapId = "FaqMapper.updateFaqPost";
+        Object result = sharedDao.update(sqlMapId, dataMap);
         return result;
     }
 

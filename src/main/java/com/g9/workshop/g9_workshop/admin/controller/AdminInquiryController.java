@@ -33,6 +33,14 @@ public class AdminInquiryController {
         return modelAndView;
     }
 
+    @GetMapping("/inquiryLists")
+    public ModelAndView inquiryLists(@RequestParam Map params, ModelAndView modelAndView) {
+        Object resultMap = adminInquiryService.getInquiryLists(params);
+        modelAndView.addObject("resultMap", resultMap);
+        modelAndView.setViewName("admin/cs/inquirylists");
+        return modelAndView;
+    }
+
     @GetMapping("/inquirys/{privateInquiryUid}")
     public ModelAndView inquirys(@RequestParam Map params, @PathVariable String privateInquiryUid,
             ModelAndView modelAndView) {

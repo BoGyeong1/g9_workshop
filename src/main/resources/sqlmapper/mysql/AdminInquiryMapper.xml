@@ -20,6 +20,15 @@
         WHERE PRIVATE_INQUIRY_UID = #{PRIVATE_INQUIRY_UID}
     </select>
 
+       <!-- [현정] 문의현황 리스트 -->
+    <select id="selectInquiryList" parameterType="Map" resultType="Map">
+         SELECT *
+        FROM PRIVATE_INQUIRIES 
+         LEFT JOIN INQUIRY_CATEGORIES 
+        ON PRIVATE_INQUIRIES.INQUIRY_CATEGORY_UID = INQUIRY_CATEGORIES.INQUIRY_CATEGORY_UID
+    </select>
+
+
 
             <!-- [GYEONG]  1:1 문의 상세 -->
     <insert id="insertInquiryAnswer" parameterType="Map" >
