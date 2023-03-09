@@ -34,7 +34,7 @@
                 >회원가입</a
               >
               <span class="text-secondary">|</span>
-              <a class="text-decoration-none text-secondary" href=""
+              <a class="text-decoration-none text-secondary" href="/Cscenter"
                 >고객센터</a
               >
             </span>
